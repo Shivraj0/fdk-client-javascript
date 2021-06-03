@@ -97,6 +97,8 @@
 
 * [Theme](#Theme)
   * Methods
+    * [getAllPages](#getallpages)
+    * [getPage](#getpage)
     * [getAppliedTheme](#getappliedtheme)
     * [getThemeForPreview](#getthemeforpreview)
     
@@ -6129,6 +6131,151 @@ Default
 
 
 ## Theme
+
+
+#### getAllPages
+Get all pages of a theme
+
+```javascript
+// Promise
+const promise = theme.getAllPages(themeId);
+
+// Async/Await
+const data = await theme.getAllPages(themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| themeId | string | ID of the theme to be retrieved | 
+
+Use this API to retrieve all the available pages of a theme by its ID.
+
+*Success Response:*
+
+
+
+Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
+
+
+Schema: `AllAvailablePageSchema`
+
+
+*Examples:*
+
+
+All pages
+```json
+{
+  "$ref": "#/components/examples/AllAvailablePagesExample"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegInternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPage
+Get page of a theme
+
+```javascript
+// Promise
+const promise = theme.getPage(themeId,pageValue);
+
+// Async/Await
+const data = await theme.getPage(themeId,pageValue);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| themeId | string | ID of the theme to be retrieved | 
+| pageValue | string | Value of the page to be retrieved | 
+
+Use this API to retrieve a page of a theme.
+
+*Success Response:*
+
+
+
+Success. Returns an object of the pages.  Refer `AvailablePageSchema` for more details.
+
+
+Schema: `AvailablePageSchema`
+
+
+*Examples:*
+
+
+Home page
+```json
+{
+  "$ref": "#/components/examples/AvailablePageExample"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegInternalServerError`
+
+
+
+
+
+
+
+
+
+---
 
 
 #### getAppliedTheme
