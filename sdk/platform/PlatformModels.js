@@ -3553,6 +3553,856 @@ class Validator {
     });
   }
 
+  static UnauthenticatedUser() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  static UnauthenticatedApplication() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  static BadRequest() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  static ResourceNotFound() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  static InternalServerError() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+
+      code: Joi.string().allow(""),
+    });
+  }
+
+  static PlanRecurring() {
+    return Joi.object({
+      interval: Joi.string().allow(""),
+
+      interval_count: Joi.number(),
+    });
+  }
+
+  static Plan() {
+    return Joi.object({
+      recurring: this.PlanRecurring(),
+
+      is_trial_plan: Joi.boolean(),
+
+      plan_group: Joi.string().allow(""),
+
+      tag_lines: Joi.array().items(Joi.string().allow("")),
+
+      currency: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      is_visible: Joi.boolean(),
+
+      trial_period: Joi.number(),
+
+      addons: Joi.array().items(Joi.string().allow("")),
+
+      tags: Joi.array().items(Joi.string().allow("")),
+
+      type: Joi.string().allow(""),
+
+      country: Joi.string().allow(""),
+
+      _id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      amount: Joi.number(),
+
+      product_suite_id: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+    });
+  }
+
+  static DetailedPlanComponents() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      group: Joi.string().allow(""),
+
+      icon: Joi.string().allow(""),
+
+      links: Joi.object(),
+
+      enabled: Joi.boolean(),
+
+      display_text: Joi.string().allow(""),
+    });
+  }
+
+  static DetailedPlan() {
+    return Joi.object({
+      recurring: this.PlanRecurring(),
+
+      is_trial_plan: Joi.boolean(),
+
+      plan_group: Joi.string().allow(""),
+
+      tag_lines: Joi.array().items(Joi.string().allow("")),
+
+      currency: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      is_visible: Joi.boolean(),
+
+      trial_period: Joi.number(),
+
+      addons: Joi.array().items(Joi.string().allow("")),
+
+      tags: Joi.array().items(Joi.string().allow("")),
+
+      type: Joi.string().allow(""),
+
+      country: Joi.string().allow(""),
+
+      _id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      amount: Joi.number(),
+
+      product_suite_id: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+
+      components: Joi.array().items(this.DetailedPlanComponents()),
+    });
+  }
+
+  static EntityChargePrice() {
+    return Joi.object({
+      amount: Joi.number().required(),
+
+      currency_code: Joi.string().allow("").required(),
+    });
+  }
+
+  static EntityChargeRecurring() {
+    return Joi.object({
+      interval: Joi.string().allow("").required(),
+
+      interval_time: Joi.number().required(),
+    });
+  }
+
+  static ChargeLineItem() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+
+      term: Joi.string().allow("").required(),
+
+      pricing_type: Joi.string().allow("").required(),
+
+      price: this.EntityChargePrice().required(),
+
+      recurring: this.EntityChargeRecurring(),
+
+      capped_amount: Joi.number(),
+
+      metadata: Joi.object(),
+    });
+  }
+
+  static CreateSubscriptionCharge() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+
+      trial_days: Joi.number(),
+
+      line_items: Joi.array().items(this.ChargeLineItem()).required(),
+
+      is_test: Joi.boolean(),
+    });
+  }
+
+  static CurrentPeriod() {
+    return Joi.object({
+      start_date: Joi.string().allow(""),
+
+      end_date: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionCharge() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      term: Joi.string().allow(""),
+
+      pricing_type: Joi.string().allow(""),
+
+      price: this.EntityChargePrice(),
+
+      recurring: this.EntityChargeRecurring(),
+
+      capped_amount: Joi.number(),
+
+      activated_on: Joi.string().allow(""),
+
+      cancelled_on: Joi.string().allow(""),
+
+      billing_date: Joi.string().allow(""),
+
+      current_period: this.CurrentPeriod(),
+
+      status: Joi.string().allow(""),
+
+      is_test: Joi.boolean(),
+
+      metadata: Joi.object(),
+    });
+  }
+
+  static EntitySubscription() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      line_items: Joi.array().items(this.SubscriptionCharge()),
+    });
+  }
+
+  static CreateSubscriptionResponse() {
+    return Joi.object({
+      subscription: this.EntitySubscription(),
+
+      confirm_url: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceDetailsPeriod() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+
+      end: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceDetailsClient() {
+    return Joi.object({
+      address_lines: Joi.array().items(Joi.string().allow("")),
+
+      name: Joi.string().allow(""),
+
+      email: Joi.string().allow(""),
+
+      phone: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceDetailsStatusTrail() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      value: Joi.string().allow(""),
+
+      timestamp: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethodsDataChecks() {
+    return Joi.object({
+      cvc_check: Joi.string().allow(""),
+
+      address_line1_check: Joi.string().allow(""),
+
+      address_postal_code_check: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethodsDataNetworks() {
+    return Joi.object({
+      available: Joi.array().items(Joi.string().allow("")),
+
+      preferred: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethodsDataThreeDSecureUsage() {
+    return Joi.object({
+      supported: Joi.boolean(),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethodsData() {
+    return Joi.object({
+      brand: Joi.string().allow(""),
+
+      last4: Joi.string().allow(""),
+
+      checks: this.InvoiceDetailsPaymentMethodsDataChecks(),
+
+      wallet: Joi.string().allow(""),
+
+      country: Joi.string().allow(""),
+
+      funding: Joi.string().allow(""),
+
+      exp_year: Joi.number(),
+
+      networks: this.InvoiceDetailsPaymentMethodsDataNetworks(),
+
+      exp_month: Joi.number(),
+
+      fingerprint: Joi.string().allow(""),
+
+      generated_from: Joi.string().allow(""),
+
+      three_d_secure_usage: this.InvoiceDetailsPaymentMethodsDataThreeDSecureUsage(),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethods() {
+    return Joi.object({
+      id: Joi.number(),
+
+      type: Joi.string().allow(""),
+
+      pg_payment_method_id: Joi.string().allow(""),
+
+      data: this.InvoiceDetailsPaymentMethodsData(),
+
+      is_default: Joi.boolean(),
+    });
+  }
+
+  static InvoicePaymentMethod() {
+    return Joi.object({
+      pg_payment_method_id: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceDetails() {
+    return Joi.object({
+      period: this.InvoiceDetailsPeriod(),
+
+      client: this.InvoiceDetailsClient(),
+
+      auto_advance: Joi.boolean(),
+
+      currency: Joi.string().allow(""),
+
+      paid: Joi.boolean(),
+
+      attemp: Joi.number(),
+
+      _id: Joi.string().allow(""),
+
+      collection_method: Joi.string().allow(""),
+
+      subscriber_id: Joi.string().allow(""),
+
+      invoice_url: Joi.string().allow(""),
+
+      number: Joi.string().allow(""),
+
+      pg_data: Joi.object(),
+
+      receipt_number: Joi.string().allow(""),
+
+      statement_descriptor: Joi.string().allow(""),
+
+      current_status: Joi.string().allow(""),
+
+      status_trail: Joi.array().items(this.InvoiceDetailsStatusTrail()),
+
+      subtotal: Joi.number(),
+
+      total: Joi.number(),
+
+      subscription: Joi.string().allow(""),
+
+      next_action_time: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+
+      hash_identifier: Joi.string().allow(""),
+
+      payment_method: this.InvoicePaymentMethod(),
+    });
+  }
+
+  static InvoiceItemsPlanRecurring() {
+    return Joi.object({
+      interval: Joi.string().allow(""),
+
+      interval_count: Joi.number(),
+    });
+  }
+
+  static InvoiceItemsPlan() {
+    return Joi.object({
+      recurring: this.InvoiceItemsPlanRecurring(),
+
+      is_trial_plan: Joi.boolean(),
+
+      plan_group: Joi.string().allow(""),
+
+      tag_lines: Joi.array().items(Joi.string().allow("")),
+
+      currency: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      is_visible: Joi.boolean(),
+
+      trial_period: Joi.number(),
+
+      addons: Joi.array().items(Joi.string().allow("")),
+
+      tags: Joi.array().items(Joi.string().allow("")),
+
+      type: Joi.string().allow(""),
+
+      country: Joi.string().allow(""),
+
+      _id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      amount: Joi.number(),
+
+      product_suite_id: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceItemsPeriod() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+
+      end: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceItems() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      currency: Joi.string().allow(""),
+
+      plan: this.InvoiceItemsPlan(),
+
+      name: Joi.string().allow(""),
+
+      quantity: Joi.number(),
+
+      description: Joi.string().allow(""),
+
+      period: this.InvoiceItemsPeriod(),
+
+      unit_amount: Joi.number(),
+
+      amount: Joi.number(),
+
+      type: Joi.string().allow(""),
+
+      invoice_id: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+    });
+  }
+
+  static Invoice() {
+    return Joi.object({
+      invoice: this.InvoiceDetails(),
+
+      invoice_items: Joi.array().items(this.InvoiceItems()),
+    });
+  }
+
+  static InvoicesDataClient() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+
+      email: Joi.string().allow(""),
+
+      phone: Joi.string().allow(""),
+
+      address_lines: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  static InvoicesDataPeriod() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+
+      end: Joi.string().allow(""),
+    });
+  }
+
+  static InvoicesDataPaymentMethod() {
+    return Joi.object({
+      pg_payment_method_id: Joi.string().allow(""),
+    });
+  }
+
+  static InvoicesData() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      client: this.InvoicesDataClient(),
+
+      auto_advance: Joi.boolean(),
+
+      currency: Joi.string().allow(""),
+
+      paid: Joi.boolean(),
+
+      attemp: Joi.number(),
+
+      collection_method: Joi.string().allow(""),
+
+      subscriber_id: Joi.string().allow(""),
+
+      invoice_url: Joi.string().allow(""),
+
+      number: Joi.string().allow(""),
+
+      pg_data: Joi.object(),
+
+      period: this.InvoicesDataPeriod(),
+
+      receipt_number: Joi.string().allow(""),
+
+      statement_descriptor: Joi.string().allow(""),
+
+      current_status: Joi.string().allow(""),
+
+      status_trail: Joi.array().items(this.InvoiceDetailsStatusTrail()),
+
+      subtotal: Joi.number(),
+
+      total: Joi.number(),
+
+      subscription: Joi.string().allow(""),
+
+      next_action_time: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+
+      hash_identifier: Joi.string().allow(""),
+
+      payment_method: this.InvoicesDataPaymentMethod(),
+
+      invoice_items: Joi.array().items(this.InvoiceItems()),
+    });
+  }
+
+  static Invoices() {
+    return Joi.object({
+      data: Joi.array().items(this.InvoicesData()),
+
+      start: Joi.number(),
+
+      end: Joi.number(),
+
+      limit: Joi.number(),
+
+      page: Joi.number(),
+
+      total: Joi.number(),
+    });
+  }
+
+  static Phone() {
+    return Joi.object({
+      phone_number: Joi.string().allow(""),
+
+      phone_country_code: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionBillingAddress() {
+    return Joi.object({
+      country: Joi.string().allow(""),
+
+      state: Joi.string().allow(""),
+
+      city: Joi.string().allow(""),
+
+      line1: Joi.string().allow(""),
+
+      line2: Joi.string().allow(""),
+
+      postal_code: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionCustomer() {
+    return Joi.object({
+      phone: this.Phone(),
+
+      billing_address: this.SubscriptionBillingAddress(),
+
+      _id: Joi.string().allow(""),
+
+      unique_id: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      email: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+
+      data: Joi.object(),
+    });
+  }
+
+  static SubscriptionCustomerCreate() {
+    return Joi.object({
+      phone: this.Phone(),
+
+      billing_address: this.SubscriptionBillingAddress(),
+
+      unique_id: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      email: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionCurrentPeriod() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+
+      end: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionPauseCollection() {
+    return Joi.object({
+      behavior: Joi.string().allow(""),
+
+      resume_at: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionTrial() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+
+      end: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionInvoiceSettings() {
+    return Joi.object({
+      generation: Joi.boolean(),
+
+      charging: Joi.boolean(),
+    });
+  }
+
+  static Subscription() {
+    return Joi.object({
+      current_period: this.SubscriptionCurrentPeriod(),
+
+      pause_collection: this.SubscriptionPauseCollection(),
+
+      trial: this.SubscriptionTrial(),
+
+      invoice_settings: this.SubscriptionInvoiceSettings(),
+
+      is_active: Joi.boolean(),
+
+      cancel_at_period_end: Joi.boolean(),
+
+      _id: Joi.string().allow(""),
+
+      subscriber_id: Joi.string().allow(""),
+
+      plan_id: Joi.string().allow(""),
+
+      product_suite_id: Joi.string().allow(""),
+
+      plan_data: this.Plan(),
+
+      current_status: Joi.string().allow(""),
+
+      collection_method: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+
+      latest_invoice: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionStatus() {
+    return Joi.object({
+      is_enabled: Joi.boolean(),
+
+      subscription: this.Subscription(),
+    });
+  }
+
+  static SubscriptionLimitApplication() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      hard_limit: Joi.number(),
+
+      soft_limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimitMarketplace() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
+  static SubscriptionLimitOtherPlatform() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
+  static SubscriptionLimitTeam() {
+    return Joi.object({
+      limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimitProducts() {
+    return Joi.object({
+      bulk: Joi.boolean(),
+
+      limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimitExtensions() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimitIntegrations() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimit() {
+    return Joi.object({
+      application: this.SubscriptionLimitApplication(),
+
+      marketplace: this.SubscriptionLimitMarketplace(),
+
+      other_platform: this.SubscriptionLimitOtherPlatform(),
+
+      team: this.SubscriptionLimitTeam(),
+
+      products: this.SubscriptionLimitProducts(),
+
+      extensions: this.SubscriptionLimitExtensions(),
+
+      integrations: this.SubscriptionLimitIntegrations(),
+
+      is_trial_plan: Joi.boolean(),
+    });
+  }
+
+  static SubscriptionActivateReq() {
+    return Joi.object({
+      unique_id: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
+
+      product_suite: Joi.string().allow(""),
+
+      plan_id: Joi.string().allow(""),
+
+      payment_method: Joi.string().allow(""),
+    });
+  }
+
+  static SubscriptionActivateRes() {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      data: this.Subscription(),
+    });
+  }
+
+  static CancelSubscriptionReq() {
+    return Joi.object({
+      unique_id: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
+
+      product_suite: Joi.string().allow(""),
+
+      subscription_id: Joi.string().allow(""),
+    });
+  }
+
+  static CancelSubscriptionRes() {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      data: this.Subscription(),
+    });
+  }
+
   static StatsImported() {
     return Joi.object({
       count: Joi.number(),
@@ -5025,57 +5875,57 @@ class Validator {
     });
   }
 
-  static SearchKeywordResult() {
+  static DeleteResponse() {
     return Joi.object({
-      sort_on: Joi.string().allow("").required(),
-
-      query: Joi.object().required(),
-    });
-  }
-
-  static CreateSearchKeyword() {
-    return Joi.object({
-      _custom_json: Joi.object(),
-
-      is_active: Joi.boolean(),
-
-      words: Joi.array().items(Joi.string().allow("")),
-
-      result: this.SearchKeywordResult().required(),
-
-      app_id: Joi.string().allow(""),
-    });
-  }
-
-  static GetSearchWordsData() {
-    return Joi.object({
-      _custom_json: Joi.object(),
-
-      words: Joi.array().items(Joi.string().allow("")),
-
-      result: Joi.object(),
-
-      uid: Joi.string().allow(""),
-
-      app_id: Joi.string().allow(""),
+      message: Joi.string().allow(""),
     });
   }
 
   static ErrorResponse() {
     return Joi.object({
-      status: Joi.number(),
+      meta: Joi.object(),
 
       code: Joi.string().allow(""),
 
-      meta: Joi.object(),
-
       message: Joi.string().allow(""),
+
+      status: Joi.number(),
     });
   }
 
-  static DeleteResponse() {
+  static SearchKeywordResult() {
     return Joi.object({
-      message: Joi.string().allow(""),
+      query: Joi.object().required(),
+
+      sort_on: Joi.string().allow("").required(),
+    });
+  }
+
+  static CreateSearchKeyword() {
+    return Joi.object({
+      result: this.SearchKeywordResult().required(),
+
+      words: Joi.array().items(Joi.string().allow("")),
+
+      _custom_json: Joi.object(),
+
+      app_id: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+    });
+  }
+
+  static GetSearchWordsData() {
+    return Joi.object({
+      result: Joi.object(),
+
+      words: Joi.array().items(Joi.string().allow("")),
+
+      _custom_json: Joi.object(),
+
+      app_id: Joi.string().allow(""),
+
+      uid: Joi.string().allow(""),
     });
   }
 
@@ -5095,71 +5945,71 @@ class Validator {
     });
   }
 
-  static Media() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-
-      url: Joi.string().allow(""),
-    });
-  }
-
   static AutocompletePageAction() {
     return Joi.object({
-      type: Joi.string().allow("").required(),
-
-      params: Joi.object(),
-
       query: Joi.object().required(),
 
       url: Joi.string().allow(""),
+
+      params: Joi.object(),
+
+      type: Joi.string().allow("").required(),
     });
   }
 
   static AutocompleteAction() {
     return Joi.object({
-      type: Joi.string().allow(""),
-
       page: this.AutocompletePageAction(),
+
+      type: Joi.string().allow(""),
+    });
+  }
+
+  static Media() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
     });
   }
 
   static AutocompleteResult() {
     return Joi.object({
-      logo: this.Media(),
-
-      _custom_json: Joi.object(),
-
       display: Joi.string().allow(""),
 
       action: this.AutocompleteAction(),
+
+      logo: this.Media(),
+
+      _custom_json: Joi.object(),
     });
   }
 
   static CreateAutocompleteKeyword() {
     return Joi.object({
-      results: Joi.array().items(this.AutocompleteResult()),
+      words: Joi.array().items(Joi.string().allow("")),
 
       _custom_json: Joi.object(),
 
-      is_active: Joi.boolean(),
-
-      words: Joi.array().items(Joi.string().allow("")),
-
       app_id: Joi.string().allow(""),
+
+      results: Joi.array().items(this.AutocompleteResult()),
+
+      is_active: Joi.boolean(),
     });
   }
 
   static GetAutocompleteWordsData() {
     return Joi.object({
-      results: Joi.array().items(Joi.object()),
+      words: Joi.array().items(Joi.string().allow("")),
 
       _custom_json: Joi.object(),
 
-      words: Joi.array().items(Joi.string().allow("")),
+      app_id: Joi.string().allow(""),
 
       uid: Joi.string().allow(""),
 
-      app_id: Joi.string().allow(""),
+      results: Joi.array().items(Joi.object()),
     });
   }
 
@@ -5173,13 +6023,13 @@ class Validator {
 
   static CreateAutocompleteWordsResponse() {
     return Joi.object({
-      words: Joi.array().items(Joi.string().allow("")),
-
-      _custom_json: Joi.object(),
-
       results: Joi.array().items(Joi.object()),
 
       app_id: Joi.string().allow(""),
+
+      _custom_json: Joi.object(),
+
+      words: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -5187,49 +6037,79 @@ class Validator {
     return Joi.object({
       auto_add_to_cart: Joi.boolean(),
 
-      min_quantity: Joi.number().required(),
+      allow_remove: Joi.boolean(),
 
       product_uid: Joi.number().required(),
 
-      max_quantity: Joi.number().required(),
-
-      allow_remove: Joi.boolean(),
+      min_quantity: Joi.number().required(),
 
       auto_select: Joi.boolean(),
+
+      max_quantity: Joi.number().required(),
     });
   }
 
-  static GetProductBundleCreateResponse() {
+  static ProductBundleRequest() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
+      choice: Joi.string().allow("").required(),
 
-      slug: Joi.string().allow("").required(),
+      logo: Joi.string().allow(""),
+
+      same_store_assignment: Joi.boolean(),
+
+      page_visibility: Joi.array().items(Joi.string().allow("")),
+
+      meta: Joi.object(),
 
       created_by: Joi.object(),
 
-      choice: Joi.string().allow("").required(),
-
       name: Joi.string().allow("").required(),
 
-      logo: Joi.string().allow(""),
+      slug: Joi.string().allow("").required(),
+
+      products: Joi.array().items(this.ProductBundleItem()).required(),
 
       created_on: Joi.string().allow(""),
 
       is_active: Joi.boolean().required(),
 
-      page_visibility: Joi.array().items(Joi.string().allow("")),
+      modified_by: Joi.object(),
+
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  static GetProductBundleCreateResponse() {
+    return Joi.object({
+      choice: Joi.string().allow("").required(),
+
+      logo: Joi.string().allow(""),
 
       same_store_assignment: Joi.boolean(),
 
-      products: Joi.array().items(this.ProductBundleItem()).required(),
+      page_visibility: Joi.array().items(Joi.string().allow("")),
 
-      modified_by: Joi.object(),
+      meta: Joi.object(),
+
+      created_by: Joi.object(),
 
       id: Joi.string().allow(""),
 
       company_id: Joi.number(),
 
-      meta: Joi.object(),
+      name: Joi.string().allow("").required(),
+
+      slug: Joi.string().allow("").required(),
+
+      products: Joi.array().items(this.ProductBundleItem()).required(),
+
+      created_on: Joi.string().allow(""),
+
+      is_active: Joi.boolean().required(),
+
+      modified_by: Joi.object(),
+
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -5241,97 +6121,39 @@ class Validator {
     });
   }
 
-  static ProductBundleRequest() {
-    return Joi.object({
-      modified_on: Joi.string().allow(""),
-
-      slug: Joi.string().allow("").required(),
-
-      created_by: Joi.object(),
-
-      choice: Joi.string().allow("").required(),
-
-      name: Joi.string().allow("").required(),
-
-      logo: Joi.string().allow(""),
-
-      created_on: Joi.string().allow(""),
-
-      is_active: Joi.boolean().required(),
-
-      page_visibility: Joi.array().items(Joi.string().allow("")),
-
-      same_store_assignment: Joi.boolean(),
-
-      products: Joi.array().items(this.ProductBundleItem()).required(),
-
-      modified_by: Joi.object(),
-
-      meta: Joi.object(),
-    });
-  }
-
   static ProductBundleUpdateRequest() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
-
-      slug: Joi.string().allow("").required(),
-
       choice: Joi.string().allow("").required(),
-
-      name: Joi.string().allow("").required(),
 
       logo: Joi.string().allow(""),
 
-      is_active: Joi.boolean().required(),
+      same_store_assignment: Joi.boolean(),
 
       page_visibility: Joi.array().items(Joi.string().allow("")),
 
-      same_store_assignment: Joi.boolean(),
+      meta: Joi.object(),
+
+      name: Joi.string().allow("").required(),
+
+      slug: Joi.string().allow("").required(),
 
       products: Joi.array().items(this.ProductBundleItem()).required(),
 
+      is_active: Joi.boolean().required(),
+
       modified_by: Joi.object(),
 
-      meta: Joi.object(),
-    });
-  }
-
-  static LimitedProductData() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-
-      short_description: Joi.string().allow(""),
-
-      identifier: Joi.object(),
-
-      images: Joi.array().items(Joi.string().allow("")),
-
-      country_of_origin: Joi.string().allow(""),
-
-      item_code: Joi.string().allow(""),
-
-      sizes: Joi.array().items(Joi.string().allow("")),
-
-      price: Joi.object(),
-
-      attributes: Joi.object(),
-
-      uid: Joi.number(),
-
-      quantity: Joi.number(),
-
-      name: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
     });
   }
 
   static Size() {
     return Joi.object({
-      value: Joi.string().allow(""),
-
       display: Joi.string().allow(""),
 
       quantity: Joi.number(),
+
+      value: Joi.string().allow(""),
 
       is_available: Joi.boolean(),
     });
@@ -5339,25 +6161,51 @@ class Validator {
 
   static Price() {
     return Joi.object({
-      min_marked: Joi.number(),
-
-      min_effective: Joi.number(),
-
       max_marked: Joi.number(),
+
+      min_marked: Joi.number(),
 
       max_effective: Joi.number(),
 
       currency: Joi.string().allow(""),
+
+      min_effective: Joi.number(),
+    });
+  }
+
+  static LimitedProductData() {
+    return Joi.object({
+      item_code: Joi.string().allow(""),
+
+      attributes: Joi.object(),
+
+      images: Joi.array().items(Joi.string().allow("")),
+
+      short_description: Joi.string().allow(""),
+
+      country_of_origin: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      sizes: Joi.array().items(Joi.string().allow("")),
+
+      quantity: Joi.number(),
+
+      price: Joi.object(),
+
+      slug: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      identifier: Joi.object(),
     });
   }
 
   static GetProducts() {
     return Joi.object({
-      min_quantity: Joi.number(),
-
       auto_add_to_cart: Joi.boolean(),
 
-      product_details: this.LimitedProductData(),
+      allow_remove: Joi.boolean(),
 
       product_uid: Joi.number(),
 
@@ -5365,53 +6213,47 @@ class Validator {
 
       price: this.Price(),
 
-      max_quantity: Joi.number(),
+      product_details: this.LimitedProductData(),
 
-      allow_remove: Joi.boolean(),
+      min_quantity: Joi.number(),
 
       auto_select: Joi.boolean(),
+
+      max_quantity: Joi.number(),
     });
   }
 
   static GetProductBundleResponse() {
     return Joi.object({
-      slug: Joi.string().allow(""),
-
       choice: Joi.string().allow(""),
 
       logo: Joi.string().allow(""),
-
-      is_active: Joi.boolean(),
 
       page_visibility: Joi.array().items(Joi.string().allow("")),
 
       same_store_assignment: Joi.boolean(),
 
-      products: Joi.array().items(this.GetProducts()),
-
       meta: Joi.object(),
 
       company_id: Joi.number(),
 
+      products: Joi.array().items(this.GetProducts()),
+
       name: Joi.string().allow(""),
-    });
-  }
 
-  static ListSizeGuide() {
-    return Joi.object({
-      page: Joi.object(),
+      slug: Joi.string().allow(""),
 
-      items: Joi.array().items(Joi.object()),
+      is_active: Joi.boolean(),
     });
   }
 
   static Meta() {
     return Joi.object({
-      values: Joi.array().items(Joi.object()),
-
       unit: Joi.string().allow(""),
 
       headers: Joi.object(),
+
+      values: Joi.array().items(Joi.object()),
     });
   }
 
@@ -5423,35 +6265,35 @@ class Validator {
 
   static ValidateSizeGuide() {
     return Joi.object({
-      image: Joi.string().allow(""),
-
-      created_by: Joi.object(),
-
-      modified_on: Joi.string().allow(""),
-
-      id: Joi.string().allow(""),
-
-      name: Joi.string().allow("").required(),
-
-      created_on: Joi.string().allow(""),
-
-      active: Joi.boolean(),
-
-      brand_id: Joi.number(),
-
-      modified_by: Joi.object(),
-
       subtitle: Joi.string().allow(""),
 
-      tag: Joi.string().allow(""),
+      image: Joi.string().allow(""),
 
       description: Joi.string().allow(""),
 
-      company_id: Joi.number(),
-
       guide: this.Guide(),
 
+      created_by: Joi.object(),
+
+      tag: Joi.string().allow(""),
+
+      active: Joi.boolean(),
+
+      company_id: Joi.number(),
+
+      name: Joi.string().allow("").required(),
+
+      id: Joi.string().allow(""),
+
       title: Joi.string().allow("").required(),
+
+      created_on: Joi.string().allow(""),
+
+      modified_by: Joi.object(),
+
+      brand_id: Joi.number(),
+
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -5463,53 +6305,49 @@ class Validator {
     });
   }
 
+  static ListSizeGuide() {
+    return Joi.object({
+      page: Joi.object(),
+
+      items: Joi.array().items(Joi.object()),
+    });
+  }
+
   static SizeGuideResponse() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
+      subtitle: Joi.string().allow(""),
+
+      guide: Joi.object(),
 
       created_by: Joi.object(),
+
+      active: Joi.boolean(),
+
+      company_id: Joi.number(),
+
+      tag: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
 
       created_on: Joi.string().allow(""),
 
-      active: Joi.boolean(),
-
-      brand_id: Joi.number(),
+      title: Joi.string().allow(""),
 
       modified_by: Joi.object(),
 
-      subtitle: Joi.string().allow(""),
+      brand_id: Joi.number(),
 
-      tag: Joi.string().allow(""),
-
-      title: Joi.string().allow(""),
-
-      company_id: Joi.number(),
-
-      guide: Joi.object(),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static GetCatalogConfigurationDetailsProduct() {
-    return Joi.object({
-      compare: Joi.object(),
-
-      similar: Joi.object(),
-
-      variant: Joi.object(),
-
-      detail: Joi.object(),
+      modified_on: Joi.string().allow(""),
     });
   }
 
   static MetaDataListingSortMetaResponse() {
     return Joi.object({
-      key: Joi.string().allow(""),
-
       display: Joi.string().allow(""),
+
+      key: Joi.string().allow(""),
     });
   }
 
@@ -5521,13 +6359,13 @@ class Validator {
 
   static MetaDataListingFilterMetaResponse() {
     return Joi.object({
-      key: Joi.string().allow(""),
-
       display: Joi.string().allow(""),
 
-      units: Joi.array().items(Joi.object()),
+      key: Joi.string().allow(""),
 
       filter_types: Joi.array().items(Joi.string().allow("")),
+
+      units: Joi.array().items(Joi.object()),
     });
   }
 
@@ -5545,43 +6383,31 @@ class Validator {
     });
   }
 
+  static GetCatalogConfigurationDetailsProduct() {
+    return Joi.object({
+      detail: Joi.object(),
+
+      variant: Joi.object(),
+
+      compare: Joi.object(),
+
+      similar: Joi.object(),
+    });
+  }
+
   static GetCatalogConfigurationMetaData() {
     return Joi.object({
-      product: this.GetCatalogConfigurationDetailsProduct(),
-
       listing: this.MetaDataListingResponse(),
+
+      product: this.GetCatalogConfigurationDetailsProduct(),
     });
   }
 
   static ProductSize() {
     return Joi.object({
-      max: Joi.number().required(),
-
       min: Joi.number().required(),
-    });
-  }
 
-  static ConfigurationProductConfig() {
-    return Joi.object({
-      key: Joi.string().allow("").required(),
-
-      size: this.ProductSize(),
-
-      logo: Joi.string().allow(""),
-
-      is_active: Joi.boolean().required(),
-
-      subtitle: Joi.string().allow(""),
-
-      priority: Joi.number().required(),
-
-      title: Joi.string().allow(""),
-    });
-  }
-
-  static ConfigurationProductSimilar() {
-    return Joi.object({
-      config: Joi.array().items(this.ConfigurationProductConfig()),
+      max: Joi.number().required(),
     });
   }
 
@@ -5589,17 +6415,17 @@ class Validator {
     return Joi.object({
       key: Joi.string().allow("").required(),
 
-      size: this.ProductSize().required(),
-
       logo: Joi.string().allow(""),
 
-      is_active: Joi.boolean().required(),
+      size: this.ProductSize().required(),
 
       display_type: Joi.string().allow("").required(),
 
       priority: Joi.number().required(),
 
       name: Joi.string().allow("").required(),
+
+      is_active: Joi.boolean().required(),
     });
   }
 
@@ -5609,11 +6435,35 @@ class Validator {
     });
   }
 
+  static ConfigurationProductConfig() {
+    return Joi.object({
+      subtitle: Joi.string().allow(""),
+
+      key: Joi.string().allow("").required(),
+
+      logo: Joi.string().allow(""),
+
+      size: this.ProductSize(),
+
+      priority: Joi.number().required(),
+
+      title: Joi.string().allow(""),
+
+      is_active: Joi.boolean().required(),
+    });
+  }
+
+  static ConfigurationProductSimilar() {
+    return Joi.object({
+      config: Joi.array().items(this.ConfigurationProductConfig()),
+    });
+  }
+
   static ConfigurationProduct() {
     return Joi.object({
-      similar: this.ConfigurationProductSimilar().required(),
-
       variant: this.ConfigurationProductVariant().required(),
+
+      similar: this.ConfigurationProductSimilar().required(),
     });
   }
 
@@ -5623,11 +6473,11 @@ class Validator {
 
       logo: Joi.string().allow(""),
 
-      is_active: Joi.boolean().required(),
-
       priority: Joi.number().required(),
 
       name: Joi.string().allow(""),
+
+      is_active: Joi.boolean().required(),
     });
   }
 
@@ -5641,19 +6491,19 @@ class Validator {
 
   static ConfigurationBucketPoints() {
     return Joi.object({
-      end: Joi.number(),
-
       start: Joi.number(),
+
+      end: Joi.number(),
     });
   }
 
   static ConfigurationListingFilterValue() {
     return Joi.object({
+      condition: Joi.string().allow(""),
+
       map: Joi.object(),
 
       value: Joi.string().allow(""),
-
-      condition: Joi.string().allow(""),
 
       bucket_points: Joi.array().items(this.ConfigurationBucketPoints()),
 
@@ -5663,29 +6513,29 @@ class Validator {
 
   static ConfigurationListingFilterConfig() {
     return Joi.object({
+      value_config: this.ConfigurationListingFilterValue(),
+
       key: Joi.string().allow("").required(),
 
       logo: Joi.string().allow(""),
 
-      is_active: Joi.boolean().required(),
-
       type: Joi.string().allow("").required(),
-
-      value_config: this.ConfigurationListingFilterValue(),
 
       priority: Joi.number().required(),
 
       name: Joi.string().allow(""),
+
+      is_active: Joi.boolean().required(),
     });
   }
 
   static ConfigurationListingFilter() {
     return Joi.object({
+      allow_single: Joi.boolean().required(),
+
       attribute_config: Joi.array().items(
         this.ConfigurationListingFilterConfig()
       ),
-
-      allow_single: Joi.boolean().required(),
     });
   }
 
@@ -5697,15 +6547,29 @@ class Validator {
     });
   }
 
-  static AppCatalogConfiguration() {
+  static AppConfiguration() {
     return Joi.object({
+      config_type: Joi.string().allow("").required(),
+
       product: this.ConfigurationProduct(),
 
-      config_type: Joi.string().allow("").required(),
+      app_id: Joi.string().allow("").required(),
 
       config_id: Joi.string().allow(""),
 
+      listing: this.ConfigurationListing(),
+    });
+  }
+
+  static AppCatalogConfiguration() {
+    return Joi.object({
+      config_type: Joi.string().allow("").required(),
+
+      product: this.ConfigurationProduct(),
+
       app_id: Joi.string().allow("").required(),
+
+      config_id: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
 
@@ -5715,23 +6579,9 @@ class Validator {
 
   static GetAppCatalogConfiguration() {
     return Joi.object({
-      is_default: Joi.boolean(),
-
       data: this.AppCatalogConfiguration(),
-    });
-  }
 
-  static AppConfiguration() {
-    return Joi.object({
-      product: this.ConfigurationProduct(),
-
-      config_type: Joi.string().allow("").required(),
-
-      config_id: Joi.string().allow(""),
-
-      app_id: Joi.string().allow("").required(),
-
-      listing: this.ConfigurationListing(),
+      is_default: Joi.boolean(),
     });
   }
 
@@ -5745,13 +6595,13 @@ class Validator {
 
   static EntityConfiguration() {
     return Joi.object({
-      product: this.GetCatalogConfigurationDetailsProduct(),
-
       config_type: Joi.string().allow("").required(),
 
-      config_id: Joi.string().allow(""),
+      product: this.GetCatalogConfigurationDetailsProduct(),
 
       app_id: Joi.string().allow("").required(),
+
+      config_id: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
 
@@ -5761,197 +6611,99 @@ class Validator {
 
   static GetAppCatalogEntityConfiguration() {
     return Joi.object({
-      is_default: Joi.boolean(),
-
       data: this.EntityConfiguration(),
-    });
-  }
 
-  static ProductSortOn() {
-    return Joi.object({
-      is_selected: Joi.boolean(),
-
-      value: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static ProductFiltersValue() {
-    return Joi.object({
-      value: Joi.string().allow("").required(),
-
-      is_selected: Joi.boolean().required(),
-
-      max: Joi.number(),
-
-      selected_max: Joi.number(),
-
-      count: Joi.number(),
-
-      query_format: Joi.string().allow(""),
-
-      currency_symbol: Joi.string().allow(""),
-
-      display_format: Joi.string().allow(""),
-
-      display: Joi.string().allow("").required(),
-
-      min: Joi.number(),
-
-      currency_code: Joi.string().allow(""),
-
-      selected_min: Joi.number(),
+      is_default: Joi.boolean(),
     });
   }
 
   static ProductFiltersKey() {
     return Joi.object({
-      logo: Joi.string().allow(""),
-
       display: Joi.string().allow("").required(),
+
+      name: Joi.string().allow("").required(),
 
       kind: Joi.string().allow(""),
 
-      name: Joi.string().allow("").required(),
+      logo: Joi.string().allow(""),
+    });
+  }
+
+  static ProductFiltersValue() {
+    return Joi.object({
+      query_format: Joi.string().allow(""),
+
+      selected_max: Joi.number(),
+
+      display: Joi.string().allow("").required(),
+
+      value: Joi.string().allow("").required(),
+
+      is_selected: Joi.boolean().required(),
+
+      selected_min: Joi.number(),
+
+      currency_code: Joi.string().allow(""),
+
+      currency_symbol: Joi.string().allow(""),
+
+      display_format: Joi.string().allow(""),
+
+      min: Joi.number(),
+
+      count: Joi.number(),
+
+      max: Joi.number(),
     });
   }
 
   static ProductFilters() {
     return Joi.object({
-      values: Joi.array().items(this.ProductFiltersValue()).required(),
-
       key: this.ProductFiltersKey().required(),
+
+      values: Joi.array().items(this.ProductFiltersValue()).required(),
+    });
+  }
+
+  static ProductSortOn() {
+    return Joi.object({
+      value: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      is_selected: Joi.boolean(),
     });
   }
 
   static GetCollectionQueryOptionResponse() {
     return Joi.object({
-      sort_on: Joi.array().items(this.ProductSortOn()),
-
       filters: Joi.array().items(this.ProductFilters()),
+
+      sort_on: Joi.array().items(this.ProductSortOn()),
     });
   }
 
-  static BannerImage() {
+  static Schedule() {
     return Joi.object({
-      aspect_ratio: Joi.string().allow(""),
+      end: Joi.string().allow(""),
 
-      url: Joi.string().allow(""),
+      cron: Joi.string().allow(""),
+
+      start: Joi.string().allow(""),
+
+      duration: Joi.number(),
     });
   }
 
-  static ImageUrls() {
+  static UserInfo() {
     return Joi.object({
-      landscape: this.BannerImage(),
-
-      portrait: this.BannerImage(),
-    });
-  }
-
-  static Media1() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-
-      meta: Joi.object(),
-
-      url: Joi.string().allow("").required(),
-    });
-  }
-
-  static ProductListingActionPage() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-
-      query: Joi.object(),
-    });
-  }
-
-  static ProductListingAction() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-
-      page: this.ProductListingActionPage(),
-    });
-  }
-
-  static GetCollectionDetailNest() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-
-      cron: Joi.object(),
-
-      banners: this.ImageUrls(),
-
-      query: Joi.object(),
-
-      _schedule: Joi.object(),
-
-      logo: this.Media1(),
-
-      description: Joi.string().allow(""),
-
-      allow_sort: Joi.boolean(),
-
-      action: this.ProductListingAction(),
-
-      allow_facets: Joi.boolean(),
-
-      app_id: Joi.string().allow(""),
-
-      badge: Joi.object(),
-
-      meta: Joi.object(),
-
-      is_active: Joi.boolean(),
-
-      type: Joi.string().allow(""),
-
-      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
-
       uid: Joi.string().allow(""),
 
-      tag: Joi.array().items(Joi.string().allow("")),
+      username: Joi.string().allow(""),
 
-      name: Joi.string().allow(""),
-    });
-  }
+      user_id: Joi.string().allow(""),
 
-  static CollectionListingFilterType() {
-    return Joi.object({
-      is_selected: Joi.boolean(),
-
-      display: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static CollectionListingFilterTag() {
-    return Joi.object({
-      is_selected: Joi.boolean(),
-
-      display: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static CollectionListingFilter() {
-    return Joi.object({
-      type: Joi.array().items(this.CollectionListingFilterType()),
-
-      tags: Joi.array().items(this.CollectionListingFilterTag()),
-    });
-  }
-
-  static GetCollectionListingResponse() {
-    return Joi.object({
-      page: this.Page(),
-
-      items: Joi.array().items(this.GetCollectionDetailNest()),
-
-      filters: this.CollectionListingFilter(),
+      email: Joi.string().allow(""),
     });
   }
 
@@ -5965,41 +6717,9 @@ class Validator {
 
   static CollectionImage() {
     return Joi.object({
-      aspect_ratio: Joi.string().allow("").required(),
-
       url: Joi.string().allow("").required(),
-    });
-  }
 
-  static CollectionBanner() {
-    return Joi.object({
-      landscape: this.CollectionImage().required(),
-
-      portrait: this.CollectionImage().required(),
-    });
-  }
-
-  static Schedule() {
-    return Joi.object({
-      duration: Joi.number(),
-
-      start: Joi.string().allow(""),
-
-      end: Joi.string().allow(""),
-
-      cron: Joi.string().allow(""),
-    });
-  }
-
-  static UserInfo() {
-    return Joi.object({
-      user_id: Joi.string().allow(""),
-
-      username: Joi.string().allow(""),
-
-      email: Joi.string().allow(""),
-
-      uid: Joi.string().allow(""),
+      aspect_ratio: Joi.string().allow("").required(),
     });
   }
 
@@ -6011,293 +6731,303 @@ class Validator {
     });
   }
 
+  static CollectionBanner() {
+    return Joi.object({
+      landscape: this.CollectionImage().required(),
+
+      portrait: this.CollectionImage().required(),
+    });
+  }
+
   static CreateCollection() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
-
-      published: Joi.boolean(),
-
-      tags: Joi.array().items(Joi.string().allow("")),
-
-      _custom_json: Joi.object(),
-
       _locale_language: Joi.object(),
-
-      seo: this.SeoDetail(),
-
-      banners: this.CollectionBanner().required(),
-
-      query: Joi.object(),
-
-      _schedule: this.Schedule(),
-
-      logo: this.CollectionImage().required(),
 
       description: Joi.string().allow(""),
 
-      created_by: this.UserInfo(),
+      _schedule: this.Schedule(),
+
+      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
 
       sort_on: Joi.string().allow(""),
 
-      allow_sort: Joi.boolean(),
+      tags: Joi.array().items(Joi.string().allow("")),
 
       allow_facets: Joi.boolean(),
 
       modified_by: this.UserInfo(),
 
-      app_id: Joi.string().allow("").required(),
+      _custom_json: Joi.object(),
 
-      badge: this.CollectionBadge(),
+      query: Joi.object(),
 
-      meta: Joi.object(),
-
-      is_active: Joi.boolean(),
+      seo: this.SeoDetail(),
 
       type: Joi.string().allow("").required(),
 
-      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+      logo: this.CollectionImage().required(),
+
+      badge: this.CollectionBadge(),
+
+      published: Joi.boolean(),
+
+      app_id: Joi.string().allow("").required(),
+
+      created_by: this.UserInfo(),
 
       name: Joi.string().allow("").required(),
+
+      allow_sort: Joi.boolean(),
+
+      meta: Joi.object(),
+
+      banners: this.CollectionBanner().required(),
+
+      slug: Joi.string().allow("").required(),
+
+      is_active: Joi.boolean(),
+    });
+  }
+
+  static BannerImage() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+
+      aspect_ratio: Joi.string().allow(""),
+    });
+  }
+
+  static ImageUrls() {
+    return Joi.object({
+      landscape: this.BannerImage(),
+
+      portrait: this.BannerImage(),
     });
   }
 
   static CollectionCreateResponse() {
     return Joi.object({
-      slug: Joi.string().allow(""),
-
-      _schedule: Joi.object(),
-
       logo: this.BannerImage(),
-
-      is_active: Joi.boolean(),
-
-      allow_sort: Joi.boolean(),
-
-      cron: Joi.object(),
 
       type: Joi.string().allow(""),
 
-      allow_facets: Joi.boolean(),
-
-      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
-
-      banners: this.ImageUrls(),
-
-      app_id: Joi.string().allow(""),
-
-      query: Joi.object(),
-
-      meta: Joi.object(),
-
-      description: Joi.string().allow(""),
-
-      tag: Joi.array().items(Joi.string().allow("")),
+      allow_sort: Joi.boolean(),
 
       badge: Joi.object(),
 
+      meta: Joi.object(),
+
+      app_id: Joi.string().allow(""),
+
+      banners: this.ImageUrls(),
+
+      cron: Joi.object(),
+
+      description: Joi.string().allow(""),
+
+      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+
+      _schedule: Joi.object(),
+
+      query: Joi.object(),
+
+      tag: Joi.array().items(Joi.string().allow("")),
+
       name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      allow_facets: Joi.boolean(),
+    });
+  }
+
+  static CollectionListingFilterTag() {
+    return Joi.object({
+      display: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      is_selected: Joi.boolean(),
+    });
+  }
+
+  static CollectionListingFilterType() {
+    return Joi.object({
+      display: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      is_selected: Joi.boolean(),
+    });
+  }
+
+  static CollectionListingFilter() {
+    return Joi.object({
+      tags: Joi.array().items(this.CollectionListingFilterTag()),
+
+      type: Joi.array().items(this.CollectionListingFilterType()),
+    });
+  }
+
+  static ProductListingActionPage() {
+    return Joi.object({
+      query: Joi.object(),
+
+      type: Joi.string().allow(""),
+    });
+  }
+
+  static ProductListingAction() {
+    return Joi.object({
+      page: this.ProductListingActionPage(),
+
+      type: Joi.string().allow(""),
+    });
+  }
+
+  static Media1() {
+    return Joi.object({
+      meta: Joi.object(),
+
+      url: Joi.string().allow("").required(),
+
+      type: Joi.string().allow(""),
+    });
+  }
+
+  static GetCollectionDetailNest() {
+    return Joi.object({
+      action: this.ProductListingAction(),
+
+      description: Joi.string().allow(""),
+
+      _schedule: Joi.object(),
+
+      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+
+      uid: Joi.string().allow(""),
+
+      allow_facets: Joi.boolean(),
+
+      cron: Joi.object(),
+
+      query: Joi.object(),
+
+      tag: Joi.array().items(Joi.string().allow("")),
+
+      logo: this.Media1(),
+
+      type: Joi.string().allow(""),
+
+      badge: Joi.object(),
+
+      app_id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      allow_sort: Joi.boolean(),
+
+      meta: Joi.object(),
+
+      banners: this.ImageUrls(),
+
+      slug: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+    });
+  }
+
+  static GetCollectionListingResponse() {
+    return Joi.object({
+      filters: this.CollectionListingFilter(),
+
+      items: Joi.array().items(this.GetCollectionDetailNest()),
+
+      page: this.Page(),
     });
   }
 
   static CollectionDetailResponse() {
     return Joi.object({
-      slug: Joi.string().allow(""),
-
-      _schedule: Joi.object(),
-
       logo: this.Media1(),
-
-      is_active: Joi.boolean(),
-
-      allow_sort: Joi.boolean(),
-
-      cron: Joi.object(),
 
       type: Joi.string().allow(""),
 
-      allow_facets: Joi.boolean(),
-
-      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
-
-      banners: this.ImageUrls(),
-
-      app_id: Joi.string().allow(""),
-
-      query: Joi.object(),
-
-      meta: Joi.object(),
-
-      description: Joi.string().allow(""),
-
-      tag: Joi.array().items(Joi.string().allow("")),
+      allow_sort: Joi.boolean(),
 
       badge: Joi.object(),
 
+      meta: Joi.object(),
+
+      app_id: Joi.string().allow(""),
+
+      banners: this.ImageUrls(),
+
+      cron: Joi.object(),
+
+      description: Joi.string().allow(""),
+
+      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+
+      _schedule: Joi.object(),
+
+      query: Joi.object(),
+
+      tag: Joi.array().items(Joi.string().allow("")),
+
       name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      allow_facets: Joi.boolean(),
     });
   }
 
   static UpdateCollection() {
     return Joi.object({
-      slug: Joi.string().allow(""),
-
-      published: Joi.boolean(),
-
-      tags: Joi.array().items(Joi.string().allow("")),
-
-      _custom_json: Joi.object(),
-
       _locale_language: Joi.object(),
-
-      seo: this.SeoDetail(),
-
-      banners: this.CollectionBanner(),
-
-      query: Joi.object(),
 
       _schedule: this.Schedule(),
 
-      logo: this.CollectionImage(),
-
       description: Joi.string().allow(""),
+
+      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
 
       sort_on: Joi.string().allow(""),
 
-      allow_sort: Joi.boolean(),
+      tags: Joi.array().items(Joi.string().allow("")),
 
       allow_facets: Joi.boolean(),
 
       modified_by: this.UserInfo(),
 
+      _custom_json: Joi.object(),
+
+      query: Joi.object(),
+
+      seo: this.SeoDetail(),
+
+      logo: this.CollectionImage(),
+
       badge: this.CollectionBadge(),
+
+      published: Joi.boolean(),
+
+      name: Joi.string().allow(""),
+
+      allow_sort: Joi.boolean(),
 
       meta: Joi.object(),
 
+      banners: this.CollectionBanner(),
+
+      slug: Joi.string().allow(""),
+
       is_active: Joi.boolean(),
-
-      visible_facets_keys: Joi.array().items(Joi.string().allow("")),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static ProductDetailAttribute() {
-    return Joi.object({
-      key: Joi.string().allow(""),
-
-      value: Joi.string().allow(""),
-
-      type: Joi.string().allow(""),
-    });
-  }
-
-  static ProductDetailGroupedAttribute() {
-    return Joi.object({
-      details: Joi.array().items(this.ProductDetailAttribute()),
-
-      title: Joi.string().allow(""),
-    });
-  }
-
-  static Price1() {
-    return Joi.object({
-      max: Joi.number(),
-
-      min: Joi.number(),
-
-      currency_symbol: Joi.string().allow(""),
-
-      currency_code: Joi.string().allow(""),
-    });
-  }
-
-  static ProductListingPrice() {
-    return Joi.object({
-      effective: this.Price1(),
-
-      marked: this.Price1(),
-    });
-  }
-
-  static ProductBrand() {
-    return Joi.object({
-      logo: this.Media1(),
-
-      action: this.ProductListingAction(),
-
-      uid: Joi.number(),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static ProductListingDetail() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-
-      grouped_attributes: Joi.array().items(
-        this.ProductDetailGroupedAttribute()
-      ),
-
-      item_code: Joi.string().allow(""),
-
-      attributes: Joi.object(),
-
-      rating: Joi.number(),
-
-      item_type: Joi.string().allow(""),
-
-      promo_meta: Joi.object(),
-
-      similars: Joi.array().items(Joi.string().allow("")),
-
-      short_description: Joi.string().allow(""),
-
-      rating_count: Joi.number(),
-
-      medias: Joi.array().items(this.Media1()),
-
-      color: Joi.string().allow(""),
-
-      description: Joi.string().allow(""),
-
-      product_online_date: Joi.string().allow(""),
-
-      sellable: Joi.boolean(),
-
-      price: this.ProductListingPrice(),
-
-      image_nature: Joi.string().allow(""),
-
-      discount: Joi.string().allow(""),
-
-      highlights: Joi.array().items(Joi.string().allow("")),
-
-      teaser_tag: Joi.object(),
-
-      has_variant: Joi.boolean(),
-
-      type: Joi.string().allow(""),
-
-      uid: Joi.number(),
-
-      tryouts: Joi.array().items(Joi.string().allow("")),
-
-      brand: this.ProductBrand(),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static GetCollectionItemsResponse() {
-    return Joi.object({
-      sort_on: Joi.array().items(this.ProductSortOn()),
-
-      page: this.Page(),
-
-      items: Joi.array().items(this.ProductListingDetail()),
-
-      filters: Joi.array().items(this.ProductFilters()),
     });
   }
 
@@ -6315,29 +7045,149 @@ class Validator {
     });
   }
 
+  static ProductDetailAttribute() {
+    return Joi.object({
+      value: Joi.string().allow(""),
+
+      key: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
+    });
+  }
+
+  static ProductDetailGroupedAttribute() {
+    return Joi.object({
+      details: Joi.array().items(this.ProductDetailAttribute()),
+
+      title: Joi.string().allow(""),
+    });
+  }
+
+  static ProductBrand() {
+    return Joi.object({
+      logo: this.Media1(),
+
+      action: this.ProductListingAction(),
+
+      name: Joi.string().allow(""),
+
+      uid: Joi.number(),
+    });
+  }
+
+  static Price1() {
+    return Joi.object({
+      currency_code: Joi.string().allow(""),
+
+      currency_symbol: Joi.string().allow(""),
+
+      min: Joi.number(),
+
+      max: Joi.number(),
+    });
+  }
+
+  static ProductListingPrice() {
+    return Joi.object({
+      marked: this.Price1(),
+
+      effective: this.Price1(),
+    });
+  }
+
+  static ProductListingDetail() {
+    return Joi.object({
+      rating: Joi.number(),
+
+      tryouts: Joi.array().items(Joi.string().allow("")),
+
+      description: Joi.string().allow(""),
+
+      teaser_tag: Joi.object(),
+
+      sellable: Joi.boolean(),
+
+      uid: Joi.number(),
+
+      promo_meta: Joi.object(),
+
+      grouped_attributes: Joi.array().items(
+        this.ProductDetailGroupedAttribute()
+      ),
+
+      brand: this.ProductBrand(),
+
+      similars: Joi.array().items(Joi.string().allow("")),
+
+      attributes: Joi.object(),
+
+      highlights: Joi.array().items(Joi.string().allow("")),
+
+      color: Joi.string().allow(""),
+
+      has_variant: Joi.boolean(),
+
+      item_code: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
+
+      medias: Joi.array().items(this.Media1()),
+
+      discount: Joi.string().allow(""),
+
+      short_description: Joi.string().allow(""),
+
+      product_online_date: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      rating_count: Joi.number(),
+
+      image_nature: Joi.string().allow(""),
+
+      price: this.ProductListingPrice(),
+
+      item_type: Joi.string().allow(""),
+
+      slug: Joi.string().allow("").required(),
+    });
+  }
+
+  static GetCollectionItemsResponse() {
+    return Joi.object({
+      filters: Joi.array().items(this.ProductFilters()),
+
+      sort_on: Joi.array().items(this.ProductSortOn()),
+
+      items: Joi.array().items(this.ProductListingDetail()),
+
+      page: this.Page(),
+    });
+  }
+
   static CatalogInsightBrand() {
     return Joi.object({
-      total_sizes: Joi.number(),
-
-      total_articles: Joi.number(),
+      article_freshness: Joi.number(),
 
       available_sizes: Joi.number(),
 
-      article_freshness: Joi.number(),
+      total_articles: Joi.number(),
+
+      name: Joi.string().allow(""),
 
       available_articles: Joi.number(),
 
-      name: Joi.string().allow(""),
+      total_sizes: Joi.number(),
     });
   }
 
   static CatalogInsightItem() {
     return Joi.object({
+      sellable_count: Joi.number(),
+
       out_of_stock_count: Joi.number(),
 
       count: Joi.number(),
-
-      sellable_count: Joi.number(),
     });
   }
 
@@ -6351,9 +7201,9 @@ class Validator {
 
   static CrossSellingData() {
     return Joi.object({
-      articles: Joi.number(),
-
       products: Joi.number(),
+
+      articles: Joi.number(),
     });
   }
 
@@ -6367,11 +7217,11 @@ class Validator {
 
   static OptInPostRequest() {
     return Joi.object({
-      brand_ids: Joi.array().items(Joi.number()),
-
       store_ids: Joi.array().items(Joi.number()),
 
       opt_level: Joi.string().allow("").required(),
+
+      brand_ids: Joi.array().items(Joi.number()),
 
       enabled: Joi.boolean(),
     });
@@ -6379,25 +7229,25 @@ class Validator {
 
   static CompanyOptIn() {
     return Joi.object({
-      brand_ids: Joi.array().items(Joi.number()).required(),
-
-      modified_on: Joi.number().required(),
-
-      created_by: Joi.object(),
-
       opt_level: Joi.string().allow("").required(),
-
-      platform: Joi.string().allow("").required(),
-
-      created_on: Joi.number().required(),
 
       store_ids: Joi.array().items(Joi.number()).required(),
 
-      modified_by: Joi.object(),
+      platform: Joi.string().allow("").required(),
+
+      created_by: Joi.object(),
+
+      company_id: Joi.number().required(),
+
+      created_on: Joi.number().required(),
 
       enabled: Joi.boolean().required(),
 
-      company_id: Joi.number().required(),
+      modified_by: Joi.object(),
+
+      brand_ids: Joi.array().items(Joi.number()).required(),
+
+      modified_on: Joi.number().required(),
     });
   }
 
@@ -6411,25 +7261,25 @@ class Validator {
 
   static OptinCompanyDetail() {
     return Joi.object({
-      business_type: Joi.string().allow(""),
-
-      uid: Joi.number(),
-
       company_type: Joi.string().allow(""),
 
+      business_type: Joi.string().allow(""),
+
       name: Joi.string().allow(""),
+
+      uid: Joi.number(),
     });
   }
 
   static CompanyBrandDetail() {
     return Joi.object({
-      brand_id: Joi.number(),
-
       brand_name: Joi.string().allow(""),
 
-      total_article: Joi.number(),
-
       company_id: Joi.number(),
+
+      brand_id: Joi.number(),
+
+      total_article: Joi.number(),
     });
   }
 
@@ -6443,37 +7293,37 @@ class Validator {
 
   static OptinCompanyMetrics() {
     return Joi.object({
-      store: Joi.number(),
+      brand: Joi.number(),
 
       company: Joi.string().allow(""),
 
-      brand: Joi.number(),
+      store: Joi.number(),
     });
   }
 
   static StoreDetail() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
-
       store_type: Joi.string().allow(""),
+
+      documents: Joi.array().items(Joi.object()),
+
+      uid: Joi.number(),
 
       additional_contacts: Joi.array().items(Joi.object()),
 
       display_name: Joi.string().allow(""),
-
-      documents: Joi.array().items(Joi.object()),
-
-      created_on: Joi.string().allow(""),
-
-      store_code: Joi.string().allow(""),
-
-      uid: Joi.number(),
 
       timing: Joi.object(),
 
       company_id: Joi.number(),
 
       name: Joi.string().allow(""),
+
+      created_on: Joi.string().allow(""),
+
+      store_code: Joi.string().allow(""),
+
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -6482,46 +7332,6 @@ class Validator {
       page: this.Page(),
 
       items: Joi.array().items(this.StoreDetail()),
-    });
-  }
-
-  static AttributeMasterDetails() {
-    return Joi.object({
-      display_type: Joi.string().allow("").required(),
-    });
-  }
-
-  static AttributeSchemaRange() {
-    return Joi.object({
-      max: Joi.number(),
-
-      min: Joi.number(),
-    });
-  }
-
-  static AttributeMaster() {
-    return Joi.object({
-      multi: Joi.boolean(),
-
-      range: this.AttributeSchemaRange(),
-
-      format: Joi.string().allow(""),
-
-      allowed_values: Joi.array().items(Joi.string().allow("")),
-
-      type: Joi.string().allow("").required(),
-
-      mandatory: Joi.boolean(),
-    });
-  }
-
-  static AttributeMasterFilter() {
-    return Joi.object({
-      depends_on: Joi.array().items(Joi.string().allow("")),
-
-      priority: Joi.number(),
-
-      indexing: Joi.boolean().required(),
     });
   }
 
@@ -6539,31 +7349,71 @@ class Validator {
     });
   }
 
+  static AttributeMasterFilter() {
+    return Joi.object({
+      indexing: Joi.boolean().required(),
+
+      priority: Joi.number(),
+
+      depends_on: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  static AttributeSchemaRange() {
+    return Joi.object({
+      min: Joi.number(),
+
+      max: Joi.number(),
+    });
+  }
+
+  static AttributeMaster() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+
+      format: Joi.string().allow(""),
+
+      mandatory: Joi.boolean(),
+
+      allowed_values: Joi.array().items(Joi.string().allow("")),
+
+      range: this.AttributeSchemaRange(),
+
+      multi: Joi.boolean(),
+    });
+  }
+
+  static AttributeMasterDetails() {
+    return Joi.object({
+      display_type: Joi.string().allow("").required(),
+    });
+  }
+
   static GenderDetail() {
     return Joi.object({
-      slug: Joi.string().allow(""),
-
-      enabled_for_end_consumer: Joi.boolean(),
+      logo: Joi.string().allow(""),
 
       departments: Joi.array().items(Joi.string().allow("")),
 
-      logo: Joi.string().allow(""),
-
-      details: this.AttributeMasterDetails(),
-
-      schema: this.AttributeMaster(),
-
-      filters: this.AttributeMasterFilter(),
+      is_nested: Joi.boolean(),
 
       meta: this.AttributeMasterMeta(),
 
-      is_nested: Joi.boolean(),
+      description: Joi.string().allow(""),
+
+      filters: this.AttributeMasterFilter(),
+
+      schema: this.AttributeMaster(),
 
       id: Joi.string().allow(""),
 
-      description: Joi.string().allow(""),
-
       name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      details: this.AttributeMasterDetails(),
+
+      enabled_for_end_consumer: Joi.boolean(),
     });
   }
 
@@ -6577,15 +7427,15 @@ class Validator {
 
   static PTErrorResponse() {
     return Joi.object({
-      errors: Joi.object(),
-
       code: Joi.string().allow(""),
 
-      message: Joi.string().allow(""),
+      errors: Joi.object(),
 
       status: Joi.number(),
 
       meta: Joi.object(),
+
+      message: Joi.string().allow(""),
     });
   }
 
@@ -6593,43 +7443,43 @@ class Validator {
     return Joi.object({
       user_id: Joi.string().allow(""),
 
-      username: Joi.string().allow(""),
-
       contact: Joi.string().allow(""),
+
+      username: Joi.string().allow(""),
     });
   }
 
   static GetDepartment() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
+      page_size: Joi.number(),
 
-      slug: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+
+      synonyms: Joi.array().items(Joi.string().allow("")),
+
+      search: Joi.string().allow(""),
+
+      uid: Joi.number(),
 
       created_by: this.UserSerializer(),
 
-      page_size: Joi.number(),
-
-      priority_order: Joi.number(),
+      page_no: Joi.number(),
 
       item_type: Joi.string().allow(""),
 
-      logo: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
 
       created_on: Joi.string().allow(""),
 
       is_active: Joi.boolean(),
 
-      search: Joi.string().allow(""),
-
       modified_by: this.UserSerializer(),
 
-      uid: Joi.number(),
+      priority_order: Joi.number(),
 
-      synonyms: Joi.array().items(Joi.string().allow("")),
-
-      page_no: Joi.number(),
-
-      name: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -6643,29 +7493,39 @@ class Validator {
 
   static DepartmentErrorResponse() {
     return Joi.object({
-      errors: Joi.object(),
-
       code: Joi.string().allow(""),
 
-      message: Joi.string().allow(""),
+      errors: Joi.object(),
 
       status: Joi.number(),
 
       meta: Joi.object(),
+
+      message: Joi.string().allow(""),
     });
   }
 
   static ProductTemplate() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
-
-      slug: Joi.string().allow("").required(),
+      logo: Joi.string().allow(""),
 
       departments: Joi.array().items(Joi.string().allow("")),
 
+      is_physical: Joi.boolean().required(),
+
+      attributes: Joi.array().items(Joi.string().allow("")),
+
+      description: Joi.string().allow(""),
+
+      categories: Joi.array().items(Joi.string().allow("")),
+
       created_by: Joi.object(),
 
-      logo: Joi.string().allow(""),
+      tag: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow("").required(),
 
       created_on: Joi.string().allow(""),
 
@@ -6673,19 +7533,9 @@ class Validator {
 
       is_archived: Joi.boolean(),
 
-      attributes: Joi.array().items(Joi.string().allow("")),
-
-      is_physical: Joi.boolean().required(),
-
       modified_by: Joi.object(),
 
-      tag: Joi.string().allow(""),
-
-      description: Joi.string().allow(""),
-
-      categories: Joi.array().items(Joi.string().allow("")),
-
-      name: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -6697,95 +7547,67 @@ class Validator {
     });
   }
 
-  static TemplateDetails() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-
-      slug: Joi.string().allow("").required(),
-
-      departments: Joi.array().items(Joi.string().allow("")),
-
-      logo: Joi.string().allow(""),
-
-      is_active: Joi.boolean(),
-
-      is_archived: Joi.boolean(),
-
-      attributes: Joi.array().items(Joi.string().allow("")),
-
-      is_physical: Joi.boolean().required(),
-
-      tag: Joi.string().allow(""),
-
-      description: Joi.string().allow(""),
-
-      categories: Joi.array().items(Joi.string().allow("")),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
   static Properties() {
     return Joi.object({
-      slug: Joi.object(),
-
-      tags: Joi.object(),
-
-      trader: Joi.object(),
-
-      item_code: Joi.object(),
-
-      moq: Joi.object(),
-
-      size_guide: Joi.object(),
-
-      item_type: Joi.object(),
-
-      is_dependent: Joi.object(),
-
-      category_slug: Joi.object(),
-
-      hsn_code: Joi.object(),
-
-      short_description: Joi.object(),
-
-      multi_size: Joi.object(),
-
       media: Joi.object(),
-
-      command: Joi.object(),
-
-      description: Joi.object(),
-
-      product_publish: Joi.object(),
-
-      country_of_origin: Joi.object(),
-
-      brand_uid: Joi.object(),
-
-      sizes: Joi.object(),
-
-      no_of_boxes: Joi.object(),
-
-      variants: Joi.object(),
-
-      product_group_tag: Joi.object(),
-
-      custom_order: Joi.object(),
 
       return_config: Joi.object(),
 
-      is_active: Joi.object(),
-
-      highlights: Joi.object(),
+      description: Joi.object(),
 
       teaser_tag: Joi.object(),
 
       trader_type: Joi.object(),
 
+      country_of_origin: Joi.object(),
+
+      hsn_code: Joi.object(),
+
+      tags: Joi.object(),
+
+      highlights: Joi.object(),
+
+      category_slug: Joi.object(),
+
+      variants: Joi.object(),
+
       currency: Joi.object(),
 
+      command: Joi.object(),
+
+      trader: Joi.object(),
+
+      item_code: Joi.object(),
+
+      brand_uid: Joi.object(),
+
+      short_description: Joi.object(),
+
+      product_group_tag: Joi.object(),
+
+      product_publish: Joi.object(),
+
+      sizes: Joi.object(),
+
+      moq: Joi.object(),
+
       name: Joi.object(),
+
+      is_dependent: Joi.object(),
+
+      multi_size: Joi.object(),
+
+      no_of_boxes: Joi.object(),
+
+      custom_order: Joi.object(),
+
+      size_guide: Joi.object(),
+
+      item_type: Joi.object(),
+
+      slug: Joi.object(),
+
+      is_active: Joi.object(),
     });
   }
 
@@ -6797,11 +7619,11 @@ class Validator {
 
       type: Joi.string().allow(""),
 
-      definitions: Joi.object(),
-
       description: Joi.string().allow(""),
 
       title: Joi.string().allow(""),
+
+      definitions: Joi.object(),
     });
   }
 
@@ -6813,11 +7635,39 @@ class Validator {
     });
   }
 
+  static TemplateDetails() {
+    return Joi.object({
+      logo: Joi.string().allow(""),
+
+      departments: Joi.array().items(Joi.string().allow("")),
+
+      is_physical: Joi.boolean().required(),
+
+      attributes: Joi.array().items(Joi.string().allow("")),
+
+      description: Joi.string().allow(""),
+
+      categories: Joi.array().items(Joi.string().allow("")),
+
+      tag: Joi.string().allow(""),
+
+      id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow("").required(),
+
+      is_active: Joi.boolean(),
+
+      is_archived: Joi.boolean(),
+    });
+  }
+
   static TemplatesValidationResponse() {
     return Joi.object({
-      template_details: this.TemplateDetails(),
-
       data: this.TemplateValidationData(),
+
+      template_details: this.TemplateDetails(),
     });
   }
 
@@ -6831,9 +7681,9 @@ class Validator {
 
   static HSNData() {
     return Joi.object({
-      country_of_origin: Joi.array().items(Joi.string().allow("")),
-
       hsn_code: Joi.array().items(Joi.string().allow("")),
+
+      country_of_origin: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -6855,35 +7705,35 @@ class Validator {
 
   static ProductDownloadItemsData() {
     return Joi.object({
+      brand: Joi.array().items(Joi.string().allow("")),
+
       type: Joi.string().allow(""),
 
       templates: Joi.array().items(Joi.string().allow("")),
-
-      brand: Joi.array().items(Joi.string().allow("")),
     });
   }
 
   static ProductDownloadsItems() {
     return Joi.object({
+      status: Joi.string().allow(""),
+
+      seller_id: Joi.number(),
+
+      url: Joi.string().allow(""),
+
+      completed_on: Joi.string().allow(""),
+
+      template_tags: Joi.object(),
+
       created_by: this.VerifiedBy(),
 
       data: this.ProductDownloadItemsData(),
 
-      completed_on: Joi.string().allow(""),
+      id: Joi.string().allow(""),
 
       trigger_on: Joi.string().allow(""),
 
-      seller_id: Joi.number(),
-
-      status: Joi.string().allow(""),
-
-      url: Joi.string().allow(""),
-
-      id: Joi.string().allow(""),
-
       task_id: Joi.string().allow(""),
-
-      template_tags: Joi.object(),
     });
   }
 
@@ -6903,23 +7753,13 @@ class Validator {
     });
   }
 
-  static Hierarchy() {
-    return Joi.object({
-      department: Joi.number().required(),
-
-      l2: Joi.number().required(),
-
-      l1: Joi.number().required(),
-    });
-  }
-
   static Media2() {
     return Joi.object({
       logo: Joi.string().allow("").required(),
 
-      landscape: Joi.string().allow("").required(),
-
       portrait: Joi.string().allow("").required(),
+
+      landscape: Joi.string().allow("").required(),
     });
   }
 
@@ -6933,49 +7773,93 @@ class Validator {
 
   static CategoryMapping() {
     return Joi.object({
+      google: this.CategoryMappingValues(),
+
       facebook: this.CategoryMappingValues(),
 
       ajio: this.CategoryMappingValues(),
+    });
+  }
 
-      google: this.CategoryMappingValues(),
+  static Hierarchy() {
+    return Joi.object({
+      l2: Joi.number().required(),
+
+      l1: Joi.number().required(),
+
+      department: Joi.number().required(),
+    });
+  }
+
+  static CategoryRequestBody() {
+    return Joi.object({
+      tryouts: Joi.array().items(Joi.string().allow("")),
+
+      media: this.Media2(),
+
+      departments: Joi.array().items(Joi.number()).required(),
+
+      level: Joi.number().required(),
+
+      marketplaces: this.CategoryMapping(),
+
+      synonyms: Joi.array().items(Joi.string().allow("")),
+
+      hierarchy: Joi.array().items(this.Hierarchy()),
+
+      name: Joi.string().allow("").required(),
+
+      slug: Joi.string().allow(""),
+
+      priority: Joi.number(),
+
+      is_active: Joi.boolean().required(),
+    });
+  }
+
+  static CategoryCreateResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+
+      uid: Joi.number(),
     });
   }
 
   static Category() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
-
-      departments: Joi.array().items(Joi.number()).required(),
-
-      slug: Joi.string().allow(""),
-
-      created_by: Joi.object(),
+      tryouts: Joi.array().items(Joi.string().allow("")),
 
       _id: Joi.string().allow(""),
 
+      departments: Joi.array().items(Joi.number()).required(),
+
+      media: this.Media2(),
+
       level: Joi.number().required(),
+
+      marketplaces: this.CategoryMapping(),
+
+      synonyms: Joi.array().items(Joi.string().allow("")),
+
+      hierarchy: Joi.array().items(this.Hierarchy()),
+
+      uid: Joi.number(),
+
+      created_by: Joi.object(),
+
+      name: Joi.string().allow("").required(),
+
+      slug: Joi.string().allow(""),
+
+      priority: Joi.number(),
 
       created_on: Joi.string().allow(""),
 
       is_active: Joi.boolean().required(),
 
-      hierarchy: Joi.array().items(this.Hierarchy()),
-
-      media: this.Media2(),
-
-      uid: Joi.number(),
-
-      tryouts: Joi.array().items(Joi.string().allow("")),
-
       modified_by: Joi.object(),
 
-      synonyms: Joi.array().items(Joi.string().allow("")),
-
-      marketplaces: this.CategoryMapping(),
-
-      priority: Joi.number(),
-
-      name: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -6984,40 +7868,6 @@ class Validator {
       page: this.Page(),
 
       items: Joi.array().items(this.Category()),
-    });
-  }
-
-  static CategoryRequestBody() {
-    return Joi.object({
-      departments: Joi.array().items(Joi.number()).required(),
-
-      slug: Joi.string().allow(""),
-
-      level: Joi.number().required(),
-
-      is_active: Joi.boolean().required(),
-
-      hierarchy: Joi.array().items(this.Hierarchy()),
-
-      media: this.Media2(),
-
-      tryouts: Joi.array().items(Joi.string().allow("")),
-
-      synonyms: Joi.array().items(Joi.string().allow("")),
-
-      marketplaces: this.CategoryMapping(),
-
-      priority: Joi.number(),
-
-      name: Joi.string().allow("").required(),
-    });
-  }
-
-  static CategoryCreateResponse() {
-    return Joi.object({
-      uid: Joi.number(),
-
-      message: Joi.string().allow(""),
     });
   }
 
@@ -7035,6 +7885,160 @@ class Validator {
     });
   }
 
+  static ReturnConfig() {
+    return Joi.object({
+      returnable: Joi.boolean(),
+
+      unit: Joi.string().allow(""),
+
+      time: Joi.number(),
+    });
+  }
+
+  static TeaserTag() {
+    return Joi.object({
+      tag: Joi.string().allow(""),
+
+      url: Joi.string().allow(""),
+    });
+  }
+
+  static Trader() {
+    return Joi.object({
+      address: Joi.string().allow("").required(),
+
+      name: Joi.string().allow("").required(),
+    });
+  }
+
+  static ProductPublish() {
+    return Joi.object({
+      is_set: Joi.boolean(),
+
+      product_online_date: Joi.string().allow(""),
+    });
+  }
+
+  static OrderQuantity() {
+    return Joi.object({
+      maximum: Joi.number(),
+
+      minimum: Joi.number(),
+
+      is_set: Joi.boolean(),
+    });
+  }
+
+  static CustomOrder() {
+    return Joi.object({
+      is_custom_order: Joi.boolean(),
+
+      manufacturing_time_unit: Joi.string().allow(""),
+
+      manufacturing_time: Joi.number(),
+    });
+  }
+
+  static ProductCreateUpdate() {
+    return Joi.object({
+      media: Joi.array().items(this.Media1()),
+
+      return_config: this.ReturnConfig(),
+
+      description: Joi.string().allow(""),
+
+      teaser_tag: this.TeaserTag(),
+
+      trader_type: Joi.string().allow(""),
+
+      country_of_origin: Joi.string().allow("").required(),
+
+      uid: Joi.number(),
+
+      requester: Joi.string().allow(""),
+
+      is_set: Joi.boolean(),
+
+      hsn_code: Joi.string().allow("").required(),
+
+      tags: Joi.array().items(Joi.string().allow("")),
+
+      departments: Joi.array().items(Joi.number()).required(),
+
+      _custom_json: Joi.object(),
+
+      company_id: Joi.number().required(),
+
+      highlights: Joi.array().items(Joi.string().allow("")),
+
+      category_slug: Joi.string().allow("").required(),
+
+      template_tag: Joi.string().allow("").required(),
+
+      variants: Joi.object(),
+
+      currency: Joi.string().allow("").required(),
+
+      trader: this.Trader(),
+
+      item_code: Joi.string().allow("").required(),
+
+      brand_uid: Joi.number().required(),
+
+      short_description: Joi.string().allow(""),
+
+      product_group_tag: Joi.array().items(Joi.string().allow("")),
+
+      change_request_id: Joi.string().allow(""),
+
+      product_publish: this.ProductPublish(),
+
+      moq: this.OrderQuantity(),
+
+      name: Joi.string().allow("").required(),
+
+      is_dependent: Joi.boolean(),
+
+      multi_size: Joi.boolean(),
+
+      is_image_less_product: Joi.boolean(),
+
+      no_of_boxes: Joi.number(),
+
+      custom_order: this.CustomOrder(),
+
+      size_guide: Joi.string().allow(""),
+
+      item_type: Joi.string().allow("").required(),
+
+      slug: Joi.string().allow("").required(),
+
+      is_active: Joi.boolean(),
+    });
+  }
+
+  static Logo() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+
+      aspect_ratio_f: Joi.number(),
+
+      aspect_ratio: Joi.string().allow(""),
+
+      secure_url: Joi.string().allow(""),
+    });
+  }
+
+  static Brand() {
+    return Joi.object({
+      uid: Joi.number(),
+
+      name: Joi.string().allow(""),
+
+      logo: this.Logo(),
+    });
+  }
+
   static UserCommon() {
     return Joi.object({
       user_id: Joi.string().allow(""),
@@ -7047,59 +8051,59 @@ class Validator {
 
   static Attributes() {
     return Joi.object({
-      pattern: Joi.string().allow(""),
-
-      product_fit: Joi.string().allow(""),
-
-      verified_on: Joi.string().allow(""),
-
-      neck_type: Joi.string().allow(""),
-
-      stage: Joi.string().allow(""),
-
-      gender: Joi.array().items(Joi.string().allow("")),
-
-      sleeve_length: Joi.string().allow(""),
-
-      created_on: Joi.string().allow(""),
-
-      primary_color: Joi.string().allow(""),
-
-      color: Joi.string().allow(""),
-
-      modified_on: Joi.string().allow(""),
-
-      created_by: this.UserCommon(),
-
-      meta_nature: Joi.string().allow(""),
-
-      essential: Joi.string().allow(""),
-
       material: Joi.string().allow(""),
 
-      is_image_less_product: Joi.boolean(),
-
-      verified_by: this.VerifiedBy(),
+      product_fit: Joi.string().allow(""),
 
       primary_material: Joi.string().allow(""),
 
       modified_by: this.UserCommon(),
 
+      verified_on: Joi.string().allow(""),
+
+      verified_by: this.VerifiedBy(),
+
+      gender: Joi.array().items(Joi.string().allow("")),
+
+      modified_on: Joi.string().allow(""),
+
+      color: Joi.string().allow(""),
+
+      essential: Joi.string().allow(""),
+
+      neck_type: Joi.string().allow(""),
+
+      created_by: this.UserCommon(),
+
+      stage: Joi.string().allow(""),
+
+      created_on: Joi.string().allow(""),
+
+      sleeve_length: Joi.string().allow(""),
+
+      is_image_less_product: Joi.boolean(),
+
+      pattern: Joi.string().allow(""),
+
       image_nature: Joi.string().allow(""),
 
       l3_mapping: Joi.array().items(Joi.string().allow("")),
+
+      meta_nature: Joi.string().allow(""),
+
+      primary_color: Joi.string().allow(""),
     });
   }
 
   static ImageObject() {
     return Joi.object({
-      aspect_ratio: Joi.string().allow(""),
+      url: Joi.string().allow(""),
 
       aspect_ratio_f: Joi.number(),
 
-      secure_url: Joi.string().allow(""),
+      aspect_ratio: Joi.string().allow(""),
 
-      url: Joi.string().allow(""),
+      secure_url: Joi.string().allow(""),
     });
   }
 
@@ -7111,85 +8115,63 @@ class Validator {
     });
   }
 
-  static Logo() {
-    return Joi.object({
-      aspect_ratio: Joi.string().allow(""),
-
-      aspect_ratio_f: Joi.number(),
-
-      secure_url: Joi.string().allow(""),
-
-      url: Joi.string().allow(""),
-    });
-  }
-
-  static Brand() {
-    return Joi.object({
-      logo: this.Logo(),
-
-      uid: Joi.number(),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
   static Product() {
     return Joi.object({
-      slug: Joi.string().allow(""),
-
-      departments: Joi.array().items(Joi.number()),
-
-      item_code: Joi.string().allow(""),
-
-      size_guide: Joi.string().allow(""),
-
-      attributes: this.Attributes(),
-
-      item_type: Joi.string().allow(""),
-
-      is_dependent: Joi.boolean(),
-
-      company_id: Joi.number(),
-
-      category_slug: Joi.string().allow(""),
-
-      hsn_code: Joi.string().allow(""),
-
-      images: Joi.array().items(this.ImageObject()),
-
-      multi_size: Joi.boolean(),
-
       media: Joi.array().items(this.Media1()),
-
-      template_tag: Joi.string().allow(""),
-
-      description: Joi.string().allow(""),
 
       all_sizes: Joi.array().items(Joi.string().allow("")),
 
-      product_publish: this.ProductPublished(),
+      description: Joi.string().allow(""),
 
       country_of_origin: Joi.string().allow(""),
-
-      sizes: Joi.array().items(Joi.object()),
-
-      status: Joi.string().allow(""),
-
-      is_set: Joi.boolean(),
-
-      is_active: Joi.boolean(),
-
-      highlights: Joi.string().allow(""),
-
-      currency: Joi.string().allow(""),
 
       uid: Joi.number(),
 
       id: Joi.string().allow(""),
 
+      hsn_code: Joi.string().allow(""),
+
+      is_set: Joi.boolean(),
+
       brand: this.Brand(),
 
+      departments: Joi.array().items(Joi.number()),
+
+      attributes: this.Attributes(),
+
+      images: Joi.array().items(this.ImageObject()),
+
+      company_id: Joi.number(),
+
+      highlights: Joi.string().allow(""),
+
+      template_tag: Joi.string().allow(""),
+
+      category_slug: Joi.string().allow(""),
+
+      currency: Joi.string().allow(""),
+
+      item_code: Joi.string().allow(""),
+
+      status: Joi.string().allow(""),
+
+      product_publish: this.ProductPublished(),
+
+      sizes: Joi.array().items(Joi.object()),
+
       name: Joi.string().allow(""),
+
+      is_dependent: Joi.boolean(),
+
+      multi_size: Joi.boolean(),
+
+      size_guide: Joi.string().allow(""),
+
+      item_type: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
     });
   }
 
@@ -7201,141 +8183,59 @@ class Validator {
     });
   }
 
-  static Trader() {
-    return Joi.object({
-      address: Joi.string().allow("").required(),
-
-      name: Joi.string().allow("").required(),
-    });
-  }
-
-  static OrderQuantity() {
-    return Joi.object({
-      minimum: Joi.number(),
-
-      maximum: Joi.number(),
-
-      is_set: Joi.boolean(),
-    });
-  }
-
-  static ProductPublish() {
-    return Joi.object({
-      is_set: Joi.boolean(),
-
-      product_online_date: Joi.string().allow(""),
-    });
-  }
-
-  static CustomOrder() {
-    return Joi.object({
-      manufacturing_time: Joi.number(),
-
-      is_custom_order: Joi.boolean(),
-
-      manufacturing_time_unit: Joi.string().allow(""),
-    });
-  }
-
-  static ReturnConfig() {
-    return Joi.object({
-      time: Joi.number(),
-
-      unit: Joi.string().allow(""),
-
-      returnable: Joi.boolean(),
-    });
-  }
-
-  static TeaserTag() {
-    return Joi.object({
-      tag: Joi.string().allow(""),
-
-      url: Joi.string().allow(""),
-    });
-  }
-
-  static ProductCreateUpdate() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-
-      departments: Joi.array().items(Joi.number()).required(),
-
-      tags: Joi.array().items(Joi.string().allow("")),
-
-      trader: this.Trader(),
-
-      _custom_json: Joi.object(),
-
-      item_code: Joi.string().allow("").required(),
-
-      moq: this.OrderQuantity(),
-
-      size_guide: Joi.string().allow(""),
-
-      item_type: Joi.string().allow("").required(),
-
-      category_slug: Joi.string().allow("").required(),
-
-      company_id: Joi.number().required(),
-
-      requester: Joi.string().allow(""),
-
-      is_dependent: Joi.boolean(),
-
-      hsn_code: Joi.string().allow("").required(),
-
-      short_description: Joi.string().allow(""),
-
-      multi_size: Joi.boolean(),
-
-      media: Joi.array().items(this.Media1()),
-
-      description: Joi.string().allow(""),
-
-      template_tag: Joi.string().allow("").required(),
-
-      is_image_less_product: Joi.boolean(),
-
-      product_publish: this.ProductPublish(),
-
-      brand_uid: Joi.number().required(),
-
-      country_of_origin: Joi.string().allow("").required(),
-
-      product_group_tag: Joi.array().items(Joi.string().allow("")),
-
-      no_of_boxes: Joi.number(),
-
-      variants: Joi.object(),
-
-      is_set: Joi.boolean(),
-
-      custom_order: this.CustomOrder(),
-
-      return_config: this.ReturnConfig(),
-
-      change_request_id: Joi.string().allow(""),
-
-      is_active: Joi.boolean(),
-
-      highlights: Joi.array().items(Joi.string().allow("")),
-
-      teaser_tag: this.TeaserTag(),
-
-      trader_type: Joi.string().allow(""),
-
-      currency: Joi.string().allow("").required(),
-
-      uid: Joi.number(),
-
-      name: Joi.string().allow("").required(),
-    });
-  }
-
   static ValidateProduct() {
     return Joi.object({
       valid: Joi.boolean(),
+    });
+  }
+
+  static UserInfo1() {
+    return Joi.object({
+      uid: Joi.string().allow(""),
+
+      username: Joi.string().allow(""),
+
+      user_id: Joi.string().allow(""),
+
+      email: Joi.string().allow(""),
+    });
+  }
+
+  static BulkJob() {
+    return Joi.object({
+      total: Joi.number().required(),
+
+      cancelled_records: Joi.array().items(Joi.object()),
+
+      failed_records: Joi.array().items(Joi.object()),
+
+      file_path: Joi.string().allow(""),
+
+      custom_template_tag: Joi.string().allow(""),
+
+      succeed: Joi.number(),
+
+      cancelled: Joi.number(),
+
+      created_by: this.UserInfo1(),
+
+      failed: Joi.number(),
+
+      company_id: Joi.number().required(),
+
+      template_tag: Joi.string().allow(""),
+
+      stage: Joi.string().allow(""),
+
+      created_on: Joi.string().allow("").required(),
+
+      tracking_url: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      modified_by: this.UserInfo1(),
+
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -7351,37 +8251,37 @@ class Validator {
 
   static ProductBulkRequest() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
-
-      created_by: this.UserDetail(),
-
       cancelled_records: Joi.array().items(Joi.string().allow("")),
+
+      failed_records: Joi.array().items(Joi.string().allow("")),
+
+      total: Joi.number(),
+
+      file_path: Joi.string().allow(""),
+
+      template: this.ProductTemplate(),
+
+      succeed: Joi.number(),
+
+      cancelled: Joi.number(),
 
       failed: Joi.number(),
 
-      failed_records: Joi.array().items(Joi.string().allow("")),
+      created_by: this.UserDetail(),
+
+      company_id: Joi.number(),
+
+      template_tag: Joi.string().allow(""),
+
+      stage: Joi.string().allow(""),
 
       created_on: Joi.string().allow(""),
 
       is_active: Joi.boolean(),
 
-      template: this.ProductTemplate(),
-
-      file_path: Joi.string().allow(""),
-
-      total: Joi.number(),
-
-      succeed: Joi.number(),
-
       modified_by: this.UserDetail(),
 
-      stage: Joi.string().allow(""),
-
-      template_tag: Joi.string().allow(""),
-
-      cancelled: Joi.number(),
-
-      company_id: Joi.number(),
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -7393,65 +8293,15 @@ class Validator {
     });
   }
 
-  static UserInfo1() {
-    return Joi.object({
-      user_id: Joi.string().allow(""),
-
-      username: Joi.string().allow(""),
-
-      email: Joi.string().allow(""),
-
-      uid: Joi.string().allow(""),
-    });
-  }
-
-  static BulkJob() {
-    return Joi.object({
-      modified_on: Joi.string().allow(""),
-
-      created_by: this.UserInfo1(),
-
-      cancelled_records: Joi.array().items(Joi.object()),
-
-      failed: Joi.number(),
-
-      failed_records: Joi.array().items(Joi.object()),
-
-      created_on: Joi.string().allow("").required(),
-
-      is_active: Joi.boolean(),
-
-      file_path: Joi.string().allow(""),
-
-      total: Joi.number().required(),
-
-      tracking_url: Joi.string().allow(""),
-
-      succeed: Joi.number(),
-
-      modified_by: this.UserInfo1(),
-
-      stage: Joi.string().allow(""),
-
-      cancelled: Joi.number(),
-
-      template_tag: Joi.string().allow(""),
-
-      custom_template_tag: Joi.string().allow(""),
-
-      company_id: Joi.number().required(),
-    });
-  }
-
   static BulkProductRequest() {
     return Joi.object({
-      batch_id: Joi.string().allow("").required(),
-
-      template_tag: Joi.string().allow("").required(),
-
       data: Joi.array().items(Joi.object()).required(),
 
       company_id: Joi.number().required(),
+
+      template_tag: Joi.string().allow("").required(),
+
+      batch_id: Joi.string().allow("").required(),
     });
   }
 
@@ -7467,41 +8317,51 @@ class Validator {
     });
   }
 
+  static ProductBulkAssets() {
+    return Joi.object({
+      url: Joi.string().allow("").required(),
+
+      user: Joi.object().required(),
+
+      company_id: Joi.number(),
+    });
+  }
+
   static Items() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
-
-      created_by: this.UserCommon(),
+      file_path: Joi.string().allow(""),
 
       cancelled_records: Joi.array().items(Joi.string().allow("")),
 
-      failed: Joi.number(),
-
       failed_records: Joi.array().items(Joi.string().allow("")),
-
-      created_on: Joi.string().allow(""),
-
-      is_active: Joi.boolean(),
-
-      file_path: Joi.string().allow(""),
-
-      retry: Joi.number(),
 
       total: Joi.number(),
 
-      tracking_url: Joi.string().allow(""),
-
       succeed: Joi.number(),
 
-      modified_by: this.UserCommon(),
+      cancelled: Joi.number(),
+
+      created_by: this.UserCommon(),
+
+      failed: Joi.number(),
+
+      retry: Joi.number(),
+
+      company_id: Joi.number(),
 
       id: Joi.string().allow(""),
 
       stage: Joi.string().allow(""),
 
-      cancelled: Joi.number(),
+      created_on: Joi.string().allow(""),
 
-      company_id: Joi.number(),
+      tracking_url: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      modified_by: this.UserCommon(),
+
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -7513,81 +8373,31 @@ class Validator {
     });
   }
 
-  static ProductBulkAssets() {
-    return Joi.object({
-      user: Joi.object().required(),
-
-      company_id: Joi.number(),
-
-      url: Joi.string().allow("").required(),
-    });
-  }
-
   static ProductSizeDeleteDataResponse() {
     return Joi.object({
-      size: Joi.string().allow(""),
+      company_id: Joi.number(),
 
       item_id: Joi.number(),
 
-      company_id: Joi.number(),
+      size: Joi.string().allow(""),
     });
   }
 
   static ProductSizeDeleteResponse() {
     return Joi.object({
-      success: Joi.boolean(),
-
       data: this.ProductSizeDeleteDataResponse(),
-    });
-  }
 
-  static InventoryResponse() {
-    return Joi.object({
-      item_id: Joi.number(),
-
-      size: Joi.string().allow(""),
-
-      identifiers: Joi.object(),
-
-      store: Joi.object(),
-
-      sellable_quantity: Joi.number(),
-
-      price: Joi.number(),
-
-      price_transfer: Joi.number(),
-
-      currency: Joi.string().allow(""),
-
-      uid: Joi.string().allow(""),
-
-      inventory_updated_on: Joi.string().allow(""),
-
-      price_effective: Joi.number(),
-
-      quantity: Joi.number(),
-
-      seller_identifier: Joi.number(),
-    });
-  }
-
-  static ItemQuery() {
-    return Joi.object({
-      brand_uid: Joi.number(),
-
-      uid: Joi.number(),
-
-      item_code: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 
   static GTIN() {
     return Joi.object({
+      gtin_type: Joi.string().allow("").required(),
+
       primary: Joi.boolean(),
 
       gtin_value: Joi.string().allow("").required(),
-
-      gtin_type: Joi.string().allow("").required(),
     });
   }
 
@@ -7615,83 +8425,119 @@ class Validator {
 
   static InvSize() {
     return Joi.object({
-      item_height: Joi.number(),
+      price_transfer: Joi.number(),
 
       size: Joi.string().allow("").required(),
 
-      item_length: Joi.number(),
-
       identifiers: Joi.array().items(this.GTIN()).required(),
-
-      item_dimensions_unit_of_measure: Joi.string().allow(""),
-
-      set: this.InventorySet(),
-
-      price: Joi.number().required(),
-
-      price_transfer: Joi.number(),
-
-      store_code: Joi.string().allow("").required(),
-
-      is_set: Joi.boolean(),
-
-      currency: Joi.string().allow("").required(),
 
       item_weight_unit_of_measure: Joi.string().allow(""),
 
       price_effective: Joi.number().required(),
 
+      item_width: Joi.number(),
+
       item_weight: Joi.number(),
+
+      price: Joi.number().required(),
 
       quantity: Joi.number().required(),
 
-      item_width: Joi.number(),
+      is_set: Joi.boolean(),
+
+      currency: Joi.string().allow("").required(),
+
+      item_length: Joi.number(),
+
+      item_height: Joi.number(),
+
+      set: this.InventorySet(),
+
+      store_code: Joi.string().allow("").required(),
+
+      item_dimensions_unit_of_measure: Joi.string().allow(""),
+    });
+  }
+
+  static ItemQuery() {
+    return Joi.object({
+      item_code: Joi.string().allow(""),
+
+      brand_uid: Joi.number(),
+
+      uid: Joi.number(),
     });
   }
 
   static InventoryRequest() {
     return Joi.object({
-      item: this.ItemQuery().required(),
-
       sizes: Joi.array().items(this.InvSize()).required(),
 
       company_id: Joi.number().required(),
+
+      item: this.ItemQuery().required(),
+    });
+  }
+
+  static InventoryResponse() {
+    return Joi.object({
+      sellable_quantity: Joi.number(),
+
+      inventory_updated_on: Joi.string().allow(""),
+
+      price_transfer: Joi.number(),
+
+      size: Joi.string().allow(""),
+
+      identifiers: Joi.object(),
+
+      seller_identifier: Joi.number(),
+
+      item_id: Joi.number(),
+
+      price_effective: Joi.number(),
+
+      uid: Joi.string().allow(""),
+
+      quantity: Joi.number(),
+
+      price: Joi.number(),
+
+      currency: Joi.string().allow(""),
+
+      store: Joi.object(),
     });
   }
 
   static InventoryDeleteData() {
     return Joi.object({
-      size: Joi.string().allow(""),
-
       item_id: Joi.number(),
 
       location_id: Joi.number(),
+
+      size: Joi.string().allow(""),
     });
   }
 
   static InventoryDelete() {
     return Joi.object({
-      success: Joi.boolean(),
-
       data: this.InventoryDeleteData(),
+
+      success: Joi.boolean(),
+    });
+  }
+
+  static CommonResponse() {
+    return Joi.object({
+      success: Joi.string().allow(""),
     });
   }
 
   static BulkInventoryGetItems() {
     return Joi.object({
-      modified_on: Joi.string().allow(""),
-
-      created_by: Joi.object(),
-
       cancelled_records: Joi.array().items(Joi.string().allow("")),
 
-      failed: Joi.number(),
-
       failed_records: Joi.array().items(Joi.string().allow("")),
-
-      created_on: Joi.string().allow(""),
-
-      is_active: Joi.boolean(),
 
       file_path: Joi.string().allow(""),
 
@@ -7699,15 +8545,25 @@ class Validator {
 
       succeed: Joi.number(),
 
-      modified_by: Joi.object(),
+      cancelled: Joi.number(),
 
-      stage: Joi.string().allow(""),
+      created_by: Joi.object(),
+
+      failed: Joi.number(),
+
+      company_id: Joi.number(),
 
       id: Joi.string().allow(""),
 
-      cancelled: Joi.number(),
+      stage: Joi.string().allow(""),
 
-      company_id: Joi.number(),
+      created_on: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      modified_by: Joi.object(),
+
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -7719,95 +8575,89 @@ class Validator {
     });
   }
 
-  static CommonResponse() {
-    return Joi.object({
-      success: Joi.string().allow(""),
-    });
-  }
-
   static Size1() {
     return Joi.object({
-      item_height: Joi.number(),
+      price_transfer: Joi.number(),
 
       size: Joi.string().allow(""),
 
-      item_length: Joi.number(),
-
       identifiers: Joi.array().items(Joi.object()),
 
-      item_dimensions_unit_of_measure: Joi.string().allow(""),
-
-      set: this.InventorySet(),
-
-      price: Joi.number().required(),
-
-      price_transfer: Joi.number(),
-
-      store_code: Joi.string().allow("").required(),
-
-      is_set: Joi.boolean(),
-
-      currency: Joi.string().allow("").required(),
+      seller_identifier: Joi.string().allow("").required(),
 
       item_weight_unit_of_measure: Joi.string().allow(""),
 
       price_effective: Joi.number().required(),
 
+      item_width: Joi.number(),
+
       item_weight: Joi.number(),
+
+      price: Joi.number().required(),
 
       quantity: Joi.number().required(),
 
-      item_width: Joi.number(),
+      is_set: Joi.boolean(),
 
-      seller_identifier: Joi.string().allow("").required(),
+      currency: Joi.string().allow("").required(),
+
+      item_length: Joi.number(),
+
+      item_height: Joi.number(),
+
+      set: this.InventorySet(),
+
+      store_code: Joi.string().allow("").required(),
+
+      item_dimensions_unit_of_measure: Joi.string().allow(""),
     });
   }
 
   static InventoryBulkRequest() {
     return Joi.object({
-      batch_id: Joi.string().allow("").required(),
-
-      user: Joi.object(),
-
       sizes: Joi.array().items(this.Size1()).required(),
 
       company_id: Joi.number().required(),
-    });
-  }
 
-  static InventoryExportJob() {
-    return Joi.object({
-      request_params: Joi.object(),
+      user: Joi.object(),
 
-      completed_on: Joi.string().allow(""),
-
-      seller_id: Joi.number().required(),
-
-      trigger_on: Joi.string().allow(""),
-
-      status: Joi.string().allow(""),
-
-      url: Joi.string().allow(""),
-
-      task_id: Joi.string().allow("").required(),
+      batch_id: Joi.string().allow("").required(),
     });
   }
 
   static InventoryExportRequest() {
     return Joi.object({
+      brand: Joi.array().items(Joi.number()),
+
       type: Joi.string().allow(""),
 
       store: Joi.array().items(Joi.number()),
+    });
+  }
 
-      brand: Joi.array().items(Joi.number()),
+  static InventoryExportJob() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+
+      seller_id: Joi.number().required(),
+
+      request_params: Joi.object(),
+
+      url: Joi.string().allow(""),
+
+      completed_on: Joi.string().allow(""),
+
+      trigger_on: Joi.string().allow(""),
+
+      task_id: Joi.string().allow("").required(),
     });
   }
 
   static FilerList() {
     return Joi.object({
-      value: Joi.string().allow(""),
-
       display: Joi.string().allow(""),
+
+      value: Joi.string().allow(""),
     });
   }
 
@@ -7819,17 +8669,27 @@ class Validator {
     });
   }
 
-  static PageResponse() {
+  static HsnUpsert() {
     return Joi.object({
-      size: Joi.number(),
+      threshold1: Joi.number().required(),
 
-      has_previous: Joi.boolean(),
+      tax1: Joi.number().required(),
 
-      item_total: Joi.number(),
+      threshold2: Joi.number(),
 
-      has_next: Joi.boolean(),
+      hs2_code: Joi.string().allow("").required(),
 
-      current: Joi.string().allow(""),
+      uid: Joi.number(),
+
+      tax_on_esp: Joi.boolean(),
+
+      company_id: Joi.number().required(),
+
+      tax2: Joi.number(),
+
+      hsn_code: Joi.string().allow("").required(),
+
+      tax_on_mrp: Joi.boolean().required(),
     });
   }
 
@@ -7837,25 +8697,45 @@ class Validator {
     return Joi.object({
       threshold1: Joi.number(),
 
-      hs2_code: Joi.string().allow(""),
-
-      modified_on: Joi.string().allow(""),
+      tax1: Joi.number(),
 
       threshold2: Joi.number(),
 
-      hsn_code: Joi.string().allow(""),
-
-      tax_on_mrp: Joi.boolean(),
+      hs2_code: Joi.string().allow(""),
 
       tax_on_esp: Joi.boolean(),
+
+      company_id: Joi.number(),
 
       tax2: Joi.number(),
 
       id: Joi.string().allow(""),
 
-      company_id: Joi.number(),
+      hsn_code: Joi.string().allow(""),
 
-      tax1: Joi.number(),
+      tax_on_mrp: Joi.boolean(),
+
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  static HsnCode() {
+    return Joi.object({
+      data: this.HsnCodesObject(),
+    });
+  }
+
+  static PageResponse() {
+    return Joi.object({
+      size: Joi.number(),
+
+      has_previous: Joi.boolean(),
+
+      has_next: Joi.boolean(),
+
+      item_total: Joi.number(),
+
+      current: Joi.string().allow(""),
     });
   }
 
@@ -7864,36 +8744,6 @@ class Validator {
       page: this.PageResponse(),
 
       items: Joi.array().items(this.HsnCodesObject()),
-    });
-  }
-
-  static HsnUpsert() {
-    return Joi.object({
-      threshold1: Joi.number().required(),
-
-      hs2_code: Joi.string().allow("").required(),
-
-      threshold2: Joi.number(),
-
-      hsn_code: Joi.string().allow("").required(),
-
-      tax_on_mrp: Joi.boolean().required(),
-
-      tax_on_esp: Joi.boolean(),
-
-      uid: Joi.number(),
-
-      tax2: Joi.number(),
-
-      company_id: Joi.number().required(),
-
-      tax1: Joi.number().required(),
-    });
-  }
-
-  static HsnCode() {
-    return Joi.object({
-      data: this.HsnCodesObject(),
     });
   }
 
@@ -7911,21 +8761,21 @@ class Validator {
 
   static BrandItem() {
     return Joi.object({
-      departments: Joi.array().items(Joi.string().allow("")),
-
-      slug: Joi.string().allow(""),
-
-      discount: Joi.string().allow(""),
+      action: this.ProductListingAction(),
 
       logo: this.Media(),
 
-      action: this.ProductListingAction(),
+      discount: Joi.string().allow(""),
 
-      uid: Joi.number(),
+      departments: Joi.array().items(Joi.string().allow("")),
 
       banners: this.ImageUrls(),
 
+      uid: Joi.number(),
+
       name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
     });
   }
 
@@ -7939,21 +8789,99 @@ class Validator {
 
   static Department() {
     return Joi.object({
-      slug: Joi.string().allow(""),
-
-      priority_order: Joi.number(),
-
       logo: this.Media(),
 
       uid: Joi.number(),
 
       name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      priority_order: Joi.number(),
     });
   }
 
   static DepartmentResponse() {
     return Joi.object({
       items: Joi.array().items(this.Department()),
+    });
+  }
+
+  static ThirdLevelChild() {
+    return Joi.object({
+      action: this.ProductListingAction(),
+
+      _custom_json: Joi.object(),
+
+      banners: this.ImageUrls(),
+
+      uid: Joi.number(),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      childs: Joi.array().items(Joi.object()),
+    });
+  }
+
+  static SecondLevelChild() {
+    return Joi.object({
+      action: this.ProductListingAction(),
+
+      _custom_json: Joi.object(),
+
+      banners: this.ImageUrls(),
+
+      uid: Joi.number(),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      childs: Joi.array().items(this.ThirdLevelChild()),
+    });
+  }
+
+  static Child() {
+    return Joi.object({
+      action: this.ProductListingAction(),
+
+      _custom_json: Joi.object(),
+
+      banners: this.ImageUrls(),
+
+      uid: Joi.number(),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      childs: Joi.array().items(this.SecondLevelChild()),
+    });
+  }
+
+  static CategoryItems() {
+    return Joi.object({
+      action: this.ProductListingAction(),
+
+      banners: this.ImageUrls(),
+
+      uid: Joi.number(),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      childs: Joi.array().items(this.Child()),
+    });
+  }
+
+  static DepartmentCategoryTree() {
+    return Joi.object({
+      items: Joi.array().items(this.CategoryItems()),
+
+      department: Joi.string().allow(""),
     });
   }
 
@@ -7965,153 +8893,75 @@ class Validator {
     });
   }
 
-  static ThirdLevelChild() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-
-      _custom_json: Joi.object(),
-
-      childs: Joi.array().items(Joi.object()),
-
-      action: this.ProductListingAction(),
-
-      uid: Joi.number(),
-
-      banners: this.ImageUrls(),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static SecondLevelChild() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-
-      _custom_json: Joi.object(),
-
-      childs: Joi.array().items(this.ThirdLevelChild()),
-
-      action: this.ProductListingAction(),
-
-      uid: Joi.number(),
-
-      banners: this.ImageUrls(),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static Child() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-
-      _custom_json: Joi.object(),
-
-      childs: Joi.array().items(this.SecondLevelChild()),
-
-      action: this.ProductListingAction(),
-
-      uid: Joi.number(),
-
-      banners: this.ImageUrls(),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static CategoryItems() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-
-      childs: Joi.array().items(this.Child()),
-
-      action: this.ProductListingAction(),
-
-      uid: Joi.number(),
-
-      banners: this.ImageUrls(),
-
-      name: Joi.string().allow(""),
-    });
-  }
-
-  static DepartmentCategoryTree() {
-    return Joi.object({
-      department: Joi.string().allow(""),
-
-      items: Joi.array().items(this.CategoryItems()),
-    });
-  }
-
   static CategoryListingResponse() {
     return Joi.object({
-      departments: Joi.array().items(this.DepartmentIdentifier()),
-
       data: Joi.array().items(this.DepartmentCategoryTree()),
+
+      departments: Joi.array().items(this.DepartmentIdentifier()),
     });
   }
 
   static ApplicationProductListingResponse() {
     return Joi.object({
-      sort_on: Joi.array().items(this.ProductSortOn()),
+      filters: Joi.array().items(this.ProductFilters()),
 
-      page: this.Page().required(),
+      sort_on: Joi.array().items(this.ProductSortOn()),
 
       items: Joi.array().items(this.ProductListingDetail()),
 
-      filters: Joi.array().items(this.ProductFilters()),
+      page: this.Page().required(),
     });
   }
 
   static ProductDetail() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
+      rating: Joi.number(),
+
+      tryouts: Joi.array().items(Joi.string().allow("")),
+
+      description: Joi.string().allow(""),
+
+      teaser_tag: Joi.object(),
+
+      uid: Joi.number(),
+
+      promo_meta: Joi.object(),
 
       grouped_attributes: Joi.array().items(
         this.ProductDetailGroupedAttribute()
       ),
 
-      item_code: Joi.string().allow(""),
-
-      attributes: Joi.object(),
-
-      rating: Joi.number(),
-
-      item_type: Joi.string().allow(""),
-
-      promo_meta: Joi.object(),
+      brand: this.ProductBrand(),
 
       similars: Joi.array().items(Joi.string().allow("")),
 
-      short_description: Joi.string().allow(""),
-
-      rating_count: Joi.number(),
-
-      medias: Joi.array().items(this.Media1()),
-
-      color: Joi.string().allow(""),
-
-      description: Joi.string().allow(""),
-
-      product_online_date: Joi.string().allow(""),
-
-      image_nature: Joi.string().allow(""),
+      attributes: Joi.object(),
 
       highlights: Joi.array().items(Joi.string().allow("")),
 
-      teaser_tag: Joi.object(),
+      color: Joi.string().allow(""),
 
       has_variant: Joi.boolean(),
 
+      item_code: Joi.string().allow(""),
+
       type: Joi.string().allow(""),
 
-      uid: Joi.number(),
+      medias: Joi.array().items(this.Media1()),
 
-      tryouts: Joi.array().items(Joi.string().allow("")),
+      short_description: Joi.string().allow(""),
 
-      brand: this.ProductBrand(),
+      product_online_date: Joi.string().allow(""),
 
       name: Joi.string().allow(""),
+
+      rating_count: Joi.number(),
+
+      image_nature: Joi.string().allow(""),
+
+      item_type: Joi.string().allow(""),
+
+      slug: Joi.string().allow("").required(),
     });
   }
 
@@ -11945,87 +12795,11 @@ class Validator {
     });
   }
 
-  static CouponSchedule() {
-    return Joi.object({
-      next_schedule: Joi.array().items(Joi.object()),
-
-      cron: Joi.string().allow(""),
-
-      duration: Joi.number(),
-
-      start: Joi.string().allow(""),
-
-      end: Joi.string().allow(""),
-    });
-  }
-
-  static Identifier() {
-    return Joi.object({
-      article_id: Joi.array().items(Joi.string().allow("")),
-
-      brand_id: Joi.array().items(Joi.number()),
-
-      collection_id: Joi.array().items(Joi.string().allow("")),
-
-      company_id: Joi.array().items(Joi.number()),
-
-      item_id: Joi.array().items(Joi.number()),
-
-      user_id: Joi.array().items(Joi.string().allow("")),
-
-      category_id: Joi.array().items(Joi.number()),
-
-      store_id: Joi.array().items(Joi.number()),
-    });
-  }
-
-  static Validity() {
-    return Joi.object({
-      priority: Joi.number(),
-    });
-  }
-
   static CouponDateMeta() {
     return Joi.object({
       modified_on: Joi.string().allow(""),
 
       created_on: Joi.string().allow(""),
-    });
-  }
-
-  static CouponAuthor() {
-    return Joi.object({
-      created_by: Joi.string().allow(""),
-
-      modified_by: Joi.string().allow(""),
-    });
-  }
-
-  static State() {
-    return Joi.object({
-      is_display: Joi.boolean(),
-
-      is_public: Joi.boolean(),
-
-      is_archived: Joi.boolean(),
-    });
-  }
-
-  static Validation() {
-    return Joi.object({
-      app_id: Joi.array().items(Joi.string().allow("")),
-
-      user_registered_after: Joi.string().allow(""),
-
-      anonymous: Joi.boolean(),
-    });
-  }
-
-  static CouponAction() {
-    return Joi.object({
-      action_date: Joi.string().allow(""),
-
-      txn_mode: Joi.string().allow(""),
     });
   }
 
@@ -12047,11 +12821,25 @@ class Validator {
     });
   }
 
+  static PriceRange() {
+    return Joi.object({
+      min: Joi.number(),
+
+      max: Joi.number(),
+    });
+  }
+
   static PostOrder() {
     return Joi.object({
       cancellation_allowed: Joi.boolean(),
 
       return_allowed: Joi.boolean(),
+    });
+  }
+
+  static BulkBundleRestriction() {
+    return Joi.object({
+      multi_store_allowed: Joi.boolean().required(),
     });
   }
 
@@ -12063,89 +12851,155 @@ class Validator {
 
   static PaymentModes() {
     return Joi.object({
-      types: Joi.array().items(Joi.string().allow("")),
-
       networks: Joi.array().items(Joi.string().allow("")),
 
-      codes: Joi.array().items(Joi.string().allow("")),
-
       uses: this.PaymentAllowValue(),
+
+      types: Joi.array().items(Joi.string().allow("")),
+
+      codes: Joi.array().items(Joi.string().allow("")),
     });
   }
 
   static PaymentCodes() {
     return Joi.object({
-      upi: this.PaymentModes(),
+      pl: this.PaymentModes(),
 
       wl: this.PaymentModes(),
 
-      card: this.PaymentModes(),
+      nb: this.PaymentModes(),
 
       qr: this.PaymentModes(),
 
       ps: this.PaymentModes(),
 
-      pl: this.PaymentModes(),
+      upi: this.PaymentModes(),
 
-      nb: this.PaymentModes(),
-    });
-  }
-
-  static BulkBundleRestriction() {
-    return Joi.object({
-      multi_store_allowed: Joi.boolean().required(),
-    });
-  }
-
-  static PriceRange() {
-    return Joi.object({
-      max: Joi.number(),
-
-      min: Joi.number(),
+      card: this.PaymentModes(),
     });
   }
 
   static Restrictions() {
     return Joi.object({
+      ordering_stores: Joi.array().items(Joi.number()),
+
       coupon_allowed: Joi.boolean(),
-
-      uses: this.UsesRestriction(),
-
-      post_order: this.PostOrder(),
-
-      payments: this.PaymentCodes(),
-
-      bulk_bundle: this.BulkBundleRestriction(),
 
       platforms: Joi.array().items(Joi.string().allow("")),
 
+      uses: this.UsesRestriction(),
+
       price_range: this.PriceRange(),
 
-      ordering_stores: Joi.array().items(Joi.number()),
+      post_order: this.PostOrder(),
+
+      bulk_bundle: this.BulkBundleRestriction(),
+
+      payments: this.PaymentCodes(),
     });
   }
 
   static DisplayMetaDict() {
     return Joi.object({
-      title: Joi.string().allow(""),
-
       subtitle: Joi.string().allow(""),
+
+      title: Joi.string().allow(""),
     });
   }
 
   static DisplayMeta() {
     return Joi.object({
-      apply: this.DisplayMetaDict(),
-
-      auto: this.DisplayMetaDict(),
-
       subtitle: Joi.string().allow(""),
 
       remove: this.DisplayMetaDict(),
 
-      title: Joi.string().allow(""),
+      apply: this.DisplayMetaDict(),
 
       description: Joi.string().allow(""),
+
+      auto: this.DisplayMetaDict(),
+
+      title: Joi.string().allow(""),
+    });
+  }
+
+  static Validity() {
+    return Joi.object({
+      priority: Joi.number(),
+    });
+  }
+
+  static Rule() {
+    return Joi.object({
+      value: Joi.number(),
+
+      discount_qty: Joi.number(),
+
+      max: Joi.number(),
+
+      min: Joi.number(),
+
+      key: Joi.number(),
+    });
+  }
+
+  static Validation() {
+    return Joi.object({
+      app_id: Joi.array().items(Joi.string().allow("")),
+
+      anonymous: Joi.boolean(),
+
+      user_registered_after: Joi.string().allow(""),
+    });
+  }
+
+  static RuleDefinition() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+
+      value_type: Joi.string().allow("").required(),
+
+      calculate_on: Joi.string().allow("").required(),
+
+      is_exact: Joi.boolean(),
+
+      applicable_on: Joi.string().allow("").required(),
+
+      currency_code: Joi.string().allow(""),
+
+      auto_apply: Joi.boolean(),
+
+      scope: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  static Identifier() {
+    return Joi.object({
+      category_id: Joi.array().items(Joi.number()),
+
+      company_id: Joi.array().items(Joi.number()),
+
+      article_id: Joi.array().items(Joi.string().allow("")),
+
+      user_id: Joi.array().items(Joi.string().allow("")),
+
+      item_id: Joi.array().items(Joi.number()),
+
+      store_id: Joi.array().items(Joi.number()),
+
+      collection_id: Joi.array().items(Joi.string().allow("")),
+
+      brand_id: Joi.array().items(Joi.number()),
+    });
+  }
+
+  static State() {
+    return Joi.object({
+      is_display: Joi.boolean(),
+
+      is_archived: Joi.boolean(),
+
+      is_public: Joi.boolean(),
     });
   }
 
@@ -12157,73 +13011,69 @@ class Validator {
     });
   }
 
-  static RuleDefinition() {
+  static CouponAction() {
     return Joi.object({
-      calculate_on: Joi.string().allow("").required(),
+      txn_mode: Joi.string().allow(""),
 
-      scope: Joi.array().items(Joi.string().allow("")),
-
-      auto_apply: Joi.boolean(),
-
-      is_exact: Joi.boolean(),
-
-      applicable_on: Joi.string().allow("").required(),
-
-      currency_code: Joi.string().allow(""),
-
-      value_type: Joi.string().allow("").required(),
-
-      type: Joi.string().allow("").required(),
+      action_date: Joi.string().allow(""),
     });
   }
 
-  static Rule() {
+  static CouponAuthor() {
     return Joi.object({
-      max: Joi.number(),
+      created_by: Joi.string().allow(""),
 
-      value: Joi.number(),
+      modified_by: Joi.string().allow(""),
+    });
+  }
 
-      discount_qty: Joi.number(),
+  static CouponSchedule() {
+    return Joi.object({
+      start: Joi.string().allow(""),
 
-      min: Joi.number(),
+      next_schedule: Joi.array().items(Joi.object()),
 
-      key: Joi.number(),
+      duration: Joi.number(),
+
+      cron: Joi.string().allow(""),
+
+      end: Joi.string().allow(""),
     });
   }
 
   static CouponAdd() {
     return Joi.object({
-      _schedule: this.CouponSchedule(),
-
-      identifiers: this.Identifier().required(),
-
-      validity: this.Validity().required(),
-
       date_meta: this.CouponDateMeta(),
-
-      author: this.CouponAuthor(),
-
-      state: this.State(),
-
-      validation: this.Validation(),
-
-      code: Joi.string().allow("").required(),
-
-      action: this.CouponAction(),
 
       restrictions: this.Restrictions(),
 
       display_meta: this.DisplayMeta().required(),
 
-      ownership: this.Ownership().required(),
-
-      rule_definition: this.RuleDefinition().required(),
-
-      tags: Joi.array().items(Joi.string().allow("")),
+      validity: this.Validity().required(),
 
       rule: Joi.array().items(this.Rule()).required(),
 
+      code: Joi.string().allow("").required(),
+
+      validation: this.Validation(),
+
       type_slug: Joi.string().allow("").required(),
+
+      rule_definition: this.RuleDefinition().required(),
+
+      identifiers: this.Identifier().required(),
+
+      state: this.State(),
+
+      ownership: this.Ownership().required(),
+
+      action: this.CouponAction(),
+
+      author: this.CouponAuthor(),
+
+      tags: Joi.array().items(Joi.string().allow("")),
+
+      _schedule: this.CouponSchedule(),
     });
   }
 
@@ -12237,53 +13087,53 @@ class Validator {
 
   static SuccessMessage() {
     return Joi.object({
-      success: Joi.boolean(),
-
       message: Joi.string().allow(""),
+
+      success: Joi.boolean(),
     });
   }
 
   static OperationErrorResponse() {
     return Joi.object({
-      success: Joi.boolean(),
-
       message: Joi.string().allow(""),
+
+      success: Joi.boolean(),
     });
   }
 
   static CouponUpdate() {
     return Joi.object({
-      _schedule: this.CouponSchedule(),
-
-      identifiers: this.Identifier().required(),
-
-      validity: this.Validity().required(),
-
       date_meta: this.CouponDateMeta(),
-
-      author: this.CouponAuthor(),
-
-      state: this.State(),
-
-      validation: this.Validation(),
-
-      code: Joi.string().allow("").required(),
-
-      action: this.CouponAction(),
 
       restrictions: this.Restrictions(),
 
       display_meta: this.DisplayMeta().required(),
 
-      ownership: this.Ownership().required(),
-
-      rule_definition: this.RuleDefinition().required(),
-
-      tags: Joi.array().items(Joi.string().allow("")),
+      validity: this.Validity().required(),
 
       rule: Joi.array().items(this.Rule()).required(),
 
+      code: Joi.string().allow("").required(),
+
+      validation: this.Validation(),
+
       type_slug: Joi.string().allow("").required(),
+
+      rule_definition: this.RuleDefinition().required(),
+
+      identifiers: this.Identifier().required(),
+
+      state: this.State(),
+
+      ownership: this.Ownership().required(),
+
+      action: this.CouponAction(),
+
+      author: this.CouponAuthor(),
+
+      tags: Joi.array().items(Joi.string().allow("")),
+
+      _schedule: this.CouponSchedule(),
     });
   }
 
@@ -12297,63 +13147,63 @@ class Validator {
 
   static CartItem() {
     return Joi.object({
-      quantity: Joi.number(),
+      product_id: Joi.string().allow("").required(),
 
       size: Joi.string().allow("").required(),
 
-      product_id: Joi.string().allow("").required(),
-    });
-  }
-
-  static ProductImage() {
-    return Joi.object({
-      aspect_ratio: Joi.string().allow(""),
-
-      url: Joi.string().allow(""),
+      quantity: Joi.number(),
     });
   }
 
   static ProductSizeChart() {
     return Joi.object({
-      values: Joi.array().items(Joi.string().allow("")),
-
-      is_available: Joi.number(),
+      unit: Joi.string().allow(""),
 
       display: Joi.string().allow(""),
 
-      unit: Joi.string().allow(""),
+      is_available: Joi.number(),
+
+      values: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  static ProductImage() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+
+      aspect_ratio: Joi.string().allow(""),
     });
   }
 
   static ProductListingBrandLogo() {
     return Joi.object({
+      url: Joi.string().allow(""),
+
       aspect_ratio: Joi.string().allow(""),
 
       action: this.ProductListingAction(),
-
-      url: Joi.string().allow(""),
     });
   }
 
   static ProductWithSize() {
     return Joi.object({
-      discount: Joi.string().allow("").required(),
-
-      price_marked: Joi.string().allow("").required(),
-
-      image: this.ProductImage(),
-
-      action: this.ProductListingAction(),
-
-      sizes: Joi.array().items(this.ProductSizeChart()),
-
-      selected_size: Joi.string().allow("").required(),
-
-      product_id: Joi.string().allow("").required(),
-
       message: Joi.string().allow("").required(),
 
       price_effective: Joi.string().allow("").required(),
+
+      discount: Joi.string().allow("").required(),
+
+      sizes: Joi.array().items(this.ProductSizeChart()),
+
+      action: this.ProductListingAction(),
+
+      product_id: Joi.string().allow("").required(),
+
+      image: this.ProductImage(),
+
+      selected_size: Joi.string().allow("").required(),
+
+      price_marked: Joi.string().allow("").required(),
 
       brand_logo: this.ProductListingBrandLogo(),
 
@@ -12391,99 +13241,75 @@ class Validator {
     });
   }
 
-  static CouponBreakup() {
+  static BaseInfo() {
     return Joi.object({
-      uid: Joi.string().allow(""),
+      name: Joi.string().allow(""),
 
-      is_applied: Joi.boolean(),
-
-      value: Joi.number(),
-
-      code: Joi.string().allow(""),
-
-      message: Joi.string().allow(""),
-
-      type: Joi.string().allow(""),
+      uid: Joi.number(),
     });
   }
 
-  static RawBreakup() {
+  static BasePrice() {
     return Joi.object({
-      vog: Joi.number(),
-
-      discount: Joi.number(),
-
-      delivery_charge: Joi.number(),
-
-      subtotal: Joi.number(),
-
-      gst_charges: Joi.number(),
-
-      cod_charge: Joi.number(),
-
-      coupon: Joi.number(),
-
-      convenience_fee: Joi.number(),
-
-      total: Joi.number(),
-
-      mrp_total: Joi.string().allow(""),
-
-      you_saved: Joi.number(),
-
-      fynd_cash: Joi.number(),
-    });
-  }
-
-  static DisplayBreakup() {
-    return Joi.object({
-      display: Joi.string().allow(""),
-
-      value: Joi.number(),
-
-      message: Joi.array().items(Joi.string().allow("")),
-
       currency_symbol: Joi.string().allow(""),
 
       currency_code: Joi.string().allow(""),
 
-      key: Joi.string().allow(""),
+      effective: Joi.number(),
+
+      marked: Joi.number(),
     });
   }
 
-  static CartBreakup() {
+  static ArticlePriceInfo() {
     return Joi.object({
-      loyalty_points: this.LoyaltyPoints(),
+      converted: this.BasePrice(),
 
-      coupon: this.CouponBreakup(),
+      base: this.BasePrice(),
+    });
+  }
 
-      raw: this.RawBreakup(),
+  static ProductArticle() {
+    return Joi.object({
+      seller: this.BaseInfo(),
 
-      display: Joi.array().items(this.DisplayBreakup()),
+      type: Joi.string().allow(""),
+
+      store: this.BaseInfo(),
+
+      uid: Joi.string().allow(""),
+
+      extra_meta: Joi.object(),
+
+      quantity: Joi.number(),
+
+      size: Joi.string().allow(""),
+
+      price: this.ArticlePriceInfo(),
     });
   }
 
   static ProductPrice() {
     return Joi.object({
-      effective: Joi.number(),
+      add_on: Joi.number(),
 
       marked: Joi.number(),
 
-      add_on: Joi.number(),
+      effective: Joi.number(),
 
       currency_symbol: Joi.string().allow(""),
 
-      selling: Joi.number(),
-
       currency_code: Joi.string().allow(""),
+
+      selling: Joi.number(),
     });
   }
 
   static ProductPriceInfo() {
     return Joi.object({
-      base: this.ProductPrice(),
-
       converted: this.ProductPrice(),
+
+      base: this.ProductPrice(),
     });
   }
 
@@ -12493,81 +13319,31 @@ class Validator {
     });
   }
 
-  static BasePrice() {
-    return Joi.object({
-      effective: Joi.number(),
-
-      marked: Joi.number(),
-
-      currency_symbol: Joi.string().allow(""),
-
-      currency_code: Joi.string().allow(""),
-    });
-  }
-
-  static ArticlePriceInfo() {
-    return Joi.object({
-      base: this.BasePrice(),
-
-      converted: this.BasePrice(),
-    });
-  }
-
-  static BaseInfo() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-
-      uid: Joi.number(),
-    });
-  }
-
-  static ProductArticle() {
-    return Joi.object({
-      price: this.ArticlePriceInfo(),
-
-      uid: Joi.string().allow(""),
-
-      store: this.BaseInfo(),
-
-      size: Joi.string().allow(""),
-
-      extra_meta: Joi.object(),
-
-      quantity: Joi.number(),
-
-      type: Joi.string().allow(""),
-
-      seller: this.BaseInfo(),
-    });
-  }
-
-  static ProductAvailability() {
-    return Joi.object({
-      sizes: Joi.array().items(Joi.string().allow("")),
-
-      out_of_stock: Joi.boolean(),
-
-      deliverable: Joi.boolean(),
-
-      is_valid: Joi.boolean(),
-
-      other_store_quantity: Joi.number(),
-    });
-  }
-
   static PromoMeta() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
   }
 
-  static Image() {
+  static ProductAvailability() {
     return Joi.object({
-      aspect_ratio: Joi.string().allow(""),
+      other_store_quantity: Joi.number(),
 
-      url: Joi.string().allow(""),
+      out_of_stock: Joi.boolean(),
 
-      secure_url: Joi.string().allow(""),
+      deliverable: Joi.boolean(),
+
+      sizes: Joi.array().items(Joi.string().allow("")),
+
+      is_valid: Joi.boolean(),
+    });
+  }
+
+  static CategoryInfo() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+
+      uid: Joi.number(),
     });
   }
 
@@ -12581,61 +13357,169 @@ class Validator {
     return Joi.object({
       query: this.ActionQuery(),
 
-      type: Joi.string().allow(""),
-
       url: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
     });
   }
 
-  static CategoryInfo() {
+  static Image() {
     return Joi.object({
-      name: Joi.string().allow(""),
+      secure_url: Joi.string().allow(""),
 
-      uid: Joi.number(),
+      url: Joi.string().allow(""),
+
+      aspect_ratio: Joi.string().allow(""),
     });
   }
 
   static CartProductInfo() {
     return Joi.object({
-      price_per_unit: this.ProductPriceInfo(),
-
-      discount: Joi.string().allow(""),
-
-      identifiers: this.CartProductIdentifer().required(),
-
-      price: this.ProductPriceInfo(),
+      message: Joi.string().allow(""),
 
       article: this.ProductArticle(),
 
-      bulk_offer: Joi.object(),
+      price_per_unit: this.ProductPriceInfo(),
 
       is_set: Joi.boolean(),
 
-      availability: this.ProductAvailability(),
-
-      coupon_message: Joi.string().allow(""),
-
-      key: Joi.string().allow(""),
-
-      message: Joi.string().allow(""),
-
-      promo_meta: this.PromoMeta(),
+      discount: Joi.string().allow(""),
 
       quantity: Joi.number(),
 
+      identifiers: this.CartProductIdentifer().required(),
+
+      bulk_offer: Joi.object(),
+
+      price: this.ProductPriceInfo(),
+
+      coupon_message: Joi.string().allow(""),
+
+      promo_meta: this.PromoMeta(),
+
+      availability: this.ProductAvailability(),
+
       product: this.Product(),
+
+      key: Joi.string().allow(""),
+    });
+  }
+
+  static CouponBreakup() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
+
+      value: Joi.number(),
+
+      uid: Joi.string().allow(""),
+
+      is_applied: Joi.boolean(),
+
+      code: Joi.string().allow(""),
+    });
+  }
+
+  static DisplayBreakup() {
+    return Joi.object({
+      message: Joi.array().items(Joi.string().allow("")),
+
+      value: Joi.number(),
+
+      display: Joi.string().allow(""),
+
+      currency_symbol: Joi.string().allow(""),
+
+      currency_code: Joi.string().allow(""),
+
+      key: Joi.string().allow(""),
+    });
+  }
+
+  static RawBreakup() {
+    return Joi.object({
+      total: Joi.number(),
+
+      delivery_charge: Joi.number(),
+
+      gst_charges: Joi.number(),
+
+      discount: Joi.number(),
+
+      fynd_cash: Joi.number(),
+
+      you_saved: Joi.number(),
+
+      convenience_fee: Joi.number(),
+
+      vog: Joi.number(),
+
+      subtotal: Joi.number(),
+
+      coupon: Joi.number(),
+
+      mrp_total: Joi.string().allow(""),
+
+      cod_charge: Joi.number(),
+    });
+  }
+
+  static CartBreakup() {
+    return Joi.object({
+      coupon: this.CouponBreakup(),
+
+      display: Joi.array().items(this.DisplayBreakup()),
+
+      loyalty_points: this.LoyaltyPoints(),
+
+      raw: this.RawBreakup(),
     });
   }
 
   static OpenapiCartDetailsResponse() {
     return Joi.object({
-      breakup_values: this.CartBreakup(),
-
       is_valid: Joi.boolean(),
+
+      message: Joi.string().allow(""),
 
       items: Joi.array().items(this.CartProductInfo()),
 
-      message: Joi.string().allow(""),
+      breakup_values: this.CartBreakup(),
+    });
+  }
+
+  static AddressSerializerV1() {
+    return Joi.object({
+      meta: Joi.object(),
+
+      pincode: Joi.number(),
+
+      area_code: Joi.string().allow("").required(),
+
+      name: Joi.string().allow(""),
+
+      phone: Joi.number(),
+
+      address_type: Joi.string().allow(""),
+
+      city: Joi.string().allow("").required(),
+
+      country_code: Joi.string().allow(""),
+
+      landmark: Joi.string().allow(""),
+
+      country: Joi.string().allow("").required(),
+
+      email: Joi.string().allow(""),
+
+      state: Joi.string().allow("").required(),
+
+      area: Joi.string().allow(""),
+
+      area_code_slug: Joi.string().allow(""),
+
+      address: Joi.string().allow(""),
     });
   }
 
@@ -12649,45 +13533,11 @@ class Validator {
     });
   }
 
-  static AddressSerializerV1() {
-    return Joi.object({
-      phone: Joi.number(),
-
-      landmark: Joi.string().allow(""),
-
-      meta: Joi.object(),
-
-      state: Joi.string().allow("").required(),
-
-      area_code_slug: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-
-      area_code: Joi.string().allow("").required(),
-
-      country_code: Joi.string().allow(""),
-
-      area: Joi.string().allow(""),
-
-      address: Joi.string().allow(""),
-
-      country: Joi.string().allow("").required(),
-
-      email: Joi.string().allow(""),
-
-      address_type: Joi.string().allow(""),
-
-      city: Joi.string().allow("").required(),
-
-      pincode: Joi.number(),
-    });
-  }
-
   static ServiceablityReqSerializer() {
     return Joi.object({
-      cart_items: Joi.array().items(this.CartViewRequestSerializer()),
-
       shipping_address: this.AddressSerializerV1().required(),
+
+      cart_items: Joi.array().items(this.CartViewRequestSerializer()),
 
       coupon: Joi.string().allow(""),
     });
@@ -12695,37 +13545,67 @@ class Validator {
 
   static CartDetailsResponseSerializer() {
     return Joi.object({
-      delivery_promise: Joi.object(),
-
-      breakup_values: Joi.string().allow(""),
-
       message: Joi.string().allow(""),
 
       is_valid: Joi.boolean(),
 
+      delivery_promise: Joi.object(),
+
       items: Joi.array().items(Joi.object()),
+
+      breakup_values: Joi.string().allow(""),
     });
   }
 
   static AddressSerializer() {
     return Joi.object({
-      phone: Joi.number().required(),
-
-      landmark: Joi.string().allow(""),
+      pincode: Joi.number(),
 
       name: Joi.string().allow(""),
 
-      area: Joi.string().allow(""),
-
-      address: Joi.string().allow(""),
-
-      email: Joi.string().allow(""),
+      phone: Joi.number().required(),
 
       address_type: Joi.string().allow(""),
 
       city: Joi.string().allow(""),
 
-      pincode: Joi.number(),
+      landmark: Joi.string().allow(""),
+
+      email: Joi.string().allow(""),
+
+      area: Joi.string().allow(""),
+
+      address: Joi.string().allow(""),
+    });
+  }
+
+  static OrderCartItem() {
+    return Joi.object({
+      cod_charges: Joi.number().required(),
+
+      coupon_effective_discount: Joi.number().required(),
+
+      price_effective: Joi.number().required(),
+
+      discount: Joi.number().required(),
+
+      loyalty_discount: Joi.number(),
+
+      quantity: Joi.number(),
+
+      product_id: Joi.number().required(),
+
+      employee_discount: Joi.number(),
+
+      cashback_applied: Joi.number().required(),
+
+      size: Joi.string().allow("").required(),
+
+      price_marked: Joi.number().required(),
+
+      delivery_charges: Joi.number().required(),
+
+      amount_paid: Joi.number().required(),
     });
   }
 
@@ -12737,61 +13617,33 @@ class Validator {
     });
   }
 
-  static OrderCartItem() {
-    return Joi.object({
-      discount: Joi.number().required(),
-
-      price_marked: Joi.number().required(),
-
-      amount_paid: Joi.number().required(),
-
-      cod_charges: Joi.number().required(),
-
-      product_id: Joi.number().required(),
-
-      size: Joi.string().allow("").required(),
-
-      delivery_charges: Joi.number().required(),
-
-      price_effective: Joi.number().required(),
-
-      quantity: Joi.number(),
-
-      cashback_applied: Joi.number().required(),
-
-      loyalty_discount: Joi.number(),
-
-      employee_discount: Joi.number(),
-
-      coupon_effective_discount: Joi.number().required(),
-    });
-  }
-
   static OpenApiCheckoutReq() {
     return Joi.object({
-      is_cod: Joi.boolean().required(),
-
-      order_id: Joi.string().allow(""),
-
-      payment_mode: Joi.string().allow(""),
-
-      billing_address: this.AddressSerializer().required(),
+      cart_value: Joi.number().required(),
 
       cod_charges: Joi.number().required(),
+
+      order_id: Joi.string().allow(""),
 
       coupon_value: Joi.number().required(),
 
       request_hash: Joi.string().allow("").required(),
 
-      files: Joi.array().items(this.OpenApiFiles()),
+      is_cod: Joi.boolean().required(),
+
+      shipping_address: this.AddressSerializer().required(),
 
       affiliate_order_id: Joi.string().allow(""),
 
-      cashback_applied: Joi.number().required(),
+      loyalty_discount: Joi.number(),
+
+      cart_items: Joi.array().items(this.OrderCartItem()),
 
       coupon: Joi.string().allow(""),
 
-      delivery_charges: Joi.number().required(),
+      payment_mode: Joi.string().allow(""),
+
+      cashback_applied: Joi.number().required(),
 
       coupon_code: Joi.string().allow("").required(),
 
@@ -12799,23 +13651,21 @@ class Validator {
 
       employee_discount: Joi.object(),
 
-      cart_items: Joi.array().items(this.OrderCartItem()),
+      delivery_charges: Joi.number().required(),
 
-      cart_value: Joi.number().required(),
+      files: Joi.array().items(this.OpenApiFiles()),
 
-      shipping_address: this.AddressSerializer().required(),
-
-      loyalty_discount: Joi.number(),
+      billing_address: this.AddressSerializer().required(),
     });
   }
 
   static ConfirmPaymentReqSerializer() {
     return Joi.object({
+      order_id: Joi.string().allow(""),
+
       request_hash: Joi.string().allow(""),
 
       payment_meta: Joi.object(),
-
-      order_id: Joi.string().allow(""),
     });
   }
 
@@ -13733,6 +14583,69 @@ class LeadValidator {
   }
 }
 
+class BillingValidator {
+  static createSubscriptionCharge() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: Validator.CreateSubscriptionCharge().required(),
+    }).required();
+  }
+
+  static getSubscriptionCharge() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      subscriptionId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static cancelSubscriptionCharge() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      subscriptionId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getInvoices() {
+    return Joi.object({}).required();
+  }
+
+  static getInvoiceById() {
+    return Joi.object({
+      invoiceId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getCustomerDetail() {
+    return Joi.object({}).required();
+  }
+
+  static upsertCustomerDetail() {
+    return Joi.object({
+      body: Validator.SubscriptionCustomerCreate().required(),
+    }).required();
+  }
+
+  static getSubscription() {
+    return Joi.object({}).required();
+  }
+
+  static getFeatureLimitConfig() {
+    return Joi.object({}).required();
+  }
+
+  static activateSubscriptionPlan() {
+    return Joi.object({
+      body: Validator.SubscriptionActivateReq().required(),
+    }).required();
+  }
+
+  static cancelSubscriptionPlan() {
+    return Joi.object({
+      body: Validator.CancelSubscriptionReq().required(),
+    }).required();
+  }
+}
+
 class CommunicationValidator {
   static getSystemNotifications() {
     return Joi.object({
@@ -13804,15 +14717,15 @@ class PaymentValidator {
 }
 
 class CatalogValidator {
-  static getProductBundle() {
-    return Joi.object({
-      q: Joi.string().allow(""),
-    }).required();
-  }
-
   static createProductBundle() {
     return Joi.object({
       body: Validator.ProductBundleRequest().required(),
+    }).required();
+  }
+
+  static getProductBundle() {
+    return Joi.object({
+      q: Joi.string().allow(""),
     }).required();
   }
 
@@ -13829,6 +14742,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static createSizeGuide() {
+    return Joi.object({
+      body: Validator.ValidateSizeGuide().required(),
+    }).required();
+  }
+
   static getSizeGuides() {
     return Joi.object({
       active: Joi.boolean(),
@@ -13836,12 +14755,6 @@ class CatalogValidator {
       tag: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-    }).required();
-  }
-
-  static createSizeGuide() {
-    return Joi.object({
-      body: Validator.ValidateSizeGuide().required(),
     }).required();
   }
 
@@ -13974,6 +14887,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static createCategories() {
+    return Joi.object({
+      body: Validator.CategoryRequestBody().required(),
+    }).required();
+  }
+
   static listCategories() {
     return Joi.object({
       level: Joi.string().allow(""),
@@ -13981,12 +14900,6 @@ class CatalogValidator {
       q: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-    }).required();
-  }
-
-  static createCategories() {
-    return Joi.object({
-      body: Validator.CategoryRequestBody().required(),
     }).required();
   }
 
@@ -14003,6 +14916,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static createProduct() {
+    return Joi.object({
+      body: Validator.ProductCreateUpdate().required(),
+    }).required();
+  }
+
   static getProducts() {
     return Joi.object({
       brandIds: Joi.number(),
@@ -14013,9 +14932,9 @@ class CatalogValidator {
     }).required();
   }
 
-  static createProduct() {
+  static deleteProduct() {
     return Joi.object({
-      body: Validator.ProductCreateUpdate().required(),
+      itemId: Joi.number().required(),
     }).required();
   }
 
@@ -14023,12 +14942,6 @@ class CatalogValidator {
     return Joi.object({
       itemId: Joi.number().required(),
       body: Validator.ProductCreateUpdate().required(),
-    }).required();
-  }
-
-  static deleteProduct() {
-    return Joi.object({
-      itemId: Joi.number().required(),
     }).required();
   }
 
@@ -14054,16 +14967,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static updateProductAssetsInBulk() {
+    return Joi.object({
+      body: Validator.BulkJob().required(),
+    }).required();
+  }
+
   static getProductBulkUploadHistory() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-    }).required();
-  }
-
-  static updateProductAssetsInBulk() {
-    return Joi.object({
-      body: Validator.BulkJob().required(),
     }).required();
   }
 
@@ -14084,6 +14997,12 @@ class CatalogValidator {
     return Joi.object({}).required();
   }
 
+  static createProductAssetsInBulk() {
+    return Joi.object({
+      body: Validator.ProductBulkAssets().required(),
+    }).required();
+  }
+
   static getProductAssetsInBulk() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -14091,16 +15010,18 @@ class CatalogValidator {
     }).required();
   }
 
-  static createProductAssetsInBulk() {
-    return Joi.object({
-      body: Validator.ProductBulkAssets().required(),
-    }).required();
-  }
-
   static deleteSize() {
     return Joi.object({
       itemId: Joi.number().required(),
       size: Joi.number().required(),
+    }).required();
+  }
+
+  static addInventory() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+      size: Joi.string().allow("").required(),
+      body: Validator.InventoryRequest().required(),
     }).required();
   }
 
@@ -14113,14 +15034,6 @@ class CatalogValidator {
     }).required();
   }
 
-  static addInventory() {
-    return Joi.object({
-      itemId: Joi.number().required(),
-      size: Joi.string().allow("").required(),
-      body: Validator.InventoryRequest().required(),
-    }).required();
-  }
-
   static deleteInventory() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -14128,16 +15041,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static createBulkInventoryJob() {
+    return Joi.object({
+      body: Validator.BulkJob().required(),
+    }).required();
+  }
+
   static getInventoryBulkUploadHistory() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-    }).required();
-  }
-
-  static createBulkInventoryJob() {
-    return Joi.object({
-      body: Validator.BulkJob().required(),
     }).required();
   }
 
@@ -14151,14 +15064,14 @@ class CatalogValidator {
     }).required();
   }
 
-  static getInventoryExport() {
-    return Joi.object({}).required();
-  }
-
   static createInventoryExportJob() {
     return Joi.object({
       body: Validator.InventoryExportRequest().required(),
     }).required();
+  }
+
+  static getInventoryExport() {
+    return Joi.object({}).required();
   }
 
   static exportInventoryConfig() {
@@ -14167,17 +15080,17 @@ class CatalogValidator {
     }).required();
   }
 
+  static createHsnCode() {
+    return Joi.object({
+      body: Validator.HsnUpsert().required(),
+    }).required();
+  }
+
   static getAllHsnCodes() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static createHsnCode() {
-    return Joi.object({
-      body: Validator.HsnUpsert().required(),
     }).required();
   }
 
@@ -14741,6 +15654,7 @@ class WebhookValidator {
 
 module.exports = {
   LeadValidator,
+  BillingValidator,
   CommunicationValidator,
   PaymentValidator,
   CatalogValidator,
