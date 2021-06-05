@@ -667,12 +667,12 @@ declare class Cart {
     /**
       *
       * @summary: Get discount offers based on quantity
-      * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*.
+      * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
       * @param {Object} arg - arg object.
       * @param {number} [arg.itemId] - The Item ID of the product
       * @param {string} [arg.articleId] - Article Mongo ID
       * @param {number} [arg.uid] - UID of the product
-      * @param {string} [arg.slug] - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/.
+      * @param {string} [arg.slug] - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
       
       **/
     getBulkDiscountOffers({ itemId, articleId, uid, slug }?: {
@@ -2976,12 +2976,12 @@ declare class PosCart {
     /**
       *
       * @summary: Get discount offers based on quantity
-      * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*.
+      * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
       * @param {Object} arg - arg object.
       * @param {number} [arg.itemId] - The Item ID of the product
       * @param {string} [arg.articleId] - Article Mongo ID
       * @param {number} [arg.uid] - UID of the product
-      * @param {string} [arg.slug] - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/.
+      * @param {string} [arg.slug] - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
       
       **/
     getBulkDiscountOffers({ itemId, articleId, uid, slug }?: {
@@ -3139,7 +3139,7 @@ declare class PosCart {
       * @param {number} [arg.uid] - The unique identifier of the cart
       * @param {number} [arg.addressId] - ID allotted to the selected address
       * @param {string} [arg.areaCode] - The PIN Code of the destination address, e.g. 400059
-      * @param {string} [arg.orderType] - The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself.
+      * @param {string} [arg.orderType] - The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself.
       
       **/
     getShipments({ pickAtStoreUid, orderingStoreId, p, uid, addressId, areaCode, orderType, }?: {
@@ -3160,7 +3160,7 @@ declare class PosCart {
      * @param {boolean} [arg.p] - This is a boolean value. Select `true` for getting a payment option in response.
      * @param {number} [arg.uid] - The unique identifier of the cart
      * @param {number} [arg.addressId] - ID allotted to an address
-     * @param {string} [arg.orderType] - The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself.
+     * @param {string} [arg.orderType] - The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself.
      * @param {UpdateCartShipmentRequest} arg.body
      **/
     updateShipments({ body, i, p, uid, addressId, orderType }?: {
@@ -3198,7 +3198,7 @@ declare class PosCart {
     /**
       *
       * @summary: Get available delivery modes for cart
-      * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of /store-address API.
+      * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
       * @param {Object} arg - arg object.
       * @param {string} arg.areaCode -
       * @param {number} [arg.uid] -
@@ -3211,7 +3211,7 @@ declare class PosCart {
     /**
       *
       * @summary: Get list of stores for give uids
-      * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of /available-delivery-mode API.
+      * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
       * @param {Object} arg - arg object.
       * @param {number} arg.storeUid -
       
