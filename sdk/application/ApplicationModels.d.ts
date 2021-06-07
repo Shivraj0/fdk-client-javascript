@@ -259,6 +259,8 @@ export class LogisticValidator {
     static getPincodeCity(): any;
 }
 export class Validator {
+    static ProductDetailAttribute(): any;
+    static ProductDetailGroupedAttribute(): any;
     static Meta(): any;
     static Media(): any;
     static ProductListingActionPage(): any;
@@ -266,28 +268,26 @@ export class Validator {
     static ProductBrand(): any;
     static Price(): any;
     static ProductListingPrice(): any;
-    static ProductDetailAttribute(): any;
-    static ProductDetailGroupedAttribute(): any;
     static ProductDetail(): any;
     static ErrorResponse(): any;
     static ProductSize(): any;
-    static ProductSizeStores(): any;
     static SizeChartValues(): any;
     static ColumnHeader(): any;
     static ColumnHeaders(): any;
     static SizeChart(): any;
+    static ProductSizeStores(): any;
     static ProductSizes(): any;
-    static Details(): any;
-    static MarketPlaceSttributes(): any;
     static StrategyWiseListing(): any;
-    static ArticleAssignment(): any;
     static ProductStockPrice(): any;
-    static ReturnConfig(): any;
     static Seller(): any;
-    static Store(): any;
+    static ReturnConfig(): any;
+    static ArticleAssignment(): any;
     static ProductSetDistributionSize(): any;
     static ProductSetDistribution(): any;
     static ProductSet(): any;
+    static Details(): any;
+    static MarketPlaceSttributes(): any;
+    static Store(): any;
     static ProductSizePriceResponse(): any;
     static ProductSizeSellerFilter(): any;
     static ProductSizeSellersResponse(): any;
@@ -307,10 +307,10 @@ export class Validator {
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
     static ProductListingDetail(): any;
-    static ProductSortOn(): any;
-    static ProductFiltersKey(): any;
     static ProductFiltersValue(): any;
+    static ProductFiltersKey(): any;
     static ProductFilters(): any;
+    static ProductSortOn(): any;
     static ProductListingResponse(): any;
     static ImageUrls(): any;
     static BrandItem(): any;

@@ -264,24 +264,24 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [getSearchKeywords](#getsearchkeywords)
-    * [deleteSearchKeywords](#deletesearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
+    * [getSearchKeywords](#getsearchkeywords)
     * [getAllSearchKeyword](#getallsearchkeyword)
     * [createCustomKeyword](#createcustomkeyword)
-    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
+    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getProductBundle](#getproductbundle)
     * [createProductBundle](#createproductbundle)
-    * [getProductBundleDetail](#getproductbundledetail)
     * [updateProductBundle](#updateproductbundle)
+    * [getProductBundleDetail](#getproductbundledetail)
     * [getSizeGuides](#getsizeguides)
     * [createSizeGuide](#createsizeguide)
-    * [getSizeGuide](#getsizeguide)
     * [updateSizeGuide](#updatesizeguide)
+    * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
     * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
@@ -317,13 +317,13 @@
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
     * [listCategories](#listcategories)
     * [createCategories](#createcategories)
-    * [getCategoryData](#getcategorydata)
     * [updateCategory](#updatecategory)
+    * [getCategoryData](#getcategorydata)
     * [getProducts](#getproducts)
     * [createProduct](#createproduct)
-    * [getProduct](#getproduct)
-    * [deleteProduct](#deleteproduct)
     * [editProduct](#editproduct)
+    * [deleteProduct](#deleteproduct)
+    * [getProduct](#getproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
@@ -346,8 +346,8 @@
     * [exportInventoryConfig](#exportinventoryconfig)
     * [getAllHsnCodes](#getallhsncodes)
     * [createHsnCode](#createhsncode)
-    * [getHsnCode](#gethsncode)
     * [updateHsnCode](#updatehsncode)
+    * [getHsnCode](#gethsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -361,15 +361,15 @@
     * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
     * [createLocation](#createlocation)
     * [getLocations](#getlocations)
-    * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -4863,7 +4863,7 @@ Schema: `BlitzkriegInternalServerError`
 
 
 #### getThemeLibrary
-Gets list of themes in theme library
+Get a list of themes from the theme library
 
 ```javascript
 // Promise
@@ -4875,18 +4875,18 @@ const data = await theme.getThemeLibrary(companyId,applicationId,pageSize,pageNo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-| pageNo | integer | Page number. Default is 1. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10.  | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
 
-Gets list of themes in theme library
+Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details. 
 
 *Success Response:*
 
 
 
-Themes list
+Success. Refer `ThemesListingResponseSchema` for more details.
 
 
 Schema: `ThemesListingResponseSchema`
@@ -4938,7 +4938,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### addToThemeLibrary
-Add theme to theme library
+Add a theme to the theme library
 
 ```javascript
 // Promise
@@ -4950,16 +4950,16 @@ const data = await theme.addToThemeLibrary(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Add theme to theme library
+Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5011,7 +5011,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### applyTheme
-Apply theme
+Apply a theme
 
 ```javascript
 // Promise
@@ -5023,16 +5023,16 @@ const data = await theme.applyTheme(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Apply theme
+Use this API to apply a theme to the website.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5096,17 +5096,17 @@ const data = await theme.isUpgradable(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 | themeId | string | Theme ID | 
 
-Checks if theme is upgradable
+There's always a possibility that new features get added to a theme. Use this API to check if the applied theme has an upgrade available.
 
 *Success Response:*
 
 
 
-Upgradable Theme
+Success. If the boolean value of `upgrade` returns **true**, the theme can be upgraded. Refer `UpgradableThemeSchema` for more details.
 
 
 Schema: `UpgradableThemeSchema`
@@ -5158,7 +5158,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### upgradeTheme
-Upgrades theme
+Upgrade a theme
 
 ```javascript
 // Promise
@@ -5170,17 +5170,17 @@ const data = await theme.upgradeTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Upgrades theme
+Use this API to upgrade the current theme to its latest version.
 
 *Success Response:*
 
 
 
-Upgrades Theme
+Success. Upgrades the theme and shares the details of the new version in the response. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5232,7 +5232,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getPublicThemes
-Gets public themes
+Get all public themes
 
 ```javascript
 // Promise
@@ -5244,18 +5244,18 @@ const data = await theme.getPublicThemes(companyId,applicationId,pageSize,pageNo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-| pageNo | integer | Page number. Default is 1. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10.  | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
 
-Gets public themes
+Use this API to get a list of free themes that you can apply to your website.
 
 *Success Response:*
 
 
 
-Themes list
+Success. Refer `ThemesListingResponseSchema` for more details.
 
 
 Schema: `ThemesListingResponseSchema`
@@ -5307,7 +5307,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### createTheme
-Create new theme
+Create a new theme
 
 ```javascript
 // Promise
@@ -5319,10 +5319,10 @@ const data = await theme.createTheme(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Create new theme
+Themes improve the look and appearance of a website. Use this API to create a theme.
 
 *Success Response:*
 
@@ -5380,7 +5380,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getAppliedTheme
-Get applied theme
+Get the applied theme
 
 ```javascript
 // Promise
@@ -5392,16 +5392,16 @@ const data = await theme.getAppliedTheme(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Get applied theme
+Use this API to retrieve the theme that is currently applied to the website along with its details.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5453,7 +5453,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getFonts
-Gets fonts
+Get all the supported fonts in a theme
 
 ```javascript
 // Promise
@@ -5465,16 +5465,16 @@ const data = await theme.getFonts(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Gets fonts
+Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
 
 *Success Response:*
 
 
 
-Fonts list
+Success. Refer `FontsSchema` for more details.
 
 
 Schema: `FontsSchema`
@@ -5538,17 +5538,17 @@ const data = await theme.getThemeById(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Gets theme by id
+Use this API to retrieve the details of a specific theme by using its ID.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5600,7 +5600,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### updateTheme
-Update theme
+Update a theme
 
 ```javascript
 // Promise
@@ -5612,17 +5612,17 @@ const data = await theme.updateTheme(companyId,applicationId,themeId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Update theme
+Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5674,7 +5674,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### deleteTheme
-Delete theme
+Delete a theme
 
 ```javascript
 // Promise
@@ -5686,17 +5686,17 @@ const data = await theme.deleteTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Delete theme
+Use this API to delete a theme from the theme library.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5748,7 +5748,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getThemeForPreview
-Gets theme for preview
+Get a theme preview
 
 ```javascript
 // Promise
@@ -5760,17 +5760,17 @@ const data = await theme.getThemeForPreview(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Gets theme for preview
+A theme can be previewed before applying it. Use this API to retrieve the theme preview by using its ID.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5822,7 +5822,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### publishTheme
-Publish theme
+Publish a theme
 
 ```javascript
 // Promise
@@ -5834,17 +5834,17 @@ const data = await theme.publishTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Publish theme
+Use this API to publish a theme that is either newly created or edited.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5896,7 +5896,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### unpublishTheme
-Unpublish theme
+Unpublish a theme
 
 ```javascript
 // Promise
@@ -5908,17 +5908,17 @@ const data = await theme.unpublishTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Unpublish theme
+Use this API to remove an existing theme from the list of available themes.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5970,7 +5970,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### archiveTheme
-Archive theme
+Archive a theme
 
 ```javascript
 // Promise
@@ -5982,17 +5982,17 @@ const data = await theme.archiveTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Archive theme
+Use this API to store an existing theme but not delete it so that it can be used in future if required. 
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -6044,7 +6044,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### unarchiveTheme
-Unarchive theme
+Unarchive a theme
 
 ```javascript
 // Promise
@@ -6056,17 +6056,17 @@ const data = await theme.unarchiveTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Unarchive theme
+Use this API to restore an archived theme and bring it back for editing or publishing. 
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -6125,7 +6125,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getCustomers
-Gets list of customers
+Get a list of customers
 
 ```javascript
 // Promise
@@ -6137,19 +6137,19 @@ const data = await user.getCustomers(companyId,applicationId,q,pageSize,pageNo);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-| pageNo | integer | Page number. Default is 1. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| q | string | The search query. Mobile number or email ID of a customer. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
 
-Used to get application customers list
+Use this API to retrieve a list of customers who have registered in the application.
 
 *Success Response:*
 
 
 
-Customer list
+Success. Refer `CustomerListResponseSchema` for more details.
 
 
 Schema: `CustomerListResponseSchema`
@@ -6201,7 +6201,7 @@ Schema: `AuthenticationApiError`
 
 
 #### searchUsers
-Search users
+Search an existing user.
 
 ```javascript
 // Promise
@@ -6213,17 +6213,17 @@ const data = await user.searchUsers(companyId,applicationId,q);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| q | string | The search query. Mobile number or email ID of a customer. | 
 
-Search users
+Use this API to retrieve an existing user from a list.
 
 *Success Response:*
 
 
 
-User list
+Success. Returns first name, last name, emails, phone number and gender of the user. Refer `UserSearchResponseSchema` for more details.
 
 
 Schema: `UserSearchResponseSchema`
@@ -6264,7 +6264,7 @@ Schema: `AuthenticationApiError`
 
 
 #### getPlatformConfig
-Get platform config
+Get platform configurations
 
 ```javascript
 // Promise
@@ -6276,16 +6276,16 @@ const data = await user.getPlatformConfig(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Used to get platform config
+Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
 
 *Success Response:*
 
 
 
-Platform Config
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
 
 
 Schema: `PlatformSchema`
@@ -6326,7 +6326,7 @@ Schema: `AuthenticationApiError`
 
 
 #### updatePlatformConfig
-Update platform config
+Update platform configurations
 
 ```javascript
 // Promise
@@ -6338,16 +6338,16 @@ const data = await user.updatePlatformConfig(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Used to update platform config
+Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
 
 *Success Response:*
 
 
 
-Platform Config
+Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
 
 
 Schema: `PlatformSchema`
@@ -16699,33 +16699,33 @@ Schema: `HttpErrorCodeAndResponse`
 ## Catalog
 
 
-#### getSearchKeywords
-Get a Search Keywords Details
+#### updateSearchKeywords
+Update Search Keyword
 
 ```javascript
 // Promise
-const promise = catalog.getSearchKeywords(companyId,applicationId,id);
+const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.getSearchKeywords(companyId,applicationId,id);
+const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+Update Search Keyword by its id. On successful request, returns the updated collection
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
 
 
-Schema: `GetSearchWordsDetailResponse`
+Schema: `GetSearchWordsData`
 
 
 
@@ -16801,33 +16801,33 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateSearchKeywords
-Update Search Keyword
+#### getSearchKeywords
+Get a Search Keywords Details
 
 ```javascript
 // Promise
-const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const promise = catalog.getSearchKeywords(companyId,applicationId,id);
 
 // Async/Await
-const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const data = await catalog.getSearchKeywords(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
 
-Update Search Keyword by its id. On successful request, returns the updated collection
+Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
 
 
-Schema: `GetSearchWordsData`
+Schema: `GetSearchWordsDetailResponse`
 
 
 
@@ -16952,30 +16952,30 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAutocompleteKeywordDetail
-Get a Autocomplete Keywords Details
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
 
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
+const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
+const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Success Response:*
 
 
 
-The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
 Schema: `GetAutocompleteWordsResponse`
@@ -17054,30 +17054,30 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
+#### getAutocompleteKeywordDetail
+Get a Autocomplete Keywords Details
 
 ```javascript
 // Promise
-const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const promise = catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
 
 // Async/Await
-const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const data = await catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
 
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
 
 *Success Response:*
 
 
 
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
 Schema: `GetAutocompleteWordsResponse`
@@ -17304,56 +17304,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getProductBundleDetail
-Get a particular Product Bundle details
-
-```javascript
-// Promise
-const promise = catalog.getProductBundleDetail(companyId,id);
-
-// Async/Await
-const data = await catalog.getProductBundleDetail(companyId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
-
-Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `GetProductBundleResponse` for details
-
-
-Schema: `GetProductBundleResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateProductBundle
 Update a Product Bundle
 
@@ -17380,6 +17330,56 @@ The Collection object. See example below or refer `GetProductBundleCreateRespons
 
 
 Schema: `GetProductBundleCreateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProductBundleDetail
+Get a particular Product Bundle details
+
+```javascript
+// Promise
+const promise = catalog.getProductBundleDetail(companyId,id);
+
+// Async/Await
+const data = await catalog.getProductBundleDetail(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+
+Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+
+Schema: `GetProductBundleResponse`
 
 
 
@@ -17507,56 +17507,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getSizeGuide
-Get a single size guide.
-
-```javascript
-// Promise
-const promise = catalog.getSizeGuide(companyId,id);
-
-// Async/Await
-const data = await catalog.getSizeGuide(companyId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to size guide. | 
-| id | string | Id of the size guide to be viewed. | 
-
-This API helps to get data associated to a size guide.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `SizeGuideResponseSchema` for details
-
-
-Schema: `SizeGuideResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateSizeGuide
 Edit a size guide.
 
@@ -17583,6 +17533,56 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSizeGuide
+Get a single size guide.
+
+```javascript
+// Promise
+const promise = catalog.getSizeGuide(companyId,id);
+
+// Async/Await
+const data = await catalog.getSizeGuide(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to size guide. | 
+| id | string | Id of the size guide to be viewed. | 
+
+This API helps to get data associated to a size guide.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
+
+
+Schema: `SizeGuideResponse`
 
 
 
@@ -19377,56 +19377,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getCategoryData
-Get product category by uid
-
-```javascript
-// Promise
-const promise = catalog.getCategoryData(companyId,uid);
-
-// Async/Await
-const data = await catalog.getCategoryData(companyId,uid);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| uid | string | Category unique id | 
-
-This API gets meta associated to product categories.
-
-*Success Response:*
-
-
-
-Get Data for one category. See example below or refer `CategoryResponse` for details
-
-
-Schema: `SingleCategoryResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCategory
 Update product categories
 
@@ -19453,6 +19403,56 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 Schema: `CategoryUpdateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCategoryData
+Get product category by uid
+
+```javascript
+// Promise
+const promise = catalog.getCategoryData(companyId,uid);
+
+// Async/Await
+const data = await catalog.getCategoryData(companyId,uid);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| uid | string | Category unique id | 
+
+This API gets meta associated to product categories.
+
+*Success Response:*
+
+
+
+Get Data for one category. See example below or refer `CategoryResponse` for details
+
+
+Schema: `SingleCategoryResponse`
 
 
 
@@ -19580,35 +19580,32 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getProduct
-Get a single product.
+#### editProduct
+Edit a product.
 
 ```javascript
 // Promise
-const promise = catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
+const promise = catalog.editProduct(companyId,itemId,body);
 
 // Async/Await
-const data = await catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
+const data = await catalog.editProduct(companyId,itemId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| itemCode | string | Item code of the product. | 
-| companyId | integer | Company Id of the product. | 
-| itemId | integer | Item Id of the product. | 
-| brandUid | integer | Brand Id of the product. | 
-| uid | integer | Id of the product. | 
+| companyId | string | Id of the company associated to product that is to be viewed. | 
+| itemId | integer | Id of the product to be updated. | 
 
-This API helps to get data associated to a particular product.
+This API allows to edit product.
 
 *Success Response:*
 
 
 
-Product object. See example below or refer `product.utils.format_product_response` for details
+Returns a success response
 
 
-Schema: `Product`
+Schema: `SuccessResponse`
 
 
 
@@ -19683,32 +19680,35 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editProduct
-Edit a product.
+#### getProduct
+Get a single product.
 
 ```javascript
 // Promise
-const promise = catalog.editProduct(companyId,itemId,body);
+const promise = catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
 
 // Async/Await
-const data = await catalog.editProduct(companyId,itemId,body);
+const data = await catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | integer | Id of the product to be updated. | 
+| itemCode | string | Item code of the product. | 
+| companyId | integer | Company Id of the product. | 
+| itemId | integer | Item Id of the product. | 
+| brandUid | integer | Brand Id of the product. | 
+| uid | integer | Id of the product. | 
 
-This API allows to edit product.
+This API helps to get data associated to a particular product.
 
 *Success Response:*
 
 
 
-Returns a success response
+Product object. See example below or refer `product.utils.format_product_response` for details
 
 
-Schema: `SuccessResponse`
+Schema: `Product`
 
 
 
@@ -20837,15 +20837,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getHsnCode
-Fetch Hsn Code.
+#### updateHsnCode
+Update Hsn Code.
 
 ```javascript
 // Promise
-const promise = catalog.getHsnCode(companyId,id);
+const promise = catalog.updateHsnCode(companyId,id,body);
 
 // Async/Await
-const data = await catalog.getHsnCode(companyId,id);
+const data = await catalog.updateHsnCode(companyId,id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -20853,13 +20853,13 @@ const data = await catalog.getHsnCode(companyId,id);
 | companyId | string | company id | 
 | id | string | Unique id | 
 
-Fetch Hsn Code.
+Update Hsn Code.
 
 *Success Response:*
 
 
 
-See example below details
+See example below for details
 
 
 Schema: `HsnCode`
@@ -20887,15 +20887,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateHsnCode
-Update Hsn Code.
+#### getHsnCode
+Fetch Hsn Code.
 
 ```javascript
 // Promise
-const promise = catalog.updateHsnCode(companyId,id,body);
+const promise = catalog.getHsnCode(companyId,id);
 
 // Async/Await
-const data = await catalog.updateHsnCode(companyId,id,body);
+const data = await catalog.getHsnCode(companyId,id);
 ```
 
 | Argument  |  Type  | Description |
@@ -20903,13 +20903,13 @@ const data = await catalog.updateHsnCode(companyId,id,body);
 | companyId | string | company id | 
 | id | string | Unique id | 
 
-Update Hsn Code.
+Fetch Hsn Code.
 
 *Success Response:*
 
 
 
-See example below for details
+See example below details
 
 
 Schema: `HsnCode`
@@ -21403,56 +21403,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
-
-```javascript
-// Promise
-const promise = companyprofile.getBrand(companyId,brandId);
-
-// Async/Await
-const data = await companyprofile.getBrand(companyId,brandId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### editBrand
 Edit a brand.
 
@@ -21479,6 +21429,56 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrand
+Get a single brand.
+
+```javascript
+// Promise
+const promise = companyprofile.getBrand(companyId,brandId);
+
+// Async/Await
+const data = await companyprofile.getBrand(companyId,brandId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -21755,56 +21755,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getLocationDetail
-Get details of a specific location.
-
-```javascript
-// Promise
-const promise = companyprofile.getLocationDetail(companyId,locationId);
-
-// Async/Await
-const data = await companyprofile.getLocationDetail(companyId,locationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
-
-This API helps to get data associated to a specific location.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-Schema: `GetLocationSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateLocation
 Edit a location asscoiated to a company.
 
@@ -21831,6 +21781,56 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocationDetail
+Get details of a specific location.
+
+```javascript
+// Promise
+const promise = companyprofile.getLocationDetail(companyId,locationId);
+
+// Async/Await
+const data = await companyprofile.getLocationDetail(companyId,locationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location lies. | 
+| locationId | string | Id of the location which you want to view. | 
+
+This API helps to get data associated to a specific location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
 
 
 
@@ -28951,7 +28951,7 @@ const data = await webhook.registerSubscriberToEvent(companyId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
+| companyId | string | Company Id of the application | 
 
 Register Subscriber
 

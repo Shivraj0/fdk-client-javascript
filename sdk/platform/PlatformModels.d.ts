@@ -39,12 +39,12 @@ export class PaymentValidator {
 export class CatalogValidator {
     static getProductBundle(): any;
     static createProductBundle(): any;
-    static getProductBundleDetail(): any;
     static updateProductBundle(): any;
+    static getProductBundleDetail(): any;
     static getSizeGuides(): any;
     static createSizeGuide(): any;
-    static getSizeGuide(): any;
     static updateSizeGuide(): any;
+    static getSizeGuide(): any;
     static getSellerInsights(): any;
     static createMarketplaceOptin(): any;
     static getMarketplaceOptinDetail(): any;
@@ -66,13 +66,13 @@ export class CatalogValidator {
     static listTemplateBrandTypeValues(): any;
     static listCategories(): any;
     static createCategories(): any;
-    static getCategoryData(): any;
     static updateCategory(): any;
+    static getCategoryData(): any;
     static getProducts(): any;
     static createProduct(): any;
-    static getProduct(): any;
-    static deleteProduct(): any;
     static editProduct(): any;
+    static deleteProduct(): any;
+    static getProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static getProductBulkUploadHistory(): any;
@@ -95,23 +95,23 @@ export class CatalogValidator {
     static exportInventoryConfig(): any;
     static getAllHsnCodes(): any;
     static createHsnCode(): any;
-    static getHsnCode(): any;
     static updateHsnCode(): any;
+    static getHsnCode(): any;
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
     static updateCompany(): any;
     static cbsOnboardGet(): any;
     static getCompanyMetrics(): any;
-    static getBrand(): any;
     static editBrand(): any;
+    static getBrand(): any;
     static createBrand(): any;
     static createCompanyBrandMapping(): any;
     static getBrands(): any;
     static createLocation(): any;
     static getLocations(): any;
-    static getLocationDetail(): any;
     static updateLocation(): any;
+    static getLocationDetail(): any;
     static createLocationBulk(): any;
 }
 export class FileStorageValidator {
