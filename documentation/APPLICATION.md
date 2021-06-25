@@ -1774,7 +1774,7 @@ Use this API to get details of all the items added to a cart.
 Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -1840,10 +1840,10 @@ Use this API to add items to the cart.
 
 
 
-Success. Returns a cart object as shown below. Refer `AddCartResponse` for more details.
+Success. Returns a cart object as shown below. Refer `AddRequestCartResponse` for more details.
 
 
-Schema: `AddCartResponse`
+Schema: `AddRequestCartResponse`
 
 
 *Examples:*
@@ -2512,10 +2512,10 @@ Use this API to update items added to the cart with the help of a request object
 
 
 
-Success. Updates and returns a cart object as shown below. Refer `UpdateCartResponse` for more details.
+Success. Updates and returns a cart object as shown below. Refer `UpdateRequestCartResponse` for more details.
 
 
-Schema: `UpdateCartResponse`
+Schema: `UpdateRequestCartResponse`
 
 
 *Examples:*
@@ -2991,7 +2991,7 @@ Use this API to apply coupons on items in the cart.
 Success. Returns coupons applied to the cart along with item details and price breakup. Refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -3028,7 +3028,7 @@ Remove Coupon applied on the cart by passing uid in request body.
 Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -3190,7 +3190,7 @@ Use this API to redeem a fixed no. of reward points by applying it to the cart.
 Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -3422,7 +3422,7 @@ const data = await cart.selectAddress(body,cartId,i,b);
 Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.  .
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -3495,7 +3495,7 @@ Use this API to update cart payment.
 Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -14896,7 +14896,7 @@ Use this API to get details of all the items added to a cart.
 Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -14962,10 +14962,10 @@ Use this API to add items to the cart.
 
 
 
-Success. Returns a cart object as shown below. Refer `AddCartResponse` for more details.
+Success. Returns a cart object as shown below. Refer `AddRequestCartResponse` for more details.
 
 
-Schema: `AddCartResponse`
+Schema: `AddRequestCartResponse`
 
 
 *Examples:*
@@ -15634,10 +15634,10 @@ Use this API to update items added to the cart with the help of a request object
 
 
 
-Success. Updates and returns a cart object as shown below. Refer `UpdateCartResponse` for more details.
+Success. Updates and returns a cart object as shown below. Refer `UpdateRequestCartResponse` for more details.
 
 
-Schema: `UpdateCartResponse`
+Schema: `UpdateRequestCartResponse`
 
 
 *Examples:*
@@ -16113,7 +16113,7 @@ Use this API to apply coupons on items in the cart.
 Success. Returns coupons applied to the cart along with item details and price breakup. Refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -16150,7 +16150,7 @@ Remove Coupon applied on the cart by passing uid in request body.
 Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -16312,7 +16312,7 @@ Use this API to redeem a fixed no. of reward points by applying it to the cart.
 Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -16544,7 +16544,7 @@ const data = await poscart.selectAddress(body,cartId,i,b);
 Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.  .
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
@@ -16617,7 +16617,7 @@ Use this API to update cart payment.
 Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.
 
 
-Schema: `CartResponse`
+Schema: `CartRequestResponse`
 
 
 
