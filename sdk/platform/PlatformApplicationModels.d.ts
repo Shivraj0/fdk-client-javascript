@@ -12,6 +12,7 @@ export class LeadValidator {
     static getVideoParticipants(): any;
     static openVideoRoom(): any;
     static closeVideoRoom(): any;
+    static getASDF(): any;
 }
 export class FeedbackValidator {
     static getAttributes(): any;
@@ -52,6 +53,9 @@ export class ThemeValidator {
 export class UserValidator {
     static getCustomers(): any;
     static searchUsers(): any;
+    static createUser(): any;
+    static updateUser(): any;
+    static createUserSession(): any;
     static getPlatformConfig(): any;
     static updatePlatformConfig(): any;
 }
@@ -180,30 +184,39 @@ export class PaymentValidator {
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
 }
+export class OrderValidator {
+    static trackShipmentPlatform(): any;
+    static trackOrder(): any;
+    static failedOrders(): any;
+    static reprocessOrder(): any;
+    static updateShipment(): any;
+    static getPlatformShipmentReasons(): any;
+    static getShipmentTrackDetails(): any;
+}
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
+    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
-    static updateAutocompleteKeyword(): any;
+    static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static getAutocompleteConfig(): any;
+    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
+    static getAutocompleteConfig(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
-    static getCollectionItems(): any;
+    static updateCollection(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;

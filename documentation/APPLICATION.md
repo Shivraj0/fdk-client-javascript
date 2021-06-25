@@ -93,6 +93,7 @@
     * [submitCustomForm](#submitcustomform)
     * [getParticipantsInsideVideoRoom](#getparticipantsinsidevideoroom)
     * [getTokenForVideoRoom](#gettokenforvideoroom)
+    * [getASDF](#getasdf)
     
 
 * [Theme](#Theme)
@@ -440,7 +441,7 @@ const data = await catalog.getProductPriceBySlug(slug,size,pincode,storeId);
 | slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
 | size | string | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes | 
 | pincode | string | The PIN Code of the area near which the selling locations should be searched, e.g. 400059 | 
-| storeId | string | The ID of the store that is selling the product, e.g. 1,2,3. | 
+| storeId | integer | The ID of the store that is selling the product, e.g. 1,2,3. | 
 
 Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
 
@@ -1751,15 +1752,15 @@ Fetch all items added to the cart
 
 ```javascript
 // Promise
-const promise = cart.getCart(uid,i,b,assignCardId);
+const promise = cart.getCart(id,i,b,assignCardId);
 
 // Async/Await
-const data = await cart.getCart(uid,i,b,assignCardId);
+const data = await cart.getCart(id,i,b,assignCardId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 | i | boolean |  | 
 | b | boolean |  | 
 | assignCardId | integer |  | 
@@ -1791,15 +1792,15 @@ Fetch last-modified timestamp
 
 ```javascript
 // Promise
-const promise = cart.getCartLastModified(uid);
+const promise = cart.getCartLastModified(id);
 
 // Async/Await
-const data = await cart.getCartLastModified(uid);
+const data = await cart.getCartLastModified(id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 
 Use this API to fetch Last-Modified timestamp in header metadata.
 
@@ -2493,15 +2494,15 @@ Update items in the cart
 
 ```javascript
 // Promise
-const promise = cart.updateCart(body,uid,i,b);
+const promise = cart.updateCart(body,id,i,b);
 
 // Async/Await
-const data = await cart.updateCart(body,uid,i,b);
+const data = await cart.updateCart(body,id,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 | i | boolean |  | 
 | b | boolean |  | 
 
@@ -2894,15 +2895,15 @@ Count items in the cart
 
 ```javascript
 // Promise
-const promise = cart.getItemCount(uid);
+const promise = cart.getItemCount(id);
 
 // Async/Await
-const data = await cart.getItemCount(uid);
+const data = await cart.getItemCount(id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | The unique identifier of the cart. | 
+| id | string | The unique identifier of the cart. | 
 
 Use this API to get the total number of items present in cart.
 
@@ -3164,7 +3165,7 @@ Schema: `Object`
 
 
 #### applyRewardPoints
-Fetch rewards points for cart.
+Apply reward points at cart
 
 ```javascript
 // Promise
@@ -3180,7 +3181,7 @@ const data = await cart.applyRewardPoints(body,uid,i,b);
 | i | boolean |  | 
 | b | boolean |  | 
 
-Use this API to get rewards points for cart.
+Use this API to redeem a fixed no. of reward points by applying it to the cart.
 
 *Success Response:*
 
@@ -3207,15 +3208,15 @@ Fetch address
 
 ```javascript
 // Promise
-const promise = cart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
+const promise = cart.getAddresses(cartId,mobileNo,checkoutMode,tags,isDefault);
 
 // Async/Await
-const data = await cart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
+const data = await cart.getAddresses(cartId,mobileNo,checkoutMode,tags,isDefault);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| cartId | string |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
 | tags | string |  | 
@@ -3284,16 +3285,16 @@ Fetch a single address by its ID
 
 ```javascript
 // Promise
-const promise = cart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefault);
+const promise = cart.getAddressById(id,cartId,mobileNo,checkoutMode,tags,isDefault);
 
 // Async/Await
-const data = await cart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefault);
+const data = await cart.getAddressById(id,cartId,mobileNo,checkoutMode,tags,isDefault);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer |  | 
-| uid | integer |  | 
+| id | string |  | 
+| cartId | string |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
 | tags | string |  | 
@@ -3400,15 +3401,15 @@ Select an address from available addresses
 
 ```javascript
 // Promise
-const promise = cart.selectAddress(body,uid,i,b);
+const promise = cart.selectAddress(body,cartId,i,b);
 
 // Async/Await
-const data = await cart.selectAddress(body,uid,i,b);
+const data = await cart.selectAddress(body,cartId,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| cartId | string |  | 
 | i | boolean |  | 
 | b | boolean |  | 
 
@@ -6089,6 +6090,58 @@ const data = await lead.getTokenForVideoRoom(uniqueName);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uniqueName | string | Unique name of Video Room | 
+
+Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetTokenForVideoRoomResponse`
+
+
+*Examples:*
+
+
+Default
+```json
+{
+  "value": {
+    "access_token": "your_token_to_the_room"
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getASDF
+Get Token to join a specific Video Room using it's unqiue name
+
+```javascript
+// Promise
+const promise = lead.getASDF(inPath,inQuery,inHeader);
+
+// Async/Await
+const data = await lead.getASDF(inPath,inQuery,inHeader);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| inQuery |  | For adding support for enum | 
+| inHeader |  | For adding support for enum | 
+| inPath |  | For adding support for enum | 
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
@@ -11055,10 +11108,10 @@ Use this API to retrieve the tokens used while integrating Firebase, MoEngage, S
 
 
 
-Success. Check the example shown below or refer `TokenResponse` for more details.
+Success. Check the example shown below or refer `AppTokenResponse` for more details.
 
 
-Schema: `TokenResponse`
+Schema: `AppTokenResponse`
 
 
 
@@ -11533,7 +11586,7 @@ const data = await payment.attachCardToCustomer(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Use this API to attach a customer's saved card at the payment gateway, such as Stripe.
+Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
 
 *Success Response:*
 
@@ -12723,7 +12776,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### getOrders
-Use this API to retrieve all the orders.
+Get all orders
 
 ```javascript
 // Promise
@@ -12741,7 +12794,7 @@ const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
 | toDate | string | The date till which the orders should be retrieved. | 
 | orderStatus | integer | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. | 
 
-Get all orders
+Use this API to retrieve all the orders.
 
 *Success Response:*
 
@@ -12788,7 +12841,7 @@ Schema: `ApefaceApiError`
 
 
 #### getOrderById
-Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+Get details of an order
 
 ```javascript
 // Promise
@@ -12802,7 +12855,7 @@ const data = await order.getOrderById(orderId);
 | --------- | ----  | --- |
 | orderId | string | A unique number used for identifying and tracking your orders. | 
 
-Get details of an order
+Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
 
 *Success Response:*
 
@@ -12849,7 +12902,7 @@ Schema: `ApefaceApiError`
 
 
 #### getShipmentById
-Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+Get details of a shipment
 
 ```javascript
 // Promise
@@ -12863,7 +12916,7 @@ const data = await order.getShipmentById(shipmentId);
 | --------- | ----  | --- |
 | shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
 
-Get details of a shipment
+Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
 
 *Success Response:*
 
@@ -12910,7 +12963,7 @@ Schema: `ApefaceApiError`
 
 
 #### getShipmentReasons
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+Get reasons behind full or partial cancellation of a shipment
 
 ```javascript
 // Promise
@@ -12924,7 +12977,7 @@ const data = await order.getShipmentReasons(shipmentId);
 | --------- | ----  | --- |
 | shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
 
-Get reasons behind full or partial cancellation of a shipment
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
 
 *Success Response:*
 
@@ -12971,7 +13024,7 @@ Schema: `ApefaceApiError`
 
 
 #### updateShipmentStatus
-Use this API to update the status of a shipment using its shipment ID.
+Update the shipment status
 
 ```javascript
 // Promise
@@ -12985,7 +13038,7 @@ const data = await order.updateShipmentStatus(shipmentId,body);
 | --------- | ----  | --- |
 | shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
 
-Update the shipment status
+Use this API to update the status of a shipment using its shipment ID.
 
 *Success Response:*
 
@@ -13032,7 +13085,7 @@ Schema: `ApefaceApiError`
 
 
 #### trackShipment
-Use this API to track a shipment using its shipment ID.
+Track shipment
 
 ```javascript
 // Promise
@@ -13046,7 +13099,7 @@ const data = await order.trackShipment(shipmentId);
 | --------- | ----  | --- |
 | shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
 
-Track shipment
+Use this API to track a shipment using its shipment ID.
 
 *Success Response:*
 
@@ -13093,7 +13146,7 @@ Schema: `ApefaceApiError`
 
 
 #### getPosOrderById
-Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+Get POS Order
 
 ```javascript
 // Promise
@@ -13107,7 +13160,7 @@ const data = await order.getPosOrderById(orderId);
 | --------- | ----  | --- |
 | orderId | string | A unique number used for identifying and tracking your orders. | 
 
-Get POS Order
+Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
 
 *Success Response:*
 
@@ -14200,10 +14253,10 @@ Get Media
 
 ```javascript
 // Promise
-const promise = feedback.getMedias(entityType,entityId,id,pageId,pageSize);
+const promise = feedback.getMedias(entityType,entityId,id,type,pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getMedias(entityType,entityId,id,pageId,pageSize);
+const data = await feedback.getMedias(entityType,entityId,id,type,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -14211,6 +14264,7 @@ const data = await feedback.getMedias(entityType,entityId,id,pageId,pageSize);
 | entityType | string | Type of entity, e.g. question or product. | 
 | entityId | string | ID of the eligible entity as specified in the entity type(question ID/product ID). | 
 | id | string | ID of the media. | 
+| type | string | Media type. | 
 | pageId | string | Pagination page ID to retrieve next set of results. | 
 | pageSize | integer | The number of items to retrieve in each page. | 
 
@@ -14820,15 +14874,15 @@ Fetch all items added to the cart
 
 ```javascript
 // Promise
-const promise = poscart.getCart(uid,i,b,assignCardId);
+const promise = poscart.getCart(id,i,b,assignCardId);
 
 // Async/Await
-const data = await poscart.getCart(uid,i,b,assignCardId);
+const data = await poscart.getCart(id,i,b,assignCardId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 | i | boolean |  | 
 | b | boolean |  | 
 | assignCardId | integer |  | 
@@ -14860,15 +14914,15 @@ Fetch last-modified timestamp
 
 ```javascript
 // Promise
-const promise = poscart.getCartLastModified(uid);
+const promise = poscart.getCartLastModified(id);
 
 // Async/Await
-const data = await poscart.getCartLastModified(uid);
+const data = await poscart.getCartLastModified(id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 
 Use this API to fetch Last-Modified timestamp in header metadata.
 
@@ -15562,15 +15616,15 @@ Update items in the cart
 
 ```javascript
 // Promise
-const promise = poscart.updateCart(body,uid,i,b);
+const promise = poscart.updateCart(body,id,i,b);
 
 // Async/Await
-const data = await poscart.updateCart(body,uid,i,b);
+const data = await poscart.updateCart(body,id,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 | i | boolean |  | 
 | b | boolean |  | 
 
@@ -15963,15 +16017,15 @@ Count items in the cart
 
 ```javascript
 // Promise
-const promise = poscart.getItemCount(uid);
+const promise = poscart.getItemCount(id);
 
 // Async/Await
-const data = await poscart.getItemCount(uid);
+const data = await poscart.getItemCount(id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | The unique identifier of the cart. | 
+| id | string | The unique identifier of the cart. | 
 
 Use this API to get the total number of items present in cart.
 
@@ -16233,7 +16287,7 @@ Schema: `Object`
 
 
 #### applyRewardPoints
-Fetch rewards points for cart.
+Apply reward points at cart
 
 ```javascript
 // Promise
@@ -16249,7 +16303,7 @@ const data = await poscart.applyRewardPoints(body,uid,i,b);
 | i | boolean |  | 
 | b | boolean |  | 
 
-Use this API to get rewards points for cart.
+Use this API to redeem a fixed no. of reward points by applying it to the cart.
 
 *Success Response:*
 
@@ -16276,15 +16330,15 @@ Fetch address
 
 ```javascript
 // Promise
-const promise = poscart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
+const promise = poscart.getAddresses(cartId,mobileNo,checkoutMode,tags,isDefault);
 
 // Async/Await
-const data = await poscart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
+const data = await poscart.getAddresses(cartId,mobileNo,checkoutMode,tags,isDefault);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| cartId | string |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
 | tags | string |  | 
@@ -16353,16 +16407,16 @@ Fetch a single address by its ID
 
 ```javascript
 // Promise
-const promise = poscart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefault);
+const promise = poscart.getAddressById(id,cartId,mobileNo,checkoutMode,tags,isDefault);
 
 // Async/Await
-const data = await poscart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefault);
+const data = await poscart.getAddressById(id,cartId,mobileNo,checkoutMode,tags,isDefault);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer |  | 
-| uid | integer |  | 
+| id | string |  | 
+| cartId | string |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
 | tags | string |  | 
@@ -16469,15 +16523,15 @@ Select an address from available addresses
 
 ```javascript
 // Promise
-const promise = poscart.selectAddress(body,uid,i,b);
+const promise = poscart.selectAddress(body,cartId,i,b);
 
 // Async/Await
-const data = await poscart.selectAddress(body,uid,i,b);
+const data = await poscart.selectAddress(body,cartId,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| cartId | string |  | 
 | i | boolean |  | 
 | b | boolean |  | 
 
@@ -18976,7 +19030,7 @@ Cart Merged/Replaced
 
 
 #### getTatProduct
-Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
+Get TAT of a product
 
 ```javascript
 // Promise
@@ -18989,7 +19043,7 @@ const data = await logistic.getTatProduct(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get TAT of a product
+Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
 
 *Success Response:*
 
@@ -19036,7 +19090,7 @@ Schema: `ApefaceApiError`
 
 
 #### getPincodeCity
-Use this API to retrieve a city by its PIN Code.
+Get city from PIN Code
 
 ```javascript
 // Promise
@@ -19050,7 +19104,7 @@ const data = await logistic.getPincodeCity(pincode);
 | --------- | ----  | --- |
 | pincode | string | The PIN Code of the area, e.g. 400059 | 
 
-Get city from PIN Code
+Use this API to retrieve a city by its PIN Code.
 
 *Success Response:*
 

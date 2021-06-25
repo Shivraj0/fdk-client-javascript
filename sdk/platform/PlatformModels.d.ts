@@ -5,8 +5,11 @@ export class LeadValidator {
     static editTicket(): any;
     static createHistory(): any;
     static getTicketHistory(): any;
+    static getFeedbacks(): any;
+    static submitFeedback(): any;
     static getTokenForVideoRoom(): any;
     static getVideoParticipants(): any;
+    static getASDF(): any;
 }
 export class BillingValidator {
     static createSubscriptionCharge(): any;
@@ -36,15 +39,29 @@ export class PaymentValidator {
     static saveSubscriptionSetupIntent(): any;
     static verifyIfscCode(): any;
 }
+export class OrderValidator {
+    static shipmentStatusUpdate(): any;
+    static activityStatus(): any;
+    static storeProcessShipmentUpdate(): any;
+    static checkRefund(): any;
+    static getOrdersByCompanyId(): any;
+    static getOrderDetails(): any;
+    static getPicklistOrdersByCompanyId(): any;
+    static getShipmentAddress(): any;
+    static updateShipmentAddress(): any;
+    static getPing(): any;
+    static voiceCallback(): any;
+    static voiceClickToCall(): any;
+}
 export class CatalogValidator {
-    static getProductBundle(): any;
     static createProductBundle(): any;
-    static updateProductBundle(): any;
+    static getProductBundle(): any;
     static getProductBundleDetail(): any;
-    static getSizeGuides(): any;
+    static updateProductBundle(): any;
     static createSizeGuide(): any;
-    static updateSizeGuide(): any;
+    static getSizeGuides(): any;
     static getSizeGuide(): any;
+    static updateSizeGuide(): any;
     static getSellerInsights(): any;
     static createMarketplaceOptin(): any;
     static getMarketplaceOptinDetail(): any;
@@ -64,39 +81,39 @@ export class CatalogValidator {
     static listHSNCodes(): any;
     static listProductTemplateExportDetails(): any;
     static listTemplateBrandTypeValues(): any;
-    static listCategories(): any;
     static createCategories(): any;
-    static updateCategory(): any;
+    static listCategories(): any;
     static getCategoryData(): any;
-    static getProducts(): any;
+    static updateCategory(): any;
     static createProduct(): any;
-    static editProduct(): any;
+    static getProducts(): any;
     static deleteProduct(): any;
     static getProduct(): any;
+    static editProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
-    static getProductBulkUploadHistory(): any;
     static updateProductAssetsInBulk(): any;
-    static createProductsInBulk(): any;
+    static getProductBulkUploadHistory(): any;
     static deleteProductBulkJob(): any;
+    static createProductsInBulk(): any;
     static getCompanyTags(): any;
-    static getProductAssetsInBulk(): any;
     static createProductAssetsInBulk(): any;
+    static getProductAssetsInBulk(): any;
     static deleteSize(): any;
-    static getInventory(): any;
     static addInventory(): any;
+    static getInventory(): any;
     static deleteInventory(): any;
-    static getInventoryBulkUploadHistory(): any;
     static createBulkInventoryJob(): any;
-    static createBulkInventory(): any;
+    static getInventoryBulkUploadHistory(): any;
     static deleteBulkInventoryJob(): any;
-    static getInventoryExport(): any;
+    static createBulkInventory(): any;
     static createInventoryExportJob(): any;
+    static getInventoryExport(): any;
     static exportInventoryConfig(): any;
-    static getAllHsnCodes(): any;
     static createHsnCode(): any;
-    static updateHsnCode(): any;
+    static getAllHsnCodes(): any;
     static getHsnCode(): any;
+    static updateHsnCode(): any;
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
@@ -148,27 +165,6 @@ export class ConfigurationValidator {
     static getOtherSellerApplications(): any;
     static getOtherSellerApplicationById(): any;
     static optOutFromApplication(): any;
-}
-export class MarketplacesValidator {
-    static getAvailableChannels(): any;
-    static getChannels(): any;
-    static getChannel(): any;
-    static registerMyntraChannel(): any;
-    static updateMyntraChannelCredentials(): any;
-    static registerAmazonChannel(): any;
-    static updateAmazonChannelCredentials(): any;
-    static registerFlipkartChannel(): any;
-    static updateFlipkartChannelCredentials(): any;
-    static registerTatacliqChannel(): any;
-    static updateTatacliqChannelCredentials(): any;
-    static registerAjioChannel(): any;
-    static updateAjioChannelCredentials(): any;
-    static updateChannelInventorySyncConfig(): any;
-    static getChannelLocationConfig(): any;
-    static updateChannelLocationConfig(): any;
-    static getChannelStatus(): any;
-    static updateChannelStatus(): any;
-    static triggerChannelInventoryUpdates(): any;
 }
 export class AnalyticsValidator {
     static createExportJob(): any;

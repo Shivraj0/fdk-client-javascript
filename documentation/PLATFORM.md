@@ -10,6 +10,7 @@
 * [Billing](#Billing) - Handle platform subscription 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
+* [Order](#Order) - Handles Platform websites OMS 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [FileStorage](#FileStorage) - File Storage 
@@ -17,7 +18,6 @@
 * [Inventory](#Inventory) -  
 * [Configuration](#Configuration) - Application configuration apis 
 * [Cart](#Cart) - Cart APIs 
-* [Marketplaces](#Marketplaces) - Marketplaces 
 * [Rewards](#Rewards) - Rewards 
 * [Analytics](#Analytics) - Perceptor analytics 
 * [Discount](#Discount) - Discount 
@@ -41,6 +41,8 @@
     * [editTicket](#editticket)
     * [createHistory](#createhistory)
     * [getTicketHistory](#gettickethistory)
+    * [getFeedbacks](#getfeedbacks)
+    * [submitFeedback](#submitfeedback)
     * [createHistory](#createhistory)
     * [getTicketHistory](#gettickethistory)
     * [getCustomForm](#getcustomform)
@@ -53,6 +55,8 @@
     * [getVideoParticipants](#getvideoparticipants)
     * [openVideoRoom](#openvideoroom)
     * [closeVideoRoom](#closevideoroom)
+    * [getASDF](#getasdf)
+    * [getASDF](#getasdf)
     
 
 * [Feedback](#Feedback)
@@ -99,6 +103,9 @@
   * Methods
     * [getCustomers](#getcustomers)
     * [searchUsers](#searchusers)
+    * [createUser](#createuser)
+    * [updateUser](#updateuser)
+    * [createUserSession](#createusersession)
     * [getPlatformConfig](#getplatformconfig)
     * [updatePlatformConfig](#updateplatformconfig)
     
@@ -262,39 +269,62 @@
     * [getUserBeneficiaries](#getuserbeneficiaries)
     
 
+* [Order](#Order)
+  * Methods
+    * [shipmentStatusUpdate](#shipmentstatusupdate)
+    * [activityStatus](#activitystatus)
+    * [storeProcessShipmentUpdate](#storeprocessshipmentupdate)
+    * [checkRefund](#checkrefund)
+    * [getOrdersByCompanyId](#getordersbycompanyid)
+    * [getOrderDetails](#getorderdetails)
+    * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
+    * [trackShipmentPlatform](#trackshipmentplatform)
+    * [trackOrder](#trackorder)
+    * [failedOrders](#failedorders)
+    * [reprocessOrder](#reprocessorder)
+    * [updateShipment](#updateshipment)
+    * [getPlatformShipmentReasons](#getplatformshipmentreasons)
+    * [getShipmentTrackDetails](#getshipmenttrackdetails)
+    * [getShipmentAddress](#getshipmentaddress)
+    * [updateShipmentAddress](#updateshipmentaddress)
+    * [getPing](#getping)
+    * [voiceCallback](#voicecallback)
+    * [voiceClickToCall](#voiceclicktocall)
+    
+
 * [Catalog](#Catalog)
   * Methods
-    * [updateSearchKeywords](#updatesearchkeywords)
     * [deleteSearchKeywords](#deletesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
-    * [getAllSearchKeyword](#getallsearchkeyword)
+    * [updateSearchKeywords](#updatesearchkeywords)
     * [createCustomKeyword](#createcustomkeyword)
-    * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [getAllSearchKeyword](#getallsearchkeyword)
     * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [getAutocompleteConfig](#getautocompleteconfig)
+    * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
-    * [getProductBundle](#getproductbundle)
+    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
-    * [updateProductBundle](#updateproductbundle)
+    * [getProductBundle](#getproductbundle)
     * [getProductBundleDetail](#getproductbundledetail)
-    * [getSizeGuides](#getsizeguides)
+    * [updateProductBundle](#updateproductbundle)
     * [createSizeGuide](#createsizeguide)
-    * [updateSizeGuide](#updatesizeguide)
+    * [getSizeGuides](#getsizeguides)
     * [getSizeGuide](#getsizeguide)
+    * [updateSizeGuide](#updatesizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
-    * [getConfigurationByType](#getconfigurationbytype)
+    * [getConfigurations](#getconfigurations)
     * [createConfigurationByType](#createconfigurationbytype)
+    * [getConfigurationByType](#getconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
+    * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
-    * [updateCollection](#updatecollection)
     * [deleteCollection](#deletecollection)
-    * [getCollectionItems](#getcollectionitems)
+    * [updateCollection](#updatecollection)
     * [addCollectionItems](#addcollectionitems)
+    * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -315,39 +345,39 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [listCategories](#listcategories)
     * [createCategories](#createcategories)
-    * [updateCategory](#updatecategory)
+    * [listCategories](#listcategories)
     * [getCategoryData](#getcategorydata)
-    * [getProducts](#getproducts)
+    * [updateCategory](#updatecategory)
     * [createProduct](#createproduct)
-    * [editProduct](#editproduct)
+    * [getProducts](#getproducts)
     * [deleteProduct](#deleteproduct)
     * [getProduct](#getproduct)
+    * [editProduct](#editproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
-    * [createProductsInBulk](#createproductsinbulk)
+    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [deleteProductBulkJob](#deleteproductbulkjob)
+    * [createProductsInBulk](#createproductsinbulk)
     * [getCompanyTags](#getcompanytags)
-    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
+    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [getInventory](#getinventory)
     * [addInventory](#addinventory)
+    * [getInventory](#getinventory)
     * [deleteInventory](#deleteinventory)
-    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
-    * [createBulkInventory](#createbulkinventory)
+    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [deleteBulkInventoryJob](#deletebulkinventoryjob)
-    * [getInventoryExport](#getinventoryexport)
+    * [createBulkInventory](#createbulkinventory)
     * [createInventoryExportJob](#createinventoryexportjob)
+    * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
-    * [getAllHsnCodes](#getallhsncodes)
     * [createHsnCode](#createhsncode)
-    * [updateHsnCode](#updatehsncode)
+    * [getAllHsnCodes](#getallhsncodes)
     * [getHsnCode](#gethsncode)
+    * [updateHsnCode](#updatehsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -464,29 +494,6 @@
     * [checkCartServiceability](#checkcartserviceability)
     * [checkoutCartItems](#checkoutcartitems)
     * [updateCheckoutPaymentStatus](#updatecheckoutpaymentstatus)
-    
-
-* [Marketplaces](#Marketplaces)
-  * Methods
-    * [getAvailableChannels](#getavailablechannels)
-    * [getChannels](#getchannels)
-    * [getChannel](#getchannel)
-    * [registerMyntraChannel](#registermyntrachannel)
-    * [updateMyntraChannelCredentials](#updatemyntrachannelcredentials)
-    * [registerAmazonChannel](#registeramazonchannel)
-    * [updateAmazonChannelCredentials](#updateamazonchannelcredentials)
-    * [registerFlipkartChannel](#registerflipkartchannel)
-    * [updateFlipkartChannelCredentials](#updateflipkartchannelcredentials)
-    * [registerTatacliqChannel](#registertatacliqchannel)
-    * [updateTatacliqChannelCredentials](#updatetatacliqchannelcredentials)
-    * [registerAjioChannel](#registerajiochannel)
-    * [updateAjioChannelCredentials](#updateajiochannelcredentials)
-    * [updateChannelInventorySyncConfig](#updatechannelinventorysyncconfig)
-    * [getChannelLocationConfig](#getchannellocationconfig)
-    * [updateChannelLocationConfig](#updatechannellocationconfig)
-    * [getChannelStatus](#getchannelstatus)
-    * [updateChannelStatus](#updatechannelstatus)
-    * [triggerChannelInventoryUpdates](#triggerchannelinventoryupdates)
     
 
 * [Rewards](#Rewards)
@@ -2860,6 +2867,142 @@ Default
 ---
 
 
+#### getFeedbacks
+Gets a list of feedback submitted against that ticket
+
+```javascript
+// Promise
+const promise = lead.getFeedbacks(companyId,id);
+
+// Async/Await
+const data = await lead.getFeedbacks(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID for ticket | 
+| id | string | Ticket ID for which feedbacks are to be fetched | 
+
+Gets a list of feedback submitted against that ticket
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TicketFeedbackList`
+
+
+*Examples:*
+
+
+Default
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "60c255bf00ecabfad19e9601",
+        "company_id": "1",
+        "ticket_id": "6095812876d2bf17143cb3b3",
+        "user": {
+          "_id": "5f8147abbd1a0a870f61f1a6",
+          "authenticated": true,
+          "user_id": "5f8147abbd1a0a870f61f1a6"
+        },
+        "category": "customers",
+        "response": {
+          "audio": 2,
+          "video": 6
+        },
+        "createdAt": "2021-06-10T18:11:11.349Z",
+        "updatedAt": "2021-06-10T18:11:11.349Z",
+        "__v": 0
+      }
+    ]
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### submitFeedback
+Submit a response for feeback form against that ticket
+
+```javascript
+// Promise
+const promise = lead.submitFeedback(companyId,id,body);
+
+// Async/Await
+const data = await lead.submitFeedback(companyId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID for ticket | 
+| id | string | Ticket ID for which feedback is to be submitted | 
+
+Submit a response for feeback form against that ticket
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TicketFeedback`
+
+
+*Examples:*
+
+
+Default
+```json
+{
+  "value": {
+    "_id": "60c255bf00ecabfad19e9601",
+    "company_id": "1",
+    "ticket_id": "6095812876d2bf17143cb3b3",
+    "user": {
+      "_id": "5f8147abbd1a0a870f61f1a6",
+      "authenticated": true,
+      "user_id": "5f8147abbd1a0a870f61f1a6"
+    },
+    "category": "customers",
+    "response": {
+      "audio": 2,
+      "video": 6
+    },
+    "createdAt": "2021-06-10T18:11:11.349Z",
+    "updatedAt": "2021-06-10T18:11:11.349Z",
+    "__v": 0
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
 #### createHistory
 Create history for specific application level ticket
 
@@ -3909,6 +4052,113 @@ Default
 {
   "value": {
     "success": true
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getASDF
+Get Token to join a specific Video Room using it's unqiue name
+
+```javascript
+// Promise
+const promise = lead.getASDF(companyId,applicationId,inPath,inQuery,inHeader);
+
+// Async/Await
+const data = await lead.getASDF(companyId,applicationId,inPath,inQuery,inHeader);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID of the application | 
+| applicationId | string | Application ID for video room | 
+| inQuery |  | For adding support for enum | 
+| inHeader |  | For adding support for enum | 
+| inPath |  | For adding support for enum | 
+
+Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetTokenForVideoRoomResponse`
+
+
+*Examples:*
+
+
+Default
+```json
+{
+  "value": {
+    "access_token": "your_token_to_the_room"
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getASDF
+Get Token to join a specific Video Room using it's unqiue name
+
+```javascript
+// Promise
+const promise = lead.getASDF(companyId,inPath,inQuery,inHeader);
+
+// Async/Await
+const data = await lead.getASDF(companyId,inPath,inQuery,inHeader);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID of the application | 
+| inQuery |  | For adding support for enum | 
+| inHeader |  | For adding support for enum | 
+| inPath |  | For adding support for enum | 
+
+Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetTokenForVideoRoomResponse`
+
+
+*Examples:*
+
+
+Default
+```json
+{
+  "value": {
+    "access_token": "your_token_to_the_room"
   }
 }
 ```
@@ -6263,6 +6513,193 @@ Schema: `AuthenticationApiError`
 ---
 
 
+#### createUser
+Create user
+
+```javascript
+// Promise
+const promise = user.createUser(companyId,applicationId,body);
+
+// Async/Await
+const data = await user.createUser(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create user
+
+*Success Response:*
+
+
+
+User create
+
+
+Schema: `CreateUserResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateUser
+Update user
+
+```javascript
+// Promise
+const promise = user.updateUser(companyId,applicationId,userId,body);
+
+// Async/Await
+const data = await user.updateUser(companyId,applicationId,userId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| userId | string | User ID | 
+
+Update user
+
+*Success Response:*
+
+
+
+User update
+
+
+Schema: `CreateUserResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createUserSession
+Create user session
+
+```javascript
+// Promise
+const promise = user.createUserSession(companyId,applicationId,body);
+
+// Async/Await
+const data = await user.createUserSession(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create user session
+
+*Success Response:*
+
+
+
+Create user session
+
+
+Schema: `CreateUserSessionResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getPlatformConfig
 Get platform configurations
 
@@ -6395,7 +6832,7 @@ Schema: `AuthenticationApiError`
 
 
 #### getAnnouncementsList
-Get annoucements list
+Get a list of announcements
 
 ```javascript
 // Promise
@@ -6407,18 +6844,18 @@ const data = await content.getAnnouncementsList(companyId,applicationId,pageNo,p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Get list of announcements
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `GetAnnouncementListSchema` for more details.
 
 
 Schema: `GetAnnouncementListSchema`
@@ -6441,7 +6878,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6464,7 +6901,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6492,7 +6929,7 @@ default
 
 
 #### createAnnouncement
-Create an annoucement
+Create an announcement
 
 ```javascript
 // Promise
@@ -6504,16 +6941,16 @@ const data = await content.createAnnouncement(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Create an announcement
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -6536,7 +6973,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6559,7 +6996,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6587,7 +7024,7 @@ default
 
 
 #### getAnnouncementById
-Get annoucement by id
+Get announcement by ID
 
 ```javascript
 // Promise
@@ -6599,17 +7036,17 @@ const data = await content.getAnnouncementById(companyId,applicationId,announcem
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| announcementId | string | ID allotted to the announcement. | 
 
-Get announcement by id
+Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `AdminAnnouncementSchema` for more details.
 
 
 Schema: `AdminAnnouncementSchema`
@@ -6632,7 +7069,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6655,7 +7092,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6683,7 +7120,7 @@ default
 
 
 #### updateAnnouncement
-Update an annoucement
+Update an announcement
 
 ```javascript
 // Promise
@@ -6695,17 +7132,17 @@ const data = await content.updateAnnouncement(companyId,applicationId,announceme
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| announcementId | string | ID allotted to the announcement. | 
 
-Update an announcement
+Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -6728,7 +7165,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6751,7 +7188,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6779,7 +7216,7 @@ default
 
 
 #### updateAnnouncementSchedule
-Update schedule or published status of an annoucement
+Update the schedule and the publish status of an announcement
 
 ```javascript
 // Promise
@@ -6791,17 +7228,17 @@ const data = await content.updateAnnouncementSchedule(companyId,applicationId,an
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| announcementId | string | ID allotted to the announcement. | 
 
-Update schedule or published status of an announcement
+Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -6824,7 +7261,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6847,7 +7284,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6875,7 +7312,7 @@ default
 
 
 #### deleteAnnouncement
-Delete annoucement by id
+Delete announcement by id
 
 ```javascript
 // Promise
@@ -6887,17 +7324,17 @@ const data = await content.deleteAnnouncement(companyId,applicationId,announceme
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| announcementId | string | ID allotted to the announcement. | 
 
-Delete announcement by id
+Use this API to delete an existing announcement.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -6920,7 +7357,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6943,7 +7380,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6971,7 +7408,7 @@ default
 
 
 #### createBlog
-Create blog
+Create a blog
 
 ```javascript
 // Promise
@@ -6983,16 +7420,16 @@ const data = await content.createBlog(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create a blog.
+Use this API to create a blog.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `BlogSchema` for more details.
 
 
 Schema: `BlogSchema`
@@ -7015,7 +7452,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7047,7 +7484,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7096,18 +7533,18 @@ const data = await content.getBlogs(companyId,applicationId,pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get blogs.
+Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `BlogGetResponse` for more details.
 
 
 Schema: `BlogGetResponse`
@@ -7130,7 +7567,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7153,7 +7590,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7181,7 +7618,7 @@ default
 
 
 #### updateBlog
-Update blog
+Update a blog
 
 ```javascript
 // Promise
@@ -7193,17 +7630,17 @@ const data = await content.updateBlog(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Blog Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the blog. | 
 
-Use this to update blog.
+Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `BlogSchema`
@@ -7226,7 +7663,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7258,7 +7695,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7307,17 +7744,17 @@ const data = await content.deleteBlog(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Blog Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the blog. | 
 
-Use this to delete blogs.
+Use this API to delete a blog.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `BlogSchema`
@@ -7340,7 +7777,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7363,7 +7800,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7391,7 +7828,7 @@ default
 
 
 #### getComponentById
-Get components by component Id
+Get components of a blog
 
 ```javascript
 // Promise
@@ -7403,17 +7840,17 @@ const data = await content.getComponentById(companyId,applicationId,slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| slug | string | slug of page to be fetched | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. | 
 
-The endpoint fetches the component by component Id
+Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
 
 *Success Response:*
 
 
 
-A JSON object with components
+Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
 
 
 Schema: `BlogSchema`
@@ -7436,7 +7873,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7459,7 +7896,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7487,7 +7924,7 @@ default
 
 
 #### getFaqCategories
-Get FAQ categories list
+Get a list of FAQ categories
 
 ```javascript
 // Promise
@@ -7499,16 +7936,16 @@ const data = await content.getFaqCategories(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Get list of FAQ categories
+FAQs can be divided into categories. Use this API to get a list of FAQ categories.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Refer `GetFaqCategoriesSchema` for more details.
 
 
 Schema: `GetFaqCategoriesSchema`
@@ -7520,7 +7957,7 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7543,7 +7980,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7571,7 +8008,7 @@ default
 
 
 #### getFaqCategoryBySlugOrId
-Get FAQ category by slug or id
+Get an FAQ category by slug or id
 
 ```javascript
 // Promise
@@ -7583,17 +8020,17 @@ const data = await content.getFaqCategoryBySlugOrId(companyId,applicationId,idOr
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Slug or Id of FAQ Category | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
 
-Get FAQ category by slug or id
+FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Refer `GetFaqCategoryBySlugSchema` for more details.
 
 
 Schema: `GetFaqCategoryBySlugSchema`
@@ -7605,7 +8042,7 @@ Schema: `GetFaqCategoryBySlugSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7628,7 +8065,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7656,7 +8093,7 @@ default
 
 
 #### createFaqCategory
-Creates a FAQ category
+Create an FAQ category
 
 ```javascript
 // Promise
@@ -7668,16 +8105,16 @@ const data = await content.createFaqCategory(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Add Faq Category
+FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
 
 *Success Response:*
 
 
 
-Create a FAQ Category
+Success.
 
 
 Schema: `CreateFaqCategorySchema`
@@ -7689,7 +8126,7 @@ Schema: `CreateFaqCategorySchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7712,7 +8149,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7740,7 +8177,7 @@ default
 
 
 #### updateFaqCategory
-Updates a FAQ category
+Update an FAQ category
 
 ```javascript
 // Promise
@@ -7752,17 +8189,17 @@ const data = await content.updateFaqCategory(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Faq category ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to an FAQ category. | 
 
-Update Faq Category
+Use this API to edit an existing FAQ category.
 
 *Success Response:*
 
 
 
-Update a FAQ Category
+Success.
 
 
 Schema: `CreateFaqCategorySchema`
@@ -7774,7 +8211,7 @@ Schema: `CreateFaqCategorySchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7797,7 +8234,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7825,7 +8262,7 @@ default
 
 
 #### deleteFaqCategory
-Deletes a FAQ category
+Delete an FAQ category
 
 ```javascript
 // Promise
@@ -7837,17 +8274,17 @@ const data = await content.deleteFaqCategory(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Faq category ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to an FAQ category. | 
 
-Delete Faq Category
+Use this API to delete an FAQ category.
 
 *Success Response:*
 
 
 
-Delete a FAQ Category
+Success.
 
 
 Schema: `FaqSchema`
@@ -7859,7 +8296,7 @@ Schema: `FaqSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7882,7 +8319,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7910,7 +8347,7 @@ default
 
 
 #### getFaqsByCategoryIdOrSlug
-Get FAQs of a Faq Category id or slug
+Get question and answers within an FAQ category
 
 ```javascript
 // Promise
@@ -7922,17 +8359,17 @@ const data = await content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idO
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Faq category ID or slug | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
 
-Get FAQs of a Faq Category `id` or `slug`
+Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
 
 *Success Response:*
 
 
 
-Get FAQs by slug/id of FAQ Category
+Success. Refer `GetFaqSchema` for more details.
 
 
 Schema: `GetFaqSchema`
@@ -7944,7 +8381,7 @@ Schema: `GetFaqSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7967,7 +8404,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7995,7 +8432,7 @@ default
 
 
 #### addFaq
-Creates FAQs for category whose `id` is specified
+Create an FAQ
 
 ```javascript
 // Promise
@@ -8007,17 +8444,17 @@ const data = await content.addFaq(companyId,applicationId,categoryId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| categoryId | string | ID allotted to an FAQ category. | 
 
-Creates FAQs for category whose `id` is specified
+FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
 
 *Success Response:*
 
 
 
-Create a FAQ for FAQ Category
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -8029,7 +8466,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8052,7 +8489,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8080,7 +8517,7 @@ default
 
 
 #### updateFaq
-Updates FAQ
+Update an FAQ
 
 ```javascript
 // Promise
@@ -8092,18 +8529,18 @@ const data = await content.updateFaq(companyId,applicationId,categoryId,faqId,bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-| faqId | string | Faq ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| categoryId | string | ID allotted to an FAQ category. | 
+| faqId | string | ID allotted to an FAQ. | 
 
-Updates FAQ
+Use this API to edit an existing FAQ.
 
 *Success Response:*
 
 
 
-Update FAQ by id
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -8115,7 +8552,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8138,7 +8575,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8166,7 +8603,7 @@ default
 
 
 #### deleteFaq
-Delete FAQ
+Delete an FAQ
 
 ```javascript
 // Promise
@@ -8178,18 +8615,18 @@ const data = await content.deleteFaq(companyId,applicationId,categoryId,faqId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-| faqId | string | Faq ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| categoryId | string | ID allotted to an FAQ category. | 
+| faqId | string | ID allotted to an FAQ. | 
 
-Delete FAQ
+Use this API to delete an existing FAQ.
 
 *Success Response:*
 
 
 
-Delete FAQ by id
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -8201,7 +8638,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8224,7 +8661,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8252,7 +8689,7 @@ default
 
 
 #### getFaqByIdOrSlug
-Get frequently asked question
+Get an FAQ
 
 ```javascript
 // Promise
@@ -8264,17 +8701,17 @@ const data = await content.getFaqByIdOrSlug(companyId,applicationId,idOrSlug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Slug or Id of FAQ | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
 
-Get frequently asked questions list. These will be helpful for users to using website.
+Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateFaqResponseSchema` for more details.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -8286,7 +8723,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8309,7 +8746,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8337,7 +8774,7 @@ default
 
 
 #### getLandingPages
-Get landing-pages
+Get landing pages
 
 ```javascript
 // Promise
@@ -8349,18 +8786,18 @@ const data = await content.getLandingPages(companyId,applicationId,pageNo,pageSi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get landing-pages.
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `LandingPageGetResponse` for more details.
 
 
 Schema: `LandingPageGetResponse`
@@ -8383,7 +8820,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8406,7 +8843,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8434,7 +8871,7 @@ default
 
 
 #### createLandingPage
-Create landing-page
+Create a landing page
 
 ```javascript
 // Promise
@@ -8446,16 +8883,16 @@ const data = await content.createLandingPage(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create landing-page.
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -8478,7 +8915,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8501,7 +8938,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8529,7 +8966,7 @@ default
 
 
 #### updateLandingPage
-Update landing-page
+Update a landing page
 
 ```javascript
 // Promise
@@ -8541,17 +8978,17 @@ const data = await content.updateLandingPage(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Landing page ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to a landing page. | 
 
-Use this to update landing-page.
+Use this API to edit the details of an existing landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -8574,7 +9011,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8597,7 +9034,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8625,7 +9062,7 @@ default
 
 
 #### deleteLandingPage
-Delete landing-page
+Delete a landing page
 
 ```javascript
 // Promise
@@ -8637,17 +9074,17 @@ const data = await content.deleteLandingPage(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Landing page ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to a landing page. | 
 
-Use this to delete landing-page.
+Use this API to delete an existing landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -8693,7 +9130,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8716,7 +9153,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8756,16 +9193,16 @@ const data = await content.getLegalInformation(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
@@ -8788,7 +9225,7 @@ Success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8811,7 +9248,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8851,16 +9288,16 @@ const data = await content.updateLegalInformation(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
@@ -8872,7 +9309,7 @@ Schema: `ApplicationLegal`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8895,7 +9332,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8935,19 +9372,19 @@ const data = await content.getNavigations(companyId,applicationId,devicePlatform
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| devicePlatform | string | Device platform | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| devicePlatform | string | Filter navigations by platform. Acceptable values are: web, android, ios, all | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get navigations.
+Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `NavigationGetResponse` for more details.
 
 
 Schema: `NavigationGetResponse`
@@ -8970,7 +9407,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8993,7 +9430,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9021,7 +9458,7 @@ default
 
 
 #### createNavigation
-Create navigation
+Create a navigation
 
 ```javascript
 // Promise
@@ -9033,16 +9470,16 @@ const data = await content.createNavigation(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create navigation.
+Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -9065,7 +9502,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9088,7 +9525,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9128,16 +9565,16 @@ const data = await content.getDefaultNavigations(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to get default navigations.
+On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `DefaultNavigationResponse` for more details.
 
 
 Schema: `DefaultNavigationResponse`
@@ -9160,7 +9597,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9183,7 +9620,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9211,7 +9648,7 @@ default
 
 
 #### getNavigationBySlug
-Get navigation by slug
+Get a navigation by slug
 
 ```javascript
 // Promise
@@ -9223,18 +9660,18 @@ const data = await content.getNavigationBySlug(companyId,applicationId,slug,devi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| slug | string | Slug | 
-| devicePlatform | string | Device platform | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a navigation. You can get slug value of a navigation from `getNavigations` API. | 
+| devicePlatform | string | Filter navigations by platform. Acceptable values are: web, android, ios, all | 
 
-Use this to get navigation by slug.
+Use this API to retrieve a navigation by its slug.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `NavigationSchema` for more details.
 
 
 Schema: `NavigationSchema`
@@ -9257,7 +9694,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9280,7 +9717,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9308,7 +9745,7 @@ default
 
 
 #### updateNavigation
-Update navigation
+Update a navigation
 
 ```javascript
 // Promise
@@ -9320,17 +9757,17 @@ const data = await content.updateNavigation(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Navigation ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the navigation. | 
 
-Use this to update navigation.
+Use this API to edit the details of an existing navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -9353,7 +9790,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9376,7 +9813,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9404,7 +9841,7 @@ default
 
 
 #### deleteNavigation
-Delete navigation
+Delete a navigation
 
 ```javascript
 // Promise
@@ -9416,17 +9853,17 @@ const data = await content.deleteNavigation(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Navigation ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the navigation. | 
 
-Use this to delete navigation.
+Use this API to delete an existing navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -9629,7 +10066,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9652,7 +10089,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9692,16 +10129,16 @@ const data = await content.getPageMeta(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to get Page Meta.
+Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageMetaSchema` for more details.
 
 
 Schema: `PageMetaSchema`
@@ -9724,7 +10161,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9747,7 +10184,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9787,16 +10224,16 @@ const data = await content.getPageSpec(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to get page spec.
+Use this API to get the specifications of a page, such as page type, display name, params and query.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSpec` for more details.
 
 
 Schema: `PageSpec`
@@ -9845,7 +10282,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9868,7 +10305,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9896,7 +10333,7 @@ default
 
 
 #### createPage
-Create page
+Create a page
 
 ```javascript
 // Promise
@@ -9908,16 +10345,16 @@ const data = await content.createPage(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create a page.
+Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -9940,7 +10377,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9963,7 +10400,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9991,7 +10428,7 @@ default
 
 
 #### getPages
-Get pages
+Get a list of pages
 
 ```javascript
 // Promise
@@ -10003,18 +10440,18 @@ const data = await content.getPages(companyId,applicationId,pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get pages.
+Use this API to retrieve a list of pages.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageGetResponse` for more details.
 
 
 Schema: `PageGetResponse`
@@ -10037,7 +10474,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10060,7 +10497,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10088,7 +10525,7 @@ default
 
 
 #### createPagePreview
-Create page preview
+Create a page preview
 
 ```javascript
 // Promise
@@ -10100,16 +10537,16 @@ const data = await content.createPagePreview(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create a page preview.
+Use this API to create a page preview to check the appearance of a custom page.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -10132,7 +10569,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10155,7 +10592,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10183,7 +10620,7 @@ default
 
 
 #### updatePagePreview
-Update page
+Change the publish status of a page
 
 ```javascript
 // Promise
@@ -10195,17 +10632,17 @@ const data = await content.updatePagePreview(companyId,applicationId,slug,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| slug | string | Page publish slug | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. | 
 
-Use this to update page.
+Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `PageSchema`
@@ -10228,7 +10665,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10251,7 +10688,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10279,7 +10716,7 @@ default
 
 
 #### updatePage
-Update page
+Update a page
 
 ```javascript
 // Promise
@@ -10291,17 +10728,17 @@ const data = await content.updatePage(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Page Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the page. | 
 
-Use this to update page.
+Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -10324,7 +10761,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10347,7 +10784,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10375,7 +10812,7 @@ default
 
 
 #### deletePage
-Delete page
+Delete a page
 
 ```javascript
 // Promise
@@ -10387,17 +10824,17 @@ const data = await content.deletePage(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Page Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the page. | 
 
-Use this to delete page.
+Use this API to delete an existing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `PageSchema`
@@ -10420,7 +10857,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10443,7 +10880,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10483,17 +10920,17 @@ const data = await content.getPageBySlug(companyId,applicationId,slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| slug | string | Slug of page to be fetched | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. | 
 
-The endpoint fetches the component by component Id
+Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
 
 *Success Response:*
 
 
 
-A JSON object with page
+Success. Returns a JSON object of components. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -10516,7 +10953,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10539,7 +10976,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10567,7 +11004,7 @@ default
 
 
 #### getSEOConfiguration
-Get seo of application
+Get SEO configuration of an application
 
 ```javascript
 // Promise
@@ -10579,16 +11016,16 @@ const data = await content.getSEOConfiguration(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Get seo of application
+Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SeoComponent` for more details.
 
 
 Schema: `SeoComponent`
@@ -10611,7 +11048,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10634,7 +11071,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10662,7 +11099,7 @@ default
 
 
 #### updateSEOConfiguration
-Update seo of application
+Update SEO of application
 
 ```javascript
 // Promise
@@ -10674,16 +11111,16 @@ const data = await content.updateSEOConfiguration(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Update seo of application
+Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SeoSchema` for more details.
 
 
 Schema: `SeoSchema`
@@ -10729,7 +11166,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10752,7 +11189,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10792,19 +11229,19 @@ const data = await content.getSlideshows(companyId,applicationId,devicePlatform,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| devicePlatform | string | Device platform | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| devicePlatform | string | Filter slideshows by platform. Acceptable values are: web, android, ios and all | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get slideshows.
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowGetResponse` for more details.
 
 
 Schema: `SlideshowGetResponse`
@@ -10827,7 +11264,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10850,7 +11287,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10878,7 +11315,7 @@ default
 
 
 #### createSlideshow
-Create slideshow
+Create a slideshow
 
 ```javascript
 // Promise
@@ -10890,16 +11327,16 @@ const data = await content.createSlideshow(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create slideshow.
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -10922,7 +11359,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10945,7 +11382,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10985,18 +11422,18 @@ const data = await content.getSlideshowBySlug(companyId,applicationId,slug,devic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| slug | string | Slug | 
-| devicePlatform | string | Device platform | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. | 
+| devicePlatform | string | Filter slideshows by platform. Acceptable values are: web, android, ios and all | 
 
-Use this to get slideshow by slug.
+Use this API to retrieve the details of a slideshow by its slug.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -11019,7 +11456,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11042,7 +11479,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11070,7 +11507,7 @@ default
 
 
 #### updateSlideshow
-Update slideshow
+Update a slideshow
 
 ```javascript
 // Promise
@@ -11082,17 +11519,17 @@ const data = await content.updateSlideshow(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Slideshow ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the slideshow. | 
 
-Use this to update slideshow.
+Use this API to edit the details of an existing slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -11115,7 +11552,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11138,7 +11575,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11166,7 +11603,7 @@ default
 
 
 #### deleteSlideshow
-Delete slideshow
+Delete a slideshow
 
 ```javascript
 // Promise
@@ -11178,17 +11615,17 @@ const data = await content.deleteSlideshow(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Slideshow ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the slideshow. | 
 
-Use this to delete slideshow.
+Use this API to delete an existing slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `SlideshowSchema`
@@ -11250,7 +11687,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11273,7 +11710,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11313,16 +11750,16 @@ const data = await content.getSupportInformation(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Get contact details for customer support. Including emails and phone numbers
+Use this API to get the contact details for customer support, including emails and phone numbers.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `Support` for more details.
 
 
 Schema: `Support`
@@ -11345,7 +11782,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11368,7 +11805,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11396,7 +11833,7 @@ default
 
 
 #### updateSupportInformation
-Update support data of application
+Update the support data of an application
 
 ```javascript
 // Promise
@@ -11408,16 +11845,16 @@ const data = await content.updateSupportInformation(companyId,applicationId,body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Update support data of application
+Use this API to edit the existing contact details for customer support, including emails and phone numbers.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `Support` for more details.
 
 
 Schema: `Support`
@@ -11440,7 +11877,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11463,7 +11900,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11491,7 +11928,7 @@ default
 
 
 #### updateInjectableTag
-Updates a Tag
+Update a tag
 
 ```javascript
 // Promise
@@ -11503,16 +11940,16 @@ const data = await content.updateInjectableTag(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Update tag
+Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11524,7 +11961,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11547,7 +11984,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11575,7 +12012,7 @@ default
 
 
 #### deleteAllInjectableTags
-Delete tags for application
+Delete tags in application
 
 ```javascript
 // Promise
@@ -11587,16 +12024,16 @@ const data = await content.deleteAllInjectableTags(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Delete tags for application
+Use this API to delete all the existing tags at once.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11608,7 +12045,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11631,7 +12068,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11659,7 +12096,7 @@ default
 
 
 #### getInjectableTags
-Get tags for application
+Get all the tags in an application
 
 ```javascript
 // Promise
@@ -11671,16 +12108,16 @@ const data = await content.getInjectableTags(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Get tags for application
+Use this API to get all the CSS and JS injected in the application in the form of tags.
 
 *Success Response:*
 
 
 
-Tags Array
+Success. Refer `TagsSchema` for more details.
 
 
 Schema: `TagsSchema`
@@ -11692,7 +12129,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11715,7 +12152,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11743,7 +12180,7 @@ default
 
 
 #### addInjectableTag
-Adds a Tag
+Add a tag
 
 ```javascript
 // Promise
@@ -11755,16 +12192,16 @@ const data = await content.addInjectableTag(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Add tag
+CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11776,7 +12213,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11799,7 +12236,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11827,7 +12264,7 @@ default
 
 
 #### removeInjectableTag
-Removes a Tag
+Remove a tag
 
 ```javascript
 // Promise
@@ -11839,16 +12276,16 @@ const data = await content.removeInjectableTag(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Remove a particular tag
+Use this API to delete an existing tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11860,7 +12297,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11883,7 +12320,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11911,7 +12348,7 @@ default
 
 
 #### editInjectableTag
-Edits a Tag by Id
+Edit a tag by id
 
 ```javascript
 // Promise
@@ -11923,17 +12360,17 @@ const data = await content.editInjectableTag(companyId,applicationId,tagId,body)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| tagId | string | Tag ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| tagId | string | ID allotted to the tag. | 
 
-Edits a particular tag
+Use this API to edit the details of an existing tag by its ID.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11945,7 +12382,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11968,7 +12405,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -16696,48 +17133,58 @@ Schema: `HttpErrorCodeAndResponse`
 ---
 
 
-## Catalog
+## Order
 
 
-#### updateSearchKeywords
-Update Search Keyword
+#### shipmentStatusUpdate
+Update status of Shipment
 
 ```javascript
 // Promise
-const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const promise = order.shipmentStatusUpdate(companyId,body);
 
 // Async/Await
-const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const data = await order.shipmentStatusUpdate(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+| companyId | string | Company Id | 
 
-Update Search Keyword by its id. On successful request, returns the updated collection
+Update Shipment Status
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+Success
 
 
-Schema: `GetSearchWordsData`
-
-
-
+Schema: `UpdateShipmentStatusResponse`
 
 
 
 
 
-Bad request. See the error object in the response body for specific reason
 
 
-Schema: `ErrorResponse`
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
 
 
 
@@ -16748,6 +17195,1159 @@ Schema: `ErrorResponse`
 
 
 ---
+
+
+#### activityStatus
+Get Activity Status
+
+```javascript
+// Promise
+const promise = order.activityStatus(companyId,bagId);
+
+// Async/Await
+const data = await order.activityStatus(companyId,bagId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| bagId | string | Bag Id | 
+
+Get Activity Status
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetActivityStatus`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### storeProcessShipmentUpdate
+Update Store Process-Shipment
+
+```javascript
+// Promise
+const promise = order.storeProcessShipmentUpdate(companyId,body);
+
+// Async/Await
+const data = await order.storeProcessShipmentUpdate(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Update Store Process-Shipment
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateProcessShipmenstRequestResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### checkRefund
+Check Refund is available or not
+
+```javascript
+// Promise
+const promise = order.checkRefund(companyId,shipmentId);
+
+// Async/Await
+const data = await order.checkRefund(companyId,shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| shipmentId | string | Shipment Id | 
+
+Check Refund is available or not
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Object`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrdersByCompanyId
+Get Orders for company based on Company Id
+
+```javascript
+// Promise
+const promise = order.getOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+
+// Async/Await
+const data = await order.getOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Page limit | 
+| fromDate | string | From Date | 
+| toDate | string | To Date | 
+| q | string | Keyword for Search | 
+| stage | string | Specefic Order Stage | 
+| salesChannels | string | Selected Sales Channel | 
+| orderId | string | Order Id | 
+| stores | string | Selected Stores | 
+| status | string | Status of order | 
+| shortenUrls | boolean | Shorten URL option | 
+| filterType | string | Filters | 
+
+Get Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderListing`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
+
+```javascript
+// Promise
+const promise = order.getOrderDetails(companyId,orderId,next,previous);
+
+// Async/Await
+const data = await order.getOrderDetails(companyId,orderId,next,previous);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| orderId | string | Order Id | 
+| next | string | Next | 
+| previous | string | Previous | 
+
+Get Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderDetails`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPicklistOrdersByCompanyId
+Get Orders for company based on Company Id
+
+```javascript
+// Promise
+const promise = order.getPicklistOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+
+// Async/Await
+const data = await order.getPicklistOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Page limit | 
+| fromDate | string | From Date | 
+| toDate | string | To Date | 
+| q | string | Keyword for Search | 
+| stage | string | Specefic Order Stage | 
+| salesChannels | string | Selected Sales Channel | 
+| orderId | string | Order Id | 
+| stores | string | Selected Stores | 
+| status | string | Status of order | 
+| shortenUrls | boolean | Shorten URL option | 
+| filterType | string | Filters | 
+
+Get Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderPicklistListing`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### trackShipmentPlatform
+Track Shipment by shipment id, for application based on application Id
+
+```javascript
+// Promise
+const promise = order.trackShipmentPlatform(companyId,applicationId,shipmentId);
+
+// Async/Await
+const data = await order.trackShipmentPlatform(companyId,applicationId,shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| shipmentId | string | Shipment Id | 
+
+Shipment Track
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PlatformShipmentTrack`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### trackOrder
+Track Order by order id, for application based on application Id
+
+```javascript
+// Promise
+const promise = order.trackOrder(companyId,applicationId,orderId);
+
+// Async/Await
+const data = await order.trackOrder(companyId,applicationId,orderId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| orderId | string | Order Id | 
+
+Order Track
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PlatformOrderTrack`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### failedOrders
+Get all failed orders application wise
+
+```javascript
+// Promise
+const promise = order.failedOrders(companyId,applicationId);
+
+// Async/Await
+const data = await order.failedOrders(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Failed Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FailedOrders`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### reprocessOrder
+Reprocess order by order id
+
+```javascript
+// Promise
+const promise = order.reprocessOrder(companyId,applicationId,orderId);
+
+// Async/Await
+const data = await order.reprocessOrder(companyId,applicationId,orderId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| orderId | string | Order Id | 
+
+Order Reprocess
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateOrderReprocessResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShipment
+Use this API to update the shipment using its shipment ID.
+
+```javascript
+// Promise
+const promise = order.updateShipment(companyId,applicationId,shipmentId,body);
+
+// Async/Await
+const data = await order.updateShipment(companyId,applicationId,shipmentId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+
+Update the shipment
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `ShipmentUpdateRequest` for more details.
+
+
+Schema: `ShipmentUpdateResponse`
+
+
+
+
+
+
+
+
+API Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPlatformShipmentReasons
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+```javascript
+// Promise
+const promise = order.getPlatformShipmentReasons(companyId,applicationId);
+
+// Async/Await
+const data = await order.getPlatformShipmentReasons(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Get reasons behind full or partial cancellation of a shipment
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `ShipmentReasonsResponse` for more details.
+
+
+Schema: `ShipmentReasonsResponse`
+
+
+
+
+
+
+
+
+API Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentTrackDetails
+Use this API to track a shipment using its shipment ID.
+
+```javascript
+// Promise
+const promise = order.getShipmentTrackDetails(companyId,applicationId,orderId,shipmentId);
+
+// Async/Await
+const data = await order.getShipmentTrackDetails(companyId,applicationId,orderId,shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| orderId | string | ID of the order. | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+
+Track shipment
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `ShipmentTrackResponse` for more details.
+
+
+Schema: `ShipmentTrackResponse`
+
+
+
+
+
+
+
+
+API Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentAddress
+Use this API to get address of a shipment using its shipment ID and Address Category.
+
+```javascript
+// Promise
+const promise = order.getShipmentAddress(companyId,shipmentId,addressCategory);
+
+// Async/Await
+const data = await order.getShipmentAddress(companyId,shipmentId,addressCategory);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+| addressCategory | string | Category of the address it falls into(billing or delivery). | 
+
+Get Shipment Address
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `GetShipmentAddressResponse` for more details.
+
+
+Schema: `GetShipmentAddressResponse`
+
+
+
+
+
+
+
+
+API Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShipmentAddress
+Use this API to update address of a shipment using its shipment ID and Address Category.
+
+```javascript
+// Promise
+const promise = order.updateShipmentAddress(companyId,shipmentId,addressCategory,body);
+
+// Async/Await
+const data = await order.updateShipmentAddress(companyId,shipmentId,addressCategory,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+| addressCategory | string | Category of the address it falls into(billing or delivery). | 
+
+Update Shipment Address
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `UpdateShipmentAddressResponse` for more details.
+
+
+Schema: `UpdateShipmentAddressResponse`
+
+
+
+
+
+
+
+
+API Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPing
+Get Ping
+
+```javascript
+// Promise
+const promise = order.getPing(companyId);
+
+// Async/Await
+const data = await order.getPing(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Get Ping
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetPingResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### voiceCallback
+Get Voice Callback
+
+```javascript
+// Promise
+const promise = order.voiceCallback(companyId);
+
+// Async/Await
+const data = await order.voiceCallback(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Voice Callback
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetVoiceCallbackResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### voiceClickToCall
+Get Voice Click to Call
+
+```javascript
+// Promise
+const promise = order.voiceClickToCall(companyId,caller,receiver);
+
+// Async/Await
+const data = await order.voiceClickToCall(companyId,caller,receiver);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| caller | string | Caller contact number | 
+| receiver | string | Receiver contact number | 
+
+Voice Click to Call
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetClickToCallResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Catalog
 
 
 #### deleteSearchKeywords
@@ -16852,32 +18452,33 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAllSearchKeyword
-List all Search Custom Keyword Listing
+#### updateSearchKeywords
+Update Search Keyword
 
 ```javascript
 // Promise
-const promise = catalog.getAllSearchKeyword(companyId,applicationId);
+const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.getAllSearchKeyword(companyId,applicationId);
+const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+Update Search Keyword by its id. On successful request, returns the updated collection
 
 *Success Response:*
 
 
 
-List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
 
 
-Schema: `GetSearchWordsResponse`
+Schema: `GetSearchWordsData`
 
 
 
@@ -16952,33 +18553,32 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
+#### getAllSearchKeyword
+List all Search Custom Keyword Listing
 
 ```javascript
 // Promise
-const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const promise = catalog.getAllSearchKeyword(companyId,applicationId);
 
 // Async/Await
-const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const data = await catalog.getAllSearchKeyword(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
 
 *Success Response:*
 
 
 
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
 
 
-Schema: `GetAutocompleteWordsResponse`
+Schema: `GetSearchWordsResponse`
 
 
 
@@ -17105,29 +18705,30 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAutocompleteConfig
-List all Autocomplete Keyword Listing
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
 
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteConfig(companyId,applicationId);
+const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.getAutocompleteConfig(companyId,applicationId);
+const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Success Response:*
 
 
 
-List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
 Schema: `GetAutocompleteWordsResponse`
@@ -17205,6 +18806,105 @@ Schema: `ErrorResponse`
 ---
 
 
+#### getAutocompleteConfig
+List all Autocomplete Keyword Listing
+
+```javascript
+// Promise
+const promise = catalog.getAutocompleteConfig(companyId,applicationId);
+
+// Async/Await
+const data = await catalog.getAutocompleteConfig(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+
+*Success Response:*
+
+
+
+List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+Schema: `GetAutocompleteWordsResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductBundle
+Create Product Bundle
+
+```javascript
+// Promise
+const promise = catalog.createProductBundle(companyId,body);
+
+// Async/Await
+const data = await catalog.createProductBundle(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+
+*Success Response:*
+
+
+
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+
+
+Schema: `GetProductBundleCreateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductBundle
 List all Product Bundles
 
@@ -17255,31 +18955,32 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createProductBundle
-Create Product Bundle
+#### getProductBundleDetail
+Get a particular Product Bundle details
 
 ```javascript
 // Promise
-const promise = catalog.createProductBundle(companyId,body);
+const promise = catalog.getProductBundleDetail(companyId,id);
 
 // Async/Await
-const data = await catalog.createProductBundle(companyId,body);
+const data = await catalog.getProductBundleDetail(companyId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
 
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
 
 *Success Response:*
 
 
 
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+The Collection object. See example below or refer `GetProductBundleResponse` for details
 
 
-Schema: `GetProductBundleCreateResponse`
+Schema: `GetProductBundleResponse`
 
 
 
@@ -17354,32 +19055,31 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getProductBundleDetail
-Get a particular Product Bundle details
+#### createSizeGuide
+Create a size guide.
 
 ```javascript
 // Promise
-const promise = catalog.getProductBundleDetail(companyId,id);
+const promise = catalog.createSizeGuide(companyId,body);
 
 // Async/Await
-const data = await catalog.getProductBundleDetail(companyId,id);
+const data = await catalog.createSizeGuide(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+| companyId | string | Id of the company inside which the size guide is to be created. | 
 
-Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+This API allows to create a size guide associated to a brand.
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetProductBundleResponse` for details
+Returns a success response
 
 
-Schema: `GetProductBundleResponse`
+Schema: `SuccessResponse`
 
 
 
@@ -17458,31 +19158,32 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createSizeGuide
-Create a size guide.
+#### getSizeGuide
+Get a single size guide.
 
 ```javascript
 // Promise
-const promise = catalog.createSizeGuide(companyId,body);
+const promise = catalog.getSizeGuide(companyId,id);
 
 // Async/Await
-const data = await catalog.createSizeGuide(companyId,body);
+const data = await catalog.getSizeGuide(companyId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the size guide is to be created. | 
+| companyId | string | Id of the company associated to size guide. | 
+| id | string | Id of the size guide to be viewed. | 
 
-This API allows to create a size guide associated to a brand.
+This API helps to get data associated to a size guide.
 
 *Success Response:*
 
 
 
-Returns a success response
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
 
 
-Schema: `SuccessResponse`
+Schema: `SizeGuideResponse`
 
 
 
@@ -17557,56 +19258,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getSizeGuide
-Get a single size guide.
-
-```javascript
-// Promise
-const promise = catalog.getSizeGuide(companyId,id);
-
-// Async/Await
-const data = await catalog.getSizeGuide(companyId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to size guide. | 
-| id | string | Id of the size guide to be viewed. | 
-
-This API helps to get data associated to a size guide.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `SizeGuideResponseSchema` for details
-
-
-Schema: `SizeGuideResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCatalogConfiguration
 Get configuration meta  details for catalog for admin panel
 
@@ -17633,6 +19284,56 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 
 
 Schema: `GetCatalogConfigurationMetaData`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createConfigurationProductListing
+Add configuration for products & listings
+
+```javascript
+// Promise
+const promise = catalog.createConfigurationProductListing(companyId,applicationId,body);
+
+// Async/Await
+const data = await catalog.createConfigurationProductListing(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+Add configuration for products & listing.
+
+*Success Response:*
+
+
+
+success flag will tell whether the operation was successful.
+
+
+Schema: `GetAppCatalogConfiguration`
 
 
 
@@ -17707,23 +19408,24 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createConfigurationProductListing
-Add configuration for products & listings
+#### createConfigurationByType
+Add configuration for categories and brands
 
 ```javascript
 // Promise
-const promise = catalog.createConfigurationProductListing(companyId,applicationId,body);
+const promise = catalog.createConfigurationByType(companyId,applicationId,type,body);
 
 // Async/Await
-const data = await catalog.createConfigurationProductListing(companyId,applicationId,body);
+const data = await catalog.createConfigurationByType(companyId,applicationId,type,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| type | string | type can be brands, categories etc. | 
 
-Add configuration for products & listing.
+Add configuration for categories & brands.
 
 *Success Response:*
 
@@ -17808,57 +19510,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createConfigurationByType
-Add configuration for categories and brands
-
-```javascript
-// Promise
-const promise = catalog.createConfigurationByType(companyId,applicationId,type,body);
-
-// Async/Await
-const data = await catalog.createConfigurationByType(companyId,applicationId,type,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| type | string | type can be brands, categories etc. | 
-
-Add configuration for categories & brands.
-
-*Success Response:*
-
-
-
-success flag will tell whether the operation was successful.
-
-
-Schema: `GetAppCatalogConfiguration`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getQueryFilters
 Get query filters to configure a collection
 
@@ -17909,56 +19560,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAllCollections
-List all the collections
-
-```javascript
-// Promise
-const promise = catalog.getAllCollections(companyId,applicationId);
-
-// Async/Await
-const data = await catalog.getAllCollections(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-
-*Success Response:*
-
-
-
-List of collections. See example below or refer `GetCollectionListingResponse` for details
-
-
-Schema: `GetCollectionListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### createCollection
 Add a Collection
 
@@ -17985,6 +19586,56 @@ List of all the collections including the one you added. See example below or re
 
 
 Schema: `CollectionCreateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllCollections
+List all the collections
+
+```javascript
+// Promise
+const promise = catalog.getAllCollections(companyId,applicationId);
+
+// Async/Await
+const data = await catalog.getAllCollections(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+
+*Success Response:*
+
+
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+Schema: `GetCollectionListingResponse`
 
 
 
@@ -18060,6 +19711,57 @@ Schema: `ErrorResponse`
 ---
 
 
+#### deleteCollection
+Delete a Collection
+
+```javascript
+// Promise
+const promise = catalog.deleteCollection(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteCollection(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier of a collection. | 
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updateCollection
 Update a collection
 
@@ -18111,15 +19813,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteCollection
-Delete a Collection
+#### addCollectionItems
+Add items to a collection
 
 ```javascript
 // Promise
-const promise = catalog.deleteCollection(companyId,applicationId,id);
+const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.deleteCollection(companyId,applicationId,id);
+const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -18128,16 +19830,16 @@ const data = await catalog.deleteCollection(companyId,applicationId,id);
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 | id | string | A `id` is a unique identifier of a collection. | 
 
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
 
 *Success Response:*
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Status object. Tells whether the operation was successful.
 
 
-Schema: `DeleteResponse`
+Schema: `UpdatedResponse`
 
 
 
@@ -18192,57 +19894,6 @@ The attached items of an collection. See example below or refer `GetCollectionIt
 
 
 Schema: `GetCollectionItemsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addCollectionItems
-Add items to a collection
-
-```javascript
-// Promise
-const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful.
-
-
-Schema: `UpdatedResponse`
 
 
 
@@ -19274,60 +20925,6 @@ Schema: `PTErrorResponse`
 ---
 
 
-#### listCategories
-Get product categories list
-
-```javascript
-// Promise
-const promise = catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
-
-// Async/Await
-const data = await catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| level | string | Get category for multiple levels | 
-| departments | string | Get category for multiple departments filtered | 
-| q | string | Get multiple categories filtered by search string | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-
-This API gets meta associated to product categories.
-
-*Success Response:*
-
-
-
-Category Meta. See example below or refer `CategoryResponse` for details
-
-
-Schema: `CategoryResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### createCategories
 Create product categories
 
@@ -19377,32 +20974,36 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateCategory
-Update product categories
+#### listCategories
+Get product categories list
 
 ```javascript
 // Promise
-const promise = catalog.updateCategory(companyId,uid,body);
+const promise = catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.updateCategory(companyId,uid,body);
+const data = await catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| uid | string | Category unique id | 
+| level | string | Get category for multiple levels | 
+| departments | string | Get category for multiple departments filtered | 
+| q | string | Get multiple categories filtered by search string | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
 
-Update a product category using this apu
+This API gets meta associated to product categories.
 
 *Success Response:*
 
 
 
-Category Meta. See example below or refer `CategoryUpdateResponse` for details
+Category Meta. See example below or refer `CategoryResponse` for details
 
 
-Schema: `CategoryUpdateResponse`
+Schema: `CategoryResponse`
 
 
 
@@ -19477,36 +21078,32 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getProducts
-Get product list
+#### updateCategory
+Update product categories
 
 ```javascript
 // Promise
-const promise = catalog.getProducts(companyId,brandIds,categoryIds,search,pageNo,pageSize);
+const promise = catalog.updateCategory(companyId,uid,body);
 
 // Async/Await
-const data = await catalog.getProducts(companyId,brandIds,categoryIds,search,pageNo,pageSize);
+const data = await catalog.updateCategory(companyId,uid,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | number | Get list of products filtered by company Id | 
-| brandIds | number | Get multiple products filtered by brand Ids | 
-| categoryIds | number | Get multiple products filtered by category Ids | 
-| search | string | Get multiple products filtered by search string | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| uid | string | Category unique id | 
 
-This API gets meta associated to products.
+Update a product category using this apu
 
 *Success Response:*
 
 
 
-Product Meta. See example below for details
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
-Schema: `ProductListingResponse`
+Schema: `CategoryUpdateResponse`
 
 
 
@@ -19580,32 +21177,36 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editProduct
-Edit a product.
+#### getProducts
+Get product list
 
 ```javascript
 // Promise
-const promise = catalog.editProduct(companyId,itemId,body);
+const promise = catalog.getProducts(companyId,brandIds,categoryIds,search,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.editProduct(companyId,itemId,body);
+const data = await catalog.getProducts(companyId,brandIds,categoryIds,search,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | integer | Id of the product to be updated. | 
+| companyId | number | Get list of products filtered by company Id | 
+| brandIds | number | Get multiple products filtered by brand Ids | 
+| categoryIds | number | Get multiple products filtered by category Ids | 
+| search | string | Get multiple products filtered by search string | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
 
-This API allows to edit product.
+This API gets meta associated to products.
 
 *Success Response:*
 
 
 
-Returns a success response
+Product Meta. See example below for details
 
 
-Schema: `SuccessResponse`
+Schema: `ProductListingResponse`
 
 
 
@@ -19733,6 +21334,56 @@ Schema: `ErrorResponse`
 ---
 
 
+#### editProduct
+Edit a product.
+
+```javascript
+// Promise
+const promise = catalog.editProduct(companyId,itemId,body);
+
+// Async/Await
+const data = await catalog.editProduct(companyId,itemId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to product that is to be viewed. | 
+| itemId | integer | Id of the product to be updated. | 
+
+This API allows to edit product.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductValidation
 Validate product/size data
 
@@ -19835,6 +21486,55 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```javascript
+// Promise
+const promise = catalog.updateProductAssetsInBulk(companyId,body);
+
+// Async/Await
+const data = await catalog.updateProductAssetsInBulk(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductBulkUploadHistory
 Get a list of all bulk product upload jobs.
 
@@ -19886,22 +21586,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
+#### deleteProductBulkJob
+Delete Bulk product job.
 
 ```javascript
 // Promise
-const promise = catalog.updateProductAssetsInBulk(companyId,body);
+const promise = catalog.deleteProductBulkJob(companyId,batchId);
 
 // Async/Await
-const data = await catalog.updateProductAssetsInBulk(companyId,body);
+const data = await catalog.deleteProductBulkJob(companyId,batchId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
+| companyId | string | Company Id of the company associated to size that is to be deleted. | 
+| batchId | integer | Batch Id of the bulk product job to be deleted. | 
 
-This API helps to create a bulk asset upload job.
+This API allows to delete bulk product job associated with company.
 
 *Success Response:*
 
@@ -19985,56 +21686,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteProductBulkJob
-Delete Bulk product job.
-
-```javascript
-// Promise
-const promise = catalog.deleteProductBulkJob(companyId,batchId);
-
-// Async/Await
-const data = await catalog.deleteProductBulkJob(companyId,batchId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to size that is to be deleted. | 
-| batchId | integer | Batch Id of the bulk product job to be deleted. | 
-
-This API allows to delete bulk product job associated with company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCompanyTags
 Get a list of all tags associated with company.
 
@@ -20060,6 +21711,55 @@ Tag List. See example below for details
 
 
 Schema: `ProductTagsViewResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```javascript
+// Promise
+const promise = catalog.createProductAssetsInBulk(companyId,body);
+
+// Async/Await
+const data = await catalog.createProductAssetsInBulk(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -20135,55 +21835,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-```javascript
-// Promise
-const promise = catalog.createProductAssetsInBulk(companyId,body);
-
-// Async/Await
-const data = await catalog.createProductAssetsInBulk(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a bulk asset upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### deleteSize
 Delete a Size associated with product.
 
@@ -20211,6 +21862,57 @@ Returns a success response
 
 
 Schema: `ProductSizeDeleteResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addInventory
+Add Inventory for particular size and store.
+
+```javascript
+// Promise
+const promise = catalog.addInventory(companyId,itemId,size,body);
+
+// Async/Await
+const data = await catalog.addInventory(companyId,itemId,size,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to product that is to be viewed. | 
+| itemId | number | Item code of the product of which size is to be get. | 
+| size | string | Size in which inventory is to be added. | 
+
+This API allows add Inventory for particular size and store.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -20288,57 +21990,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### addInventory
-Add Inventory for particular size and store.
-
-```javascript
-// Promise
-const promise = catalog.addInventory(companyId,itemId,size,body);
-
-// Async/Await
-const data = await catalog.addInventory(companyId,itemId,size,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | number | Item code of the product of which size is to be get. | 
-| size | string | Size in which inventory is to be added. | 
-
-This API allows add Inventory for particular size and store.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### deleteInventory
 Delete a Inventory.
 
@@ -20366,6 +22017,55 @@ Returns a success response
 
 
 Schema: `InventoryDelete`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
+
+```javascript
+// Promise
+const promise = catalog.createBulkInventoryJob(companyId,body);
+
+// Async/Await
+const data = await catalog.createBulkInventoryJob(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which Inventory to be uploaded. | 
+
+This API helps to create a bulk Inventory upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `CommonResponse`
 
 
 
@@ -20441,22 +22141,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
+#### deleteBulkInventoryJob
+Delete Bulk Inventory job.
 
 ```javascript
 // Promise
-const promise = catalog.createBulkInventoryJob(companyId,body);
+const promise = catalog.deleteBulkInventoryJob(companyId);
 
 // Async/Await
-const data = await catalog.createBulkInventoryJob(companyId,body);
+const data = await catalog.deleteBulkInventoryJob(companyId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | integer | Company Id in which Inventory to be uploaded. | 
+| companyId | string | Company Id of the company of which bulk Inventory job is to be deleted. | 
 
-This API helps to create a bulk Inventory upload job.
+This API allows to delete bulk Inventory job associated with company.
 
 *Success Response:*
 
@@ -20465,7 +22165,7 @@ This API helps to create a bulk Inventory upload job.
 Returns a success response
 
 
-Schema: `CommonResponse`
+Schema: `SuccessResponse`
 
 
 
@@ -20539,22 +22239,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteBulkInventoryJob
-Delete Bulk Inventory job.
+#### createInventoryExportJob
+Create a Inventory export Job.
 
 ```javascript
 // Promise
-const promise = catalog.deleteBulkInventoryJob(companyId);
+const promise = catalog.createInventoryExportJob(companyId,body);
 
 // Async/Await
-const data = await catalog.deleteBulkInventoryJob(companyId);
+const data = await catalog.createInventoryExportJob(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id of the company of which bulk Inventory job is to be deleted. | 
+| companyId | integer | Company Id in which assets to be uploaded. | 
 
-This API allows to delete bulk Inventory job associated with company.
+This API helps to create a Inventory export job.
 
 *Success Response:*
 
@@ -20637,55 +22337,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createInventoryExportJob
-Create a Inventory export Job.
-
-```javascript
-// Promise
-const promise = catalog.createInventoryExportJob(companyId,body);
-
-// Async/Await
-const data = await catalog.createInventoryExportJob(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a Inventory export job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### exportInventoryConfig
 Get List of different filters for inventory export
 
@@ -20721,6 +22372,55 @@ Schema: `InventoryConfig`
 
 
 Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createHsnCode
+Create Hsn Code.
+
+```javascript
+// Promise
+const promise = catalog.createHsnCode(companyId,body);
+
+// Async/Await
+const data = await catalog.createHsnCode(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+
+Create Hsn Code.
+
+*Success Response:*
+
+
+
+See example below for details
+
+
+Schema: `HsnCode`
+
+
+
+
+
+
+
+
+Bad request.
 
 
 Schema: `ErrorResponse`
@@ -20788,28 +22488,29 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createHsnCode
-Create Hsn Code.
+#### getHsnCode
+Fetch Hsn Code.
 
 ```javascript
 // Promise
-const promise = catalog.createHsnCode(companyId,body);
+const promise = catalog.getHsnCode(companyId,id);
 
 // Async/Await
-const data = await catalog.createHsnCode(companyId,body);
+const data = await catalog.getHsnCode(companyId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | company id | 
+| id | string | Unique id | 
 
-Create Hsn Code.
+Fetch Hsn Code.
 
 *Success Response:*
 
 
 
-See example below for details
+See example below details
 
 
 Schema: `HsnCode`
@@ -20860,56 +22561,6 @@ Update Hsn Code.
 
 
 See example below for details
-
-
-Schema: `HsnCode`
-
-
-
-
-
-
-
-
-Bad request.
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getHsnCode
-Fetch Hsn Code.
-
-```javascript
-// Promise
-const promise = catalog.getHsnCode(companyId,id);
-
-// Async/Await
-const data = await catalog.getHsnCode(companyId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| id | string | Unique id | 
-
-Fetch Hsn Code.
-
-*Success Response:*
-
-
-
-See example below details
 
 
 Schema: `HsnCode`
@@ -26220,957 +27871,6 @@ Invalid Hash
   }
 }
 ```
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
-## Marketplaces
-
-
-#### getAvailableChannels
-Get available marketplace channels
-
-```javascript
-// Promise
-const promise = marketplaces.getAvailableChannels(companyId);
-
-// Async/Await
-const data = await marketplaces.getAvailableChannels(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-
-Get available marketplace channels
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Object`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getChannels
-Get all registered marketplace channels for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.getChannels(companyId);
-
-// Async/Await
-const data = await marketplaces.getChannels(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-
-Get all registered marketplace channels for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Object`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getChannel
-Get registered marketplace channel credential configuration for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.getChannel(companyId,channel);
-
-// Async/Await
-const data = await marketplaces.getChannel(companyId,channel);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| channel | string | Name of marketplace channel | 
-
-Get registered marketplace channel credentials configuration for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Object`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### registerMyntraChannel
-Create Myntra marketplace channel for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.registerMyntraChannel(companyId,body);
-
-// Async/Await
-const data = await marketplaces.registerMyntraChannel(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-
-Create Myntra marketplace channel for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateMyntraChannelCredentials
-Update Myntra marketplace channel credentials for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.updateMyntraChannelCredentials(companyId,body);
-
-// Async/Await
-const data = await marketplaces.updateMyntraChannelCredentials(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-
-Update Myntra marketplace channel credentials for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### registerAmazonChannel
-Create Amazon marketplace channel for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.registerAmazonChannel(companyId,body);
-
-// Async/Await
-const data = await marketplaces.registerAmazonChannel(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-
-Create Amazon marketplace channel for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAmazonChannelCredentials
-Update Amazon marketplace channel credentials for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.updateAmazonChannelCredentials(companyId,body);
-
-// Async/Await
-const data = await marketplaces.updateAmazonChannelCredentials(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-
-Update Amazon marketplace channel credentials for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### registerFlipkartChannel
-Create Flipkart / Flipkart Assured marketplace channel for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.registerFlipkartChannel(companyId,flipkartChannel,body);
-
-// Async/Await
-const data = await marketplaces.registerFlipkartChannel(companyId,flipkartChannel,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| flipkartChannel | string | Name of marketplace channel | 
-
-Create Flipkart / Flipkart Assured marketplace channel for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateFlipkartChannelCredentials
-Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.updateFlipkartChannelCredentials(companyId,flipkartChannel,body);
-
-// Async/Await
-const data = await marketplaces.updateFlipkartChannelCredentials(companyId,flipkartChannel,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| flipkartChannel | string | Name of marketplace channel | 
-
-Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### registerTatacliqChannel
-Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.registerTatacliqChannel(companyId,tatacliqChannel,body);
-
-// Async/Await
-const data = await marketplaces.registerTatacliqChannel(companyId,tatacliqChannel,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| tatacliqChannel | string | Name of marketplace channel | 
-
-Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateTatacliqChannelCredentials
-Update Tatacliq / Tatacliq Luxury Assured marketplace channel credentials for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.updateTatacliqChannelCredentials(companyId,tatacliqChannel,body);
-
-// Async/Await
-const data = await marketplaces.updateTatacliqChannelCredentials(companyId,tatacliqChannel,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| tatacliqChannel | string | Name of marketplace channel | 
-
-Update Tatacliq / Tatacliq Luxury marketplace channel credentials for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### registerAjioChannel
-Create Ajio marketplace channel for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.registerAjioChannel(companyId,body);
-
-// Async/Await
-const data = await marketplaces.registerAjioChannel(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-
-Create Ajio marketplace channel for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAjioChannelCredentials
-Update Ajio marketplace channel credentials for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.updateAjioChannelCredentials(companyId,body);
-
-// Async/Await
-const data = await marketplaces.updateAjioChannelCredentials(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-
-Update Ajio marketplace channel credentials for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateChannelInventorySyncConfig
-Update inventory sync configuration of marketplace channel for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.updateChannelInventorySyncConfig(companyId,channel,body,validateCred);
-
-// Async/Await
-const data = await marketplaces.updateChannelInventorySyncConfig(companyId,channel,body,validateCred);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| channel | string | Name of marketplace channel | 
-| validateCred | string | Validate marketplace cred while saving inventory config | 
-
-Update inventory sync configuration of marketplace channel for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getChannelLocationConfig
-Get marketplace channel location config for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.getChannelLocationConfig(companyId,channel);
-
-// Async/Await
-const data = await marketplaces.getChannelLocationConfig(companyId,channel);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| channel | string | Name of marketplace channel | 
-
-Get marketplace channel location config for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `StoreMapping`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateChannelLocationConfig
-update marketplace channel location config for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.updateChannelLocationConfig(companyId,channel,body);
-
-// Async/Await
-const data = await marketplaces.updateChannelLocationConfig(companyId,channel,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| channel | string | Name of marketplace channel | 
-
-update marketplace channel location config for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `StoreMapping`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getChannelStatus
-Get marketplace channel active status for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.getChannelStatus(companyId,channel);
-
-// Async/Await
-const data = await marketplaces.getChannelStatus(companyId,channel);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| channel | string | Name of marketplace channel | 
-
-Get marketplace channel active status for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `StatusPayload`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateChannelStatus
-Update marketplace channel active status for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.updateChannelStatus(companyId,channel,body);
-
-// Async/Await
-const data = await marketplaces.updateChannelStatus(companyId,channel,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| channel | string | Name of marketplace channel | 
-
-Update marketplace channel active status for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `StatusResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
-
----
-
-
-#### triggerChannelInventoryUpdates
-Trigger marketplace channel inventory updates for a seller
-
-```javascript
-// Promise
-const promise = marketplaces.triggerChannelInventoryUpdates(companyId,channel,updateType,body);
-
-// Async/Await
-const data = await marketplaces.triggerChannelInventoryUpdates(companyId,channel,updateType,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| channel | string | Name of marketplace channel | 
-| updateType | string | Inventory update type | 
-
-Trigger marketplace channel inventory updates for a seller
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SyncResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 

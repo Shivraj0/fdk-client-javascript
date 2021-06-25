@@ -1,13 +1,8 @@
-class CredentialValidationError extends Error {
-  constructor(message) {
-    super(message); // (1)
-    this.name = "CredentialValidationError"; // (2)
-  }
-}
+const { FDKInvalidCredentialError } = require("../common/FDKError");
 class ApplicationConfig {
   /**
-   * @param  {object} _conf
-   * @param  {object} [_opts]
+   * @param {object} _conf
+   * @param {object} [_opts]
    */
   constructor(_conf, _opts) {
     this.applicationID = _conf.applicationID || "";
@@ -19,13 +14,13 @@ class ApplicationConfig {
 
   validate() {
     if (!this.applicationID) {
-      throw new CredentialValidationError("No Application ID Present");
+      throw new FDKInvalidCredentialError("No Application ID Present");
     }
     if (!this.applicationToken) {
-      throw new CredentialValidationError("No Application Token Present");
+      throw new FDKInvalidCredentialError("No Application Token Present");
     }
     if (this.applicationToken.length < 5) {
-      throw new CredentialValidationError("Invalid Application Token");
+      throw new FDKInvalidCredentialError("Invalid Application Token");
     }
   }
 }
