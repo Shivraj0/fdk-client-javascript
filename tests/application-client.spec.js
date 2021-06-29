@@ -259,10 +259,6 @@ describe("Lead test cases", () => {
   it("getTokenForVideoRoom testing", async () => {
     expect(true).toBeTruthy();
   });
-
-  it("getASDF testing", async () => {
-    expect(true).toBeTruthy();
-  });
 });
 
 describe("Theme test cases", () => {

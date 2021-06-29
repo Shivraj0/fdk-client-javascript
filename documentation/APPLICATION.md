@@ -93,7 +93,6 @@
     * [submitCustomForm](#submitcustomform)
     * [getParticipantsInsideVideoRoom](#getparticipantsinsidevideoroom)
     * [getTokenForVideoRoom](#gettokenforvideoroom)
-    * [getASDF](#getasdf)
     
 
 * [Theme](#Theme)
@@ -1288,16 +1287,17 @@ List all the collections
 
 ```javascript
 // Promise
-const promise = catalog.getCollections(pageNo,pageSize);
+const promise = catalog.getCollections(pageNo,pageSize,tag);
 
 // Async/Await
-const data = await catalog.getCollections(pageNo,pageSize);
+const data = await catalog.getCollections(pageNo,pageSize,tag);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | The number of items to retrieve in each page. | 
+| tag | string | List of tags  to filter collections | 
 
 Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
 
@@ -6090,58 +6090,6 @@ const data = await lead.getTokenForVideoRoom(uniqueName);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uniqueName | string | Unique name of Video Room | 
-
-Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `GetTokenForVideoRoomResponse`
-
-
-*Examples:*
-
-
-Default
-```json
-{
-  "value": {
-    "access_token": "your_token_to_the_room"
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### getASDF
-Get Token to join a specific Video Room using it's unqiue name
-
-```javascript
-// Promise
-const promise = lead.getASDF(inPath,inQuery,inHeader);
-
-// Async/Await
-const data = await lead.getASDF(inPath,inQuery,inHeader);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| inQuery |  | For adding support for enum | 
-| inHeader |  | For adding support for enum | 
-| inPath |  | For adding support for enum | 
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 

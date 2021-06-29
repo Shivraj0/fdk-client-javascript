@@ -402,23 +402,27 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.* @param {number} [arg.pageSize] - The number of
-     *   items to retrieve in each page.
+     *   items to retrieve in each page.* @param {string} [arg.tag] - List of
+     *   tags to filter collections
      * @returns {Promise<GetCollectionListingResponse>} - Success response
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollections({ pageNo, pageSize }?: {
+    getCollections({ pageNo, pageSize, tag }?: {
         pageNo?: number;
         pageSize?: number;
+        tag?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.tag] - List of tags to filter collections
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollectionsPaginator({ pageSize }?: {
+    getCollectionsPaginator({ pageSize, tag }?: {
         pageSize?: number;
+        tag?: string;
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
@@ -972,18 +976,6 @@ declare class Lead {
      */
     getTokenForVideoRoom({ uniqueName }?: {
         uniqueName: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PriorityEnum} [arg.inQuery] - For adding support for enum* @param
-     *   {PriorityEnum} [arg.inHeader] - For adding support for enum* @param
-     *   {PriorityEnum} arg.inPath - For adding support for enum
-     * @returns {Promise<GetTokenForVideoRoomResponse>} - Success response
-     * @summary: Get Token to join a specific Video Room using it's unqiue name
-     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-     */
-    getASDF({ inPath, inQuery, inHeader }?: {
-        inQuery?: any;
     }): Promise<any>;
 }
 declare class Theme {
