@@ -1297,7 +1297,7 @@ const data = await catalog.getCollections(pageNo,pageSize,tag);
 | --------- | ----  | --- |
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | The number of items to retrieve in each page. | 
-| tag | string | List of tags  to filter collections | 
+| tag | array | List of tags  to filter collections | 
 
 Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
 
@@ -1774,7 +1774,7 @@ Use this API to get details of all the items added to a cart.
 Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -1843,7 +1843,7 @@ Use this API to add items to the cart.
 Success. Returns a cart object as shown below. Refer `AddRequestCartResponse` for more details.
 
 
-Schema: `AddRequestCartResponse`
+Schema: `AddCartDetailResponse`
 
 
 *Examples:*
@@ -2515,7 +2515,7 @@ Use this API to update items added to the cart with the help of a request object
 Success. Updates and returns a cart object as shown below. Refer `UpdateRequestCartResponse` for more details.
 
 
-Schema: `UpdateRequestCartResponse`
+Schema: `UpdateCartDetailResponse`
 
 
 *Examples:*
@@ -2932,15 +2932,15 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = cart.getCoupons(uid);
+const promise = cart.getCoupons(id);
 
 // Async/Await
-const data = await cart.getCoupons(uid);
+const data = await cart.getCoupons(id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 
 Use this API to get a list of available coupons along with their details.
 
@@ -2969,10 +2969,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = cart.applyCoupon(body,i,b,p,uid);
+const promise = cart.applyCoupon(body,i,b,p,id);
 
 // Async/Await
-const data = await cart.applyCoupon(body,i,b,p,uid);
+const data = await cart.applyCoupon(body,i,b,p,id);
 ```
 
 | Argument  |  Type  | Description |
@@ -2980,7 +2980,7 @@ const data = await cart.applyCoupon(body,i,b,p,uid);
 | i | boolean |  | 
 | b | boolean |  | 
 | p | boolean |  | 
-| uid | integer |  | 
+| id | string |  | 
 
 Use this API to apply coupons on items in the cart.
 
@@ -2991,7 +2991,7 @@ Use this API to apply coupons on items in the cart.
 Success. Returns coupons applied to the cart along with item details and price breakup. Refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -3009,15 +3009,15 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = cart.removeCoupon(uid);
+const promise = cart.removeCoupon(id);
 
 // Async/Await
-const data = await cart.removeCoupon(uid);
+const data = await cart.removeCoupon(id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | The unique identifier of the cart | 
+| id | string | The unique identifier of the cart | 
 
 Remove Coupon applied on the cart by passing uid in request body.
 
@@ -3028,7 +3028,7 @@ Remove Coupon applied on the cart by passing uid in request body.
 Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -3169,15 +3169,15 @@ Apply reward points at cart
 
 ```javascript
 // Promise
-const promise = cart.applyRewardPoints(body,uid,i,b);
+const promise = cart.applyRewardPoints(body,id,i,b);
 
 // Async/Await
-const data = await cart.applyRewardPoints(body,uid,i,b);
+const data = await cart.applyRewardPoints(body,id,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 | i | boolean |  | 
 | b | boolean |  | 
 
@@ -3190,7 +3190,7 @@ Use this API to redeem a fixed no. of reward points by applying it to the cart.
 Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -3335,7 +3335,7 @@ const data = await cart.updateAddress(id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer | ID allotted to the selected address | 
+| id | string | ID allotted to the selected address | 
 
 Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
@@ -3372,7 +3372,7 @@ const data = await cart.removeAddress(id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer | ID allotted to the selected address | 
+| id | string | ID allotted to the selected address | 
 
 Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
 
@@ -3422,7 +3422,7 @@ const data = await cart.selectAddress(body,cartId,i,b);
 Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.  .
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -3476,15 +3476,15 @@ Update cart payment
 
 ```javascript
 // Promise
-const promise = cart.selectPaymentMode(body,uid);
+const promise = cart.selectPaymentMode(body,id);
 
 // Async/Await
-const data = await cart.selectPaymentMode(body,uid);
+const data = await cart.selectPaymentMode(body,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | string |  | 
+| id | string |  | 
 
 Use this API to update cart payment.
 
@@ -3495,7 +3495,7 @@ Use this API to update cart payment.
 Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -3513,15 +3513,15 @@ Verify the coupon eligibility against the payment mode
 
 ```javascript
 // Promise
-const promise = cart.validateCouponForPayment(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+const promise = cart.validateCouponForPayment(id,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
 
 // Async/Await
-const data = await cart.validateCouponForPayment(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+const data = await cart.validateCouponForPayment(id,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | string |  | 
+| id | string |  | 
 | addressId | string |  | 
 | paymentMode | string |  | 
 | paymentIdentifier | string |  | 
@@ -3555,17 +3555,17 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = cart.getShipments(p,uid,addressId,areaCode);
+const promise = cart.getShipments(p,id,addressId,areaCode);
 
 // Async/Await
-const data = await cart.getShipments(p,uid,addressId,areaCode);
+const data = await cart.getShipments(p,id,addressId,areaCode);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | p | boolean | This is a boolean value. Select `true` for getting a payment option in response. | 
-| uid | integer | The unique identifier of the cart | 
-| addressId | integer | ID allotted to the selected address | 
+| id | string | The unique identifier of the cart | 
+| addressId | string | ID allotted to the selected address | 
 | areaCode | string | The PIN Code of the destination address, e.g. 400059 | 
 
 Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
@@ -4660,15 +4660,15 @@ Update the cart meta
 
 ```javascript
 // Promise
-const promise = cart.updateCartMeta(body,uid);
+const promise = cart.updateCartMeta(body,id);
 
 // Async/Await
-const data = await cart.updateCartMeta(body,uid);
+const data = await cart.updateCartMeta(body,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | The unique identifier of the cart | 
+| id | string | The unique identifier of the cart | 
 
 Use this API to update cart meta like checkout_mode and gstin.
 
@@ -14844,7 +14844,7 @@ Use this API to get details of all the items added to a cart.
 Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -14913,7 +14913,7 @@ Use this API to add items to the cart.
 Success. Returns a cart object as shown below. Refer `AddRequestCartResponse` for more details.
 
 
-Schema: `AddRequestCartResponse`
+Schema: `AddCartDetailResponse`
 
 
 *Examples:*
@@ -15585,7 +15585,7 @@ Use this API to update items added to the cart with the help of a request object
 Success. Updates and returns a cart object as shown below. Refer `UpdateRequestCartResponse` for more details.
 
 
-Schema: `UpdateRequestCartResponse`
+Schema: `UpdateCartDetailResponse`
 
 
 *Examples:*
@@ -16002,15 +16002,15 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = poscart.getCoupons(uid);
+const promise = poscart.getCoupons(id);
 
 // Async/Await
-const data = await poscart.getCoupons(uid);
+const data = await poscart.getCoupons(id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 
 Use this API to get a list of available coupons along with their details.
 
@@ -16039,10 +16039,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = poscart.applyCoupon(body,i,b,p,uid);
+const promise = poscart.applyCoupon(body,i,b,p,id);
 
 // Async/Await
-const data = await poscart.applyCoupon(body,i,b,p,uid);
+const data = await poscart.applyCoupon(body,i,b,p,id);
 ```
 
 | Argument  |  Type  | Description |
@@ -16050,7 +16050,7 @@ const data = await poscart.applyCoupon(body,i,b,p,uid);
 | i | boolean |  | 
 | b | boolean |  | 
 | p | boolean |  | 
-| uid | integer |  | 
+| id | string |  | 
 
 Use this API to apply coupons on items in the cart.
 
@@ -16061,7 +16061,7 @@ Use this API to apply coupons on items in the cart.
 Success. Returns coupons applied to the cart along with item details and price breakup. Refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -16079,15 +16079,15 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = poscart.removeCoupon(uid);
+const promise = poscart.removeCoupon(id);
 
 // Async/Await
-const data = await poscart.removeCoupon(uid);
+const data = await poscart.removeCoupon(id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | The unique identifier of the cart | 
+| id | string | The unique identifier of the cart | 
 
 Remove Coupon applied on the cart by passing uid in request body.
 
@@ -16098,7 +16098,7 @@ Remove Coupon applied on the cart by passing uid in request body.
 Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -16239,15 +16239,15 @@ Apply reward points at cart
 
 ```javascript
 // Promise
-const promise = poscart.applyRewardPoints(body,uid,i,b);
+const promise = poscart.applyRewardPoints(body,id,i,b);
 
 // Async/Await
-const data = await poscart.applyRewardPoints(body,uid,i,b);
+const data = await poscart.applyRewardPoints(body,id,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 | i | boolean |  | 
 | b | boolean |  | 
 
@@ -16260,7 +16260,7 @@ Use this API to redeem a fixed no. of reward points by applying it to the cart.
 Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -16405,7 +16405,7 @@ const data = await poscart.updateAddress(id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer | ID allotted to the selected address | 
+| id | string | ID allotted to the selected address | 
 
 Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
@@ -16442,7 +16442,7 @@ const data = await poscart.removeAddress(id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer | ID allotted to the selected address | 
+| id | string | ID allotted to the selected address | 
 
 Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
 
@@ -16492,7 +16492,7 @@ const data = await poscart.selectAddress(body,cartId,i,b);
 Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.  .
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -16546,15 +16546,15 @@ Update cart payment
 
 ```javascript
 // Promise
-const promise = poscart.selectPaymentMode(body,uid);
+const promise = poscart.selectPaymentMode(body,id);
 
 // Async/Await
-const data = await poscart.selectPaymentMode(body,uid);
+const data = await poscart.selectPaymentMode(body,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | string |  | 
+| id | string |  | 
 
 Use this API to update cart payment.
 
@@ -16565,7 +16565,7 @@ Use this API to update cart payment.
 Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.
 
 
-Schema: `CartRequestResponse`
+Schema: `CartDetailResponse`
 
 
 
@@ -16583,15 +16583,15 @@ Verify the coupon eligibility against the payment mode
 
 ```javascript
 // Promise
-const promise = poscart.validateCouponForPayment(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+const promise = poscart.validateCouponForPayment(id,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
 
 // Async/Await
-const data = await poscart.validateCouponForPayment(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+const data = await poscart.validateCouponForPayment(id,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | string |  | 
+| id | string |  | 
 | addressId | string |  | 
 | paymentMode | string |  | 
 | paymentIdentifier | string |  | 
@@ -16625,10 +16625,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,addressId,areaCode,orderType);
+const promise = poscart.getShipments(pickAtStoreUid,orderingStoreId,p,id,addressId,areaCode,orderType);
 
 // Async/Await
-const data = await poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,addressId,areaCode,orderType);
+const data = await poscart.getShipments(pickAtStoreUid,orderingStoreId,p,id,addressId,areaCode,orderType);
 ```
 
 | Argument  |  Type  | Description |
@@ -16636,8 +16636,8 @@ const data = await poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,add
 | pickAtStoreUid | integer |  | 
 | orderingStoreId | integer |  | 
 | p | boolean | This is a boolean value. Select `true` for getting a payment option in response. | 
-| uid | integer | The unique identifier of the cart | 
-| addressId | integer | ID allotted to the selected address | 
+| id | string | The unique identifier of the cart | 
+| addressId | string | ID allotted to the selected address | 
 | areaCode | string | The PIN Code of the destination address, e.g. 400059 | 
 | orderType | string | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. | 
 
@@ -17320,18 +17320,18 @@ Update shipment delivery type and quantity before checkout
 
 ```javascript
 // Promise
-const promise = poscart.updateShipments(body,i,p,uid,addressId,orderType);
+const promise = poscart.updateShipments(body,i,p,id,addressId,orderType);
 
 // Async/Await
-const data = await poscart.updateShipments(body,i,p,uid,addressId,orderType);
+const data = await poscart.updateShipments(body,i,p,id,addressId,orderType);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | i | boolean | This is a boolean value. Select `true` to retrieve all the items added in the cart. | 
 | p | boolean | This is a boolean value. Select `true` for getting a payment option in response. | 
-| uid | integer | The unique identifier of the cart | 
-| addressId | integer | ID allotted to an address | 
+| id | string | The unique identifier of the cart | 
+| addressId | string | ID allotted to an address | 
 | orderType | string | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. | 
 
 Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
@@ -18014,15 +18014,15 @@ Checkout all items in the cart
 
 ```javascript
 // Promise
-const promise = poscart.checkoutCart(body,uid);
+const promise = poscart.checkoutCart(body,id);
 
 // Async/Await
-const data = await poscart.checkoutCart(body,uid);
+const data = await poscart.checkoutCart(body,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| id | string |  | 
 
 Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
 
@@ -18428,15 +18428,15 @@ Update the cart meta
 
 ```javascript
 // Promise
-const promise = poscart.updateCartMeta(body,uid);
+const promise = poscart.updateCartMeta(body,id);
 
 // Async/Await
-const data = await poscart.updateCartMeta(body,uid);
+const data = await poscart.updateCartMeta(body,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | The unique identifier of the cart | 
+| id | string | The unique identifier of the cart | 
 
 Use this API to update cart meta like checkout_mode and gstin.
 
@@ -18477,16 +18477,16 @@ Get available delivery modes for cart
 
 ```javascript
 // Promise
-const promise = poscart.getAvailableDeliveryModes(areaCode,uid);
+const promise = poscart.getAvailableDeliveryModes(areaCode,id);
 
 // Async/Await
-const data = await poscart.getAvailableDeliveryModes(areaCode,uid);
+const data = await poscart.getAvailableDeliveryModes(areaCode,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | areaCode | string |  | 
-| uid | integer |  | 
+| id | string |  | 
 
 Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
 

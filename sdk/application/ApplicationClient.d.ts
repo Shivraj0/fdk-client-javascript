@@ -402,8 +402,8 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.* @param {number} [arg.pageSize] - The number of
-     *   items to retrieve in each page.* @param {string} [arg.tag] - List of
-     *   tags to filter collections
+     *   items to retrieve in each page.* @param {Array<string>} [arg.tag] -
+     *   List of tags to filter collections
      * @returns {Promise<GetCollectionListingResponse>} - Success response
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
@@ -411,18 +411,18 @@ declare class Catalog {
     getCollections({ pageNo, pageSize, tag }?: {
         pageNo?: number;
         pageSize?: number;
-        tag?: string;
+        tag?: Array<string>;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @param {string} [arg.tag] - List of tags to filter collections
+     * @param {string[]} [arg.tag] - List of tags to filter collections
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
     getCollectionsPaginator({ pageSize, tag }?: {
         pageSize?: number;
-        tag?: string;
+        tag?: string[];
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
@@ -614,7 +614,7 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] - * @param {number} [arg.assignCardId] -
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
@@ -636,7 +636,7 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] - * @param {boolean} [arg.b] -
      * @param {AddCartRequest} arg.body
-     * @returns {Promise<AddRequestCartResponse>} - Success response
+     * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
@@ -650,7 +650,7 @@ declare class Cart {
      * @param {string} [arg.id] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
      * @param {UpdateCartRequest} arg.body
-     * @returns {Promise<UpdateRequestCartResponse>} - Success response
+     * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
      * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
@@ -670,36 +670,36 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] -
+     * @param {string} [arg.id] -
      * @returns {Promise<GetCouponResponse>} - Success response
      * @summary: Fetch Coupon
      * @description: Use this API to get a list of available coupons along with their details.
      */
-    getCoupons({ uid }?: {
-        uid?: number;
+    getCoupons({ id }?: {
+        id?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] - * @param {boolean} [arg.b] - * @param
-     *   {boolean} [arg.p] - * @param {number} [arg.uid] -
+     *   {boolean} [arg.p] - * @param {string} [arg.id] -
      * @param {ApplyCouponRequest} arg.body
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply Coupon
      * @description: Use this API to apply coupons on items in the cart.
      */
-    applyCoupon({ body, i, b, p, uid }?: {
+    applyCoupon({ body, i, b, p, id }?: {
         i?: boolean;
         b?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] - The unique identifier of the cart
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @param {string} [arg.id] - The unique identifier of the cart
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Remove Coupon Applied
      * @description: Remove Coupon applied on the cart by passing uid in request body.
      */
-    removeCoupon({ uid }?: {
-        uid?: number;
+    removeCoupon({ id }?: {
+        id?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -717,15 +717,15 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
+     * @param {string} [arg.id] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
      * @param {RewardPointRequest} arg.body
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply reward points at cart
      * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
      */
-    applyRewardPoints({ body, uid, i, b }?: {
-        uid?: number;
+    applyRewardPoints({ body, id, i, b }?: {
+        id?: string;
         i?: boolean;
     }): Promise<any>;
     /**
@@ -769,32 +769,32 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.id - ID allotted to the selected address
+     * @param {string} arg.id - ID allotted to the selected address
      * @param {Address} arg.body
      * @returns {Promise<UpdateAddressResponse>} - Success response
      * @summary: Update address added to an account
      * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
      */
     updateAddress({ id, body }?: {
-        id: number;
+        id: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.id - ID allotted to the selected address
+     * @param {string} arg.id - ID allotted to the selected address
      * @returns {Promise<DeleteAddressResponse>} - Success response
      * @summary: Remove address associated with an account
      * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
      */
     removeAddress({ id }?: {
-        id: number;
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
      * @param {SelectCartAddressRequest} arg.body
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Select an address from available addresses
      * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
      */
@@ -804,19 +804,19 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.uid] -
+     * @param {string} [arg.id] -
      * @param {UpdateCartPaymentRequest} arg.body
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Update cart payment
      * @description: Use this API to update cart payment.
      */
-    selectPaymentMode({ body, uid }?: {
-        uid?: string;
+    selectPaymentMode({ body, id }?: {
+        id?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.uid] - * @param {string} [arg.addressId] - * @param
+     * @param {string} [arg.id] - * @param {string} [arg.addressId] - * @param
      *   {string} [arg.paymentMode] - * @param {string} [arg.paymentIdentifier]
      *   - * @param {string} [arg.aggregatorName] - * @param {string}
      *   [arg.merchantCode] -
@@ -824,30 +824,30 @@ declare class Cart {
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
      */
-    validateCouponForPayment({ uid, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
-        uid?: string;
+    validateCouponForPayment({ id, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+        id?: string;
         addressId?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-     *   getting a payment option in response.* @param {number} [arg.uid] - The
-     *   unique identifier of the cart* @param {number} [arg.addressId] - ID
+     *   getting a payment option in response.* @param {string} [arg.id] - The
+     *   unique identifier of the cart* @param {string} [arg.addressId] - ID
      *   allotted to the selected address* @param {string} [arg.areaCode] - The
      *   PIN Code of the destination address, e.g. 400059
      * @returns {Promise<CartShipmentsResponse>} - Success response
      * @summary: Get delivery date and options before checkout
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
      */
-    getShipments({ p, uid, addressId, areaCode }?: {
+    getShipments({ p, id, addressId, areaCode }?: {
         p?: boolean;
-        uid?: number;
-        addressId?: number;
+        id?: string;
+        addressId?: string;
         areaCode?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CartCheckoutRequest} arg.body
+     * @param {CartCheckoutDetailRequest} arg.body
      * @returns {Promise<CartCheckoutResponse>} - Success response
      * @summary: Checkout all items in the cart
      * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
@@ -857,14 +857,14 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] - The unique identifier of the cart
+     * @param {string} [arg.id] - The unique identifier of the cart
      * @param {CartMetaRequest} arg.body
      * @returns {Promise<CartMetaResponse>} - Success response
      * @summary: Update the cart meta
      * @description: Use this API to update cart meta like checkout_mode and gstin.
      */
-    updateCartMeta({ body, uid }?: {
-        uid?: number;
+    updateCartMeta({ body, id }?: {
+        id?: string;
         body: any;
     }): Promise<any>;
     /**
@@ -2831,7 +2831,7 @@ declare class PosCart {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] - * @param {number} [arg.assignCardId] -
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
@@ -2853,7 +2853,7 @@ declare class PosCart {
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] - * @param {boolean} [arg.b] -
      * @param {AddCartRequest} arg.body
-     * @returns {Promise<AddRequestCartResponse>} - Success response
+     * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
@@ -2867,7 +2867,7 @@ declare class PosCart {
      * @param {string} [arg.id] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
      * @param {UpdateCartRequest} arg.body
-     * @returns {Promise<UpdateRequestCartResponse>} - Success response
+     * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
      * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
@@ -2887,36 +2887,36 @@ declare class PosCart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] -
+     * @param {string} [arg.id] -
      * @returns {Promise<GetCouponResponse>} - Success response
      * @summary: Fetch Coupon
      * @description: Use this API to get a list of available coupons along with their details.
      */
-    getCoupons({ uid }?: {
-        uid?: number;
+    getCoupons({ id }?: {
+        id?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] - * @param {boolean} [arg.b] - * @param
-     *   {boolean} [arg.p] - * @param {number} [arg.uid] -
+     *   {boolean} [arg.p] - * @param {string} [arg.id] -
      * @param {ApplyCouponRequest} arg.body
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply Coupon
      * @description: Use this API to apply coupons on items in the cart.
      */
-    applyCoupon({ body, i, b, p, uid }?: {
+    applyCoupon({ body, i, b, p, id }?: {
         i?: boolean;
         b?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] - The unique identifier of the cart
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @param {string} [arg.id] - The unique identifier of the cart
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Remove Coupon Applied
      * @description: Remove Coupon applied on the cart by passing uid in request body.
      */
-    removeCoupon({ uid }?: {
-        uid?: number;
+    removeCoupon({ id }?: {
+        id?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -2934,15 +2934,15 @@ declare class PosCart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
+     * @param {string} [arg.id] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
      * @param {RewardPointRequest} arg.body
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply reward points at cart
      * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
      */
-    applyRewardPoints({ body, uid, i, b }?: {
-        uid?: number;
+    applyRewardPoints({ body, id, i, b }?: {
+        id?: string;
         i?: boolean;
     }): Promise<any>;
     /**
@@ -2986,32 +2986,32 @@ declare class PosCart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.id - ID allotted to the selected address
+     * @param {string} arg.id - ID allotted to the selected address
      * @param {Address} arg.body
      * @returns {Promise<UpdateAddressResponse>} - Success response
      * @summary: Update address added to an account
      * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
      */
     updateAddress({ id, body }?: {
-        id: number;
+        id: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.id - ID allotted to the selected address
+     * @param {string} arg.id - ID allotted to the selected address
      * @returns {Promise<DeleteAddressResponse>} - Success response
      * @summary: Remove address associated with an account
      * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
      */
     removeAddress({ id }?: {
-        id: number;
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
      * @param {SelectCartAddressRequest} arg.body
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Select an address from available addresses
      * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
      */
@@ -3021,19 +3021,19 @@ declare class PosCart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.uid] -
+     * @param {string} [arg.id] -
      * @param {UpdateCartPaymentRequest} arg.body
-     * @returns {Promise<CartRequestResponse>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Update cart payment
      * @description: Use this API to update cart payment.
      */
-    selectPaymentMode({ body, uid }?: {
-        uid?: string;
+    selectPaymentMode({ body, id }?: {
+        id?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.uid] - * @param {string} [arg.addressId] - * @param
+     * @param {string} [arg.id] - * @param {string} [arg.addressId] - * @param
      *   {string} [arg.paymentMode] - * @param {string} [arg.paymentIdentifier]
      *   - * @param {string} [arg.aggregatorName] - * @param {string}
      *   [arg.merchantCode] -
@@ -3041,8 +3041,8 @@ declare class PosCart {
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
      */
-    validateCouponForPayment({ uid, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
-        uid?: string;
+    validateCouponForPayment({ id, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+        id?: string;
         addressId?: string;
     }): Promise<any>;
     /**
@@ -3050,7 +3050,7 @@ declare class PosCart {
      * @param {number} [arg.pickAtStoreUid] - * @param {number}
      *   [arg.orderingStoreId] - * @param {boolean} [arg.p] - This is a boolean
      *   value. Select `true` for getting a payment option in response.* @param
-     *   {number} [arg.uid] - The unique identifier of the cart* @param {number}
+     *   {string} [arg.id] - The unique identifier of the cart* @param {string}
      *   [arg.addressId] - ID allotted to the selected address* @param {string}
      *   [arg.areaCode] - The PIN Code of the destination address, e.g. 400059*
      *   @param {string} [arg.orderType] - The order type of shipment
@@ -3061,7 +3061,7 @@ declare class PosCart {
      * @summary: Get delivery date and options before checkout
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
      */
-    getShipments({ pickAtStoreUid, orderingStoreId, p, uid, addressId, areaCode, orderType, }?: {
+    getShipments({ pickAtStoreUid, orderingStoreId, p, id, addressId, areaCode, orderType, }?: {
         pickAtStoreUid?: number;
         orderingStoreId?: number;
         p?: boolean;
@@ -3071,8 +3071,8 @@ declare class PosCart {
      * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
      *   retrieve all the items added in the cart.* @param {boolean} [arg.p] -
      *   This is a boolean value. Select `true` for getting a payment option in
-     *   response.* @param {number} [arg.uid] - The unique identifier of the
-     *   cart* @param {number} [arg.addressId] - ID allotted to an address*
+     *   response.* @param {string} [arg.id] - The unique identifier of the
+     *   cart* @param {string} [arg.addressId] - ID allotted to an address*
      *   @param {string} [arg.orderType] - The order type of shipment
      *   HomeDelivery - If the customer wants the order home-delivered
      *   PickAtStore - If the customer wants the handover of an order at the
@@ -3082,48 +3082,48 @@ declare class PosCart {
      * @summary: Update shipment delivery type and quantity before checkout
      * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
      */
-    updateShipments({ body, i, p, uid, addressId, orderType }?: {
+    updateShipments({ body, i, p, id, addressId, orderType }?: {
         i?: boolean;
         p?: boolean;
-        uid?: number;
-        addressId?: number;
+        id?: string;
+        addressId?: string;
         orderType?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] -
-     * @param {CartPosCheckoutRequest} arg.body
+     * @param {string} [arg.id] -
+     * @param {CartPosCheckoutDetailRequest} arg.body
      * @returns {Promise<CartCheckoutResponse>} - Success response
      * @summary: Checkout all items in the cart
      * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
      */
-    checkoutCart({ body, uid }?: {
-        uid?: number;
+    checkoutCart({ body, id }?: {
+        id?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.uid] - The unique identifier of the cart
+     * @param {string} [arg.id] - The unique identifier of the cart
      * @param {CartMetaRequest} arg.body
      * @returns {Promise<CartMetaResponse>} - Success response
      * @summary: Update the cart meta
      * @description: Use this API to update cart meta like checkout_mode and gstin.
      */
-    updateCartMeta({ body, uid }?: {
-        uid?: number;
+    updateCartMeta({ body, id }?: {
+        id?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.areaCode - * @param {number} [arg.uid] -
+     * @param {string} arg.areaCode - * @param {string} [arg.id] -
      * @returns {Promise<CartDeliveryModesResponse>} - Success response
      * @summary: Get available delivery modes for cart
      * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
      */
-    getAvailableDeliveryModes({ areaCode, uid }?: {
+    getAvailableDeliveryModes({ areaCode, id }?: {
         areaCode: string;
-        uid?: number;
+        id?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
