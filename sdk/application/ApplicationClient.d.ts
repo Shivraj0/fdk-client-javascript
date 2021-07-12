@@ -2512,11 +2512,14 @@ declare class Feedback {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string[]} arg.ids - List of media ID
      * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Delete Media
      * @description: Use this API to delete media for an entity ID.
      */
-    deleteMedia({}?: any): Promise<any>;
+    deleteMedia({ ids }?: {
+        ids: string[];
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AddMediaListRequest} arg.body

@@ -6041,19 +6041,21 @@ class Feedback {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string[]} arg.ids - List of media ID
    * @returns {Promise<UpdateResponse>} - Success response
    * @summary: Delete Media
    * @description: Use this API to delete media for an entity ID.
    */
-  deleteMedia({} = {}) {
+  deleteMedia({ ids } = {}) {
     const { error } = FeedbackValidator.deleteMedia().validate(
-      {},
+      { ids },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
+    query["ids"] = ids;
 
     return APIClient.execute(
       this._conf,

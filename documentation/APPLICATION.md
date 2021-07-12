@@ -14057,14 +14057,15 @@ Delete Media
 
 ```javascript
 // Promise
-const promise = feedback.deleteMedia();
+const promise = feedback.deleteMedia(ids);
 
 // Async/Await
-const data = await feedback.deleteMedia();
+const data = await feedback.deleteMedia(ids);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| ids | array | List of media ID | 
 
 Use this API to delete media for an entity ID.
 

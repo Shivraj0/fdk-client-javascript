@@ -194,28 +194,28 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static deleteSearchKeywords(): any;
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static createCustomKeyword(): any;
+    static getSearchKeywords(): any;
     static getAllSearchKeyword(): any;
+    static createCustomKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
-    static createCustomAutocompleteRule(): any;
+    static getAutocompleteKeywordDetail(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
     static deleteCollection(): any;
     static updateCollection(): any;
-    static addCollectionItems(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;
