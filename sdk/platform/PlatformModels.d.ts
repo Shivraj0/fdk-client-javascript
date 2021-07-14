@@ -41,20 +41,6 @@ export class PaymentValidator {
     static saveSubscriptionSetupIntent(): any;
     static verifyIfscCode(): any;
 }
-export class OrderValidator {
-    static shipmentStatusUpdate(): any;
-    static activityStatus(): any;
-    static storeProcessShipmentUpdate(): any;
-    static checkRefund(): any;
-    static getOrdersByCompanyId(): any;
-    static getOrderDetails(): any;
-    static getPicklistOrdersByCompanyId(): any;
-    static getShipmentAddress(): any;
-    static updateShipmentAddress(): any;
-    static getPing(): any;
-    static voiceCallback(): any;
-    static voiceClickToCall(): any;
-}
 export class CatalogValidator {
     static createProductBundle(): any;
     static getProductBundle(): any;
@@ -103,7 +89,8 @@ export class CatalogValidator {
     static getProductAssetsInBulk(): any;
     static deleteSize(): any;
     static addInventory(): any;
-    static getInventory(): any;
+    static getInventoryBySize(): any;
+    static getInventoryBySizeIdentifier(): any;
     static deleteInventory(): any;
     static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
@@ -119,16 +106,16 @@ export class CatalogValidator {
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
-    static updateCompany(): any;
     static cbsOnboardGet(): any;
+    static updateCompany(): any;
     static getCompanyMetrics(): any;
     static editBrand(): any;
     static getBrand(): any;
     static createBrand(): any;
-    static getBrands(): any;
     static createCompanyBrandMapping(): any;
-    static getLocations(): any;
+    static getBrands(): any;
     static createLocation(): any;
+    static getLocations(): any;
     static updateLocation(): any;
     static getLocationDetail(): any;
     static createLocationBulk(): any;

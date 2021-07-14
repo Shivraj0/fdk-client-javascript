@@ -183,15 +183,6 @@ export class PaymentValidator {
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
 }
-export class OrderValidator {
-    static trackShipmentPlatform(): any;
-    static trackOrder(): any;
-    static failedOrders(): any;
-    static reprocessOrder(): any;
-    static updateShipment(): any;
-    static getPlatformShipmentReasons(): any;
-    static getShipmentTrackDetails(): any;
-}
 export class CatalogValidator {
     static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
@@ -269,6 +260,11 @@ export class CartValidator {
     static getCouponById(): any;
     static updateCoupon(): any;
     static updateCouponPartially(): any;
+    static fetchCartItems(): any;
+    static fetchAndvalidateCartItems(): any;
+    static checkCartServiceability(): any;
+    static checkoutCartItems(): any;
+    static updateCheckoutPaymentStatus(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;
