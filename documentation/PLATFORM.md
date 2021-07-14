@@ -1,6 +1,7 @@
 # FDK Platform Front API Documentaion
 
 
+* [Common](#Common) - Application configuration apis 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
 * [Feedback](#Feedback) - User Reviews and Rating System 
 * [Theme](#Theme) - Responsible for themes 
@@ -29,6 +30,11 @@
 
 ### Classes and Methods
 
+
+* [Common](#Common)
+  * Methods
+    * [getLocations](#getlocations)
+    
 
 * [Lead](#Lead)
   * Methods
@@ -295,34 +301,34 @@
     * [deleteSearchKeywords](#deletesearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
-    * [getAllSearchKeyword](#getallsearchkeyword)
     * [createCustomKeyword](#createcustomkeyword)
+    * [getAllSearchKeyword](#getallsearchkeyword)
     * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
-    * [getProductBundle](#getproductbundle)
+    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
+    * [getProductBundle](#getproductbundle)
     * [updateProductBundle](#updateproductbundle)
     * [getProductBundleDetail](#getproductbundledetail)
-    * [getSizeGuides](#getsizeguides)
     * [createSizeGuide](#createsizeguide)
+    * [getSizeGuides](#getsizeguides)
     * [updateSizeGuide](#updatesizeguide)
     * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
-    * [getConfigurationByType](#getconfigurationbytype)
+    * [getConfigurations](#getconfigurations)
     * [createConfigurationByType](#createconfigurationbytype)
+    * [getConfigurationByType](#getconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
+    * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
     * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
-    * [getCollectionItems](#getcollectionitems)
     * [addCollectionItems](#addcollectionitems)
+    * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -343,38 +349,37 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [listCategories](#listcategories)
     * [createCategories](#createcategories)
+    * [listCategories](#listcategories)
     * [updateCategory](#updatecategory)
     * [getCategoryData](#getcategorydata)
-    * [getProducts](#getproducts)
     * [createProduct](#createproduct)
+    * [getProducts](#getproducts)
     * [deleteProduct](#deleteproduct)
     * [editProduct](#editproduct)
     * [getProduct](#getproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
+    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [deleteProductBulkJob](#deleteproductbulkjob)
     * [createProductsInBulk](#createproductsinbulk)
     * [getCompanyTags](#getcompanytags)
-    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
+    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [getInventoryBySize](#getinventorybysize)
     * [addInventory](#addinventory)
-    * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
+    * [getInventory](#getinventory)
     * [deleteInventory](#deleteinventory)
-    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
+    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [createBulkInventory](#createbulkinventory)
-    * [getInventoryExport](#getinventoryexport)
     * [createInventoryExportJob](#createinventoryexportjob)
+    * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
-    * [getAllHsnCodes](#getallhsncodes)
     * [createHsnCode](#createhsncode)
+    * [getAllHsnCodes](#getallhsncodes)
     * [updateHsnCode](#updatehsncode)
     * [getHsnCode](#gethsncode)
     * [bulkHsnCode](#bulkhsncode)
@@ -387,18 +392,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -489,11 +494,6 @@
     * [getCouponById](#getcouponbyid)
     * [updateCoupon](#updatecoupon)
     * [updateCouponPartially](#updatecouponpartially)
-    * [fetchCartItems](#fetchcartitems)
-    * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
-    * [checkCartServiceability](#checkcartserviceability)
-    * [checkoutCartItems](#checkoutcartitems)
-    * [updateCheckoutPaymentStatus](#updatecheckoutpaymentstatus)
     
 
 * [Rewards](#Rewards)
@@ -559,6 +559,51 @@
 
 
 
+## Common
+
+
+#### getLocations
+Get countries, states, cities
+
+```javascript
+// Promise
+const promise = common.getLocations(locationType,id);
+
+// Async/Await
+const data = await common.getLocations(locationType,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| locationType | string | Provide location type to query on | 
+| id | string | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. | 
+
+
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Locations`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Lead
 
 
@@ -580,7 +625,7 @@ const data = await lead.getTickets(companyId,items,filters,q,status,priority,cat
 | filters | boolean | Decides that the reponse will contain the ticket filters | 
 | q | string | Search through ticket titles and description | 
 | status | string | Filter tickets on status | 
-| priority | string | Filter tickets on priority | 
+| priority |  | Filter tickets on priority | 
 | category | string | Filter tickets on category | 
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
@@ -1238,7 +1283,7 @@ const data = await lead.getTickets(companyId,applicationId,items,filters,q,statu
 | filters | boolean | Decides that the reponse will contain the ticket filters | 
 | q | string | Search through ticket titles and description | 
 | status | string | Filter tickets on status | 
-| priority | string | Filter tickets on priority | 
+| priority |  | Filter tickets on priority | 
 | category | string | Filter tickets on category | 
 
 Gets the list of Application level Tickets and/or ticket filters
@@ -4110,18 +4155,6 @@ Schema: `FeedbackAttributes`
 
 
 
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -4175,18 +4208,6 @@ Schema: `GetReviewResponse`
 
 
 
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -4218,18 +4239,6 @@ ok
 
 
 Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
 
 
 
@@ -4277,18 +4286,6 @@ Schema: `Array<ActivityDump>`
 
 
 
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -4321,18 +4318,6 @@ Success
 
 
 Schema: `TemplateGetResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
 
 
 
@@ -4382,18 +4367,6 @@ Schema: `InsertResponse`
 
 
 
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -4425,18 +4398,6 @@ Success
 
 
 Schema: `Template`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
 
 
 
@@ -4484,18 +4445,6 @@ Schema: `UpdateResponse`
 
 
 
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -4527,18 +4476,6 @@ Success
 
 
 Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
 
 
 
@@ -4605,30 +4542,6 @@ All pages
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegInternalServerError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -4679,30 +4592,6 @@ page
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegInternalServerError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -4744,30 +4633,6 @@ All pages
   "$ref": "#/components/examples/AllAvailablePagesExample"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegInternalServerError`
 
 
 
@@ -4828,30 +4693,6 @@ Home page
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegInternalServerError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -4894,30 +4735,6 @@ page
   "$ref": "#/components/examples/AvailablePageExample"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegInternalServerError`
 
 
 
@@ -4978,30 +4795,6 @@ page
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegInternalServerError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -5044,30 +4837,6 @@ Success
   "$ref": "#/components/examples/ThemesListingResponse"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -5126,30 +4895,6 @@ Success
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -5190,30 +4935,6 @@ Success
   "$ref": "#/components/examples/Themes"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -5273,30 +4994,6 @@ Success
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -5338,30 +5035,6 @@ Success
   "$ref": "#/components/examples/Themes"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -5422,30 +5095,6 @@ Success
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -5486,30 +5135,6 @@ Success
   "$ref": "#/components/examples/Themes"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -5568,30 +5193,6 @@ Success
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -5632,30 +5233,6 @@ Success
   "$ref": "#/components/examples/FontsResponse"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -5715,30 +5292,6 @@ Success
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -5780,30 +5333,6 @@ Success
   "$ref": "#/components/examples/Themes"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -5863,30 +5392,6 @@ Success
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -5928,30 +5433,6 @@ Success
   "$ref": "#/components/examples/Themes"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -6011,30 +5492,6 @@ Success
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -6076,30 +5533,6 @@ Success
   "$ref": "#/components/examples/Themes"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -6159,30 +5592,6 @@ Success
 
 
 
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -6224,30 +5633,6 @@ Success
   "$ref": "#/components/examples/Themes"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
 
 
 
@@ -6316,30 +5701,6 @@ Success
 
 
 
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -6379,30 +5740,6 @@ Schema: `UserSearchResponseSchema`
 
 
 
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -6432,30 +5769,6 @@ User create
 
 
 Schema: `CreateUserResponseSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
 
 
 
@@ -6504,30 +5817,6 @@ Schema: `CreateUserResponseSchema`
 
 
 
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -6557,30 +5846,6 @@ Create user session
 
 
 Schema: `CreateUserSessionResponseSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
 
 
 
@@ -6628,30 +5893,6 @@ Schema: `PlatformSchema`
 
 
 
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -6681,30 +5922,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
 
 Schema: `PlatformSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `AuthenticationApiError`
 
 
 
@@ -6771,52 +5988,6 @@ success
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -6856,52 +6027,6 @@ success
 ```json
 {
   "$ref": "#/components/examples/CreateAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -6962,52 +6087,6 @@ success
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -7048,52 +6127,6 @@ success
 ```json
 {
   "$ref": "#/components/examples/UpdateAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7154,52 +6187,6 @@ success
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -7250,52 +6237,6 @@ success
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -7335,70 +6276,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/BlogResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
 }
 ```
 
@@ -7460,52 +6337,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -7546,70 +6377,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/BlogResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
 }
 ```
 
@@ -7670,52 +6437,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -7766,52 +6487,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -7842,52 +6517,6 @@ Success. Refer `GetFaqCategoriesSchema` for more details.
 
 
 Schema: `GetFaqCategoriesSchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -7935,52 +6564,6 @@ Schema: `GetFaqCategoryBySlugSchema`
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -8011,52 +6594,6 @@ Success.
 
 
 Schema: `CreateFaqCategorySchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -8104,52 +6641,6 @@ Schema: `CreateFaqCategorySchema`
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -8181,52 +6672,6 @@ Success.
 
 
 Schema: `FaqSchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -8274,52 +6719,6 @@ Schema: `GetFaqSchema`
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -8351,52 +6750,6 @@ Success.
 
 
 Schema: `CreateFaqResponseSchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -8445,52 +6798,6 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -8531,52 +6838,6 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -8608,52 +6869,6 @@ Success. Refer `CreateFaqResponseSchema` for more details.
 
 
 Schema: `CreateFaqResponseSchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -8713,52 +6928,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -8798,52 +6967,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/LandingPageResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -8894,52 +7017,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/LandingPageResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9023,52 +7100,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -9118,52 +7149,6 @@ Success
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -9194,52 +7179,6 @@ Success. Refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -9300,52 +7239,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -9395,52 +7288,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -9480,52 +7327,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/DefaultNavigationResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9587,52 +7388,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -9673,52 +7428,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/NavigationResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9959,52 +7668,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -10044,52 +7707,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/PageMeta"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -10175,52 +7792,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -10260,52 +7831,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -10367,52 +7892,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -10452,52 +7931,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -10558,52 +7991,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -10644,52 +8031,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -10750,52 +8091,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -10846,52 +8141,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -10931,52 +8180,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/Seo"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -11059,52 +8262,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -11157,52 +8314,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -11242,52 +8353,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/SlideshowResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -11349,52 +8414,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -11435,52 +8454,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/SlideshowResponse"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -11580,52 +8553,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -11665,52 +8592,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/Support"
-}
-```
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -11770,52 +8651,6 @@ default
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -11846,52 +8681,6 @@ Success.
 
 
 Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -11938,52 +8727,6 @@ Schema: `TagsSchema`
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -12014,52 +8757,6 @@ Success. Refer `TagsSchema` for more details.
 
 
 Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -12106,52 +8803,6 @@ Schema: `TagsSchema`
 
 
 
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -12182,52 +8833,6 @@ Success.
 
 
 Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -12267,52 +8872,6 @@ Success.
 
 
 Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-Bad Request. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
 
 
 
@@ -12367,18 +8926,6 @@ Schema: `Success`
 
 
 
-Error Response
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -12413,18 +8960,6 @@ Success Response
 
 
 Schema: `PickupPointResponse`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorResponseSchema`
 
 
 
@@ -12475,18 +9010,6 @@ Schema: `Success`
 
 
 
-Error Response
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -12520,18 +9043,6 @@ Success Response
 
 
 Schema: `PickupPointSchema`
-
-
-
-
-
-
-
-
-Error Response
-
-
-Schema: `ErrorResponseSchema`
 
 
 
@@ -12580,18 +9091,6 @@ Schema: `Success`
 
 
 
-Error Response
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -12624,18 +9123,6 @@ Success Response
 
 
 Schema: `PickupResponse`
-
-
-
-
-
-
-
-
-Error Response
-
-
-Schema: `ErrorResponseSchema`
 
 
 
@@ -12685,18 +9172,6 @@ Schema: `ShippingResponse`
 
 
 
-Error Response
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -12738,18 +9213,6 @@ Schema: `Success`
 
 
 
-Error Response
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -12783,18 +9246,6 @@ Success Response - Store Updated
 
 
 Schema: `Success`
-
-
-
-
-
-
-
-
-Error Response
-
-
-Schema: `ErrorResponseSchema`
 
 
 
@@ -12848,18 +9299,6 @@ Schema: `StoreListResponse`
 
 
 
-Error Response
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -12894,18 +9333,6 @@ Success Response
 
 
 Schema: `StoreResponse`
-
-
-
-
-
-
-
-
-Error Response
-
-
-Schema: `ErrorResponseSchema`
 
 
 
@@ -12955,18 +9382,6 @@ Schema: `Success`
 
 
 
-Error Response
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -13001,18 +9416,6 @@ Success Response - Store Updated
 
 
 Schema: `Success`
-
-
-
-
-
-
-
-
-Error Response
-
-
-Schema: `ErrorResponseSchema`
 
 
 
@@ -13064,18 +9467,6 @@ Schema: `ZoneListResponse`
 
 
 
-Error Response
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -13109,18 +9500,6 @@ Success Response - Zone Created
 
 
 Schema: `Success`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ErrorResponseSchema`
 
 
 
@@ -13170,18 +9549,6 @@ Schema: `ZoneSchema`
 
 
 
-Internal Server Error
-
-
-Schema: `ErrorResponseSchema`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -13215,18 +9582,6 @@ Success Response - Zone Updated
 
 
 Schema: `Success`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ErrorResponseSchema`
 
 
 
@@ -13280,40 +9635,6 @@ Schema: `CreateSubscriptionResponse`
 
 
 
-Request failed due to invalid data
-
-
-Schema: `BadRequest`
-
-
-*Examples:*
-
-
-Multiple Recurring Charge
-```json
-{
-  "value": {
-    "message": "Multiple `recurring charges` not allowed"
-  }
-}
-```
-
-Missing recurring field
-```json
-{
-  "value": {
-    "message": "Missing `recurring` field"
-  }
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -13353,18 +9674,6 @@ Schema: `EntitySubscription`
 
 
 
-Not found
-
-
-Schema: `ResourceNotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -13396,30 +9705,6 @@ Success
 
 
 Schema: `EntitySubscription`
-
-
-
-
-
-
-
-
-Request failed due to invalid data
-
-
-Schema: `BadRequest`
-
-
-
-
-
-
-
-
-Resource Not found
-
-
-Schema: `ResourceNotFound`
 
 
 
@@ -13573,18 +9858,6 @@ default
 
 
 
-Resource not found
-
-
-Schema: `ResourceNotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -13625,30 +9898,6 @@ default
   "$ref": "#/components/examples/SubscriptionCustomerRes"
 }
 ```
-
-
-
-
-
-
-
-
-Resource not found
-
-
-Schema: `ResourceNotFound`
-
-
-
-
-
-
-
-
-Internal server error
-
-
-Schema: `InternalServerError`
 
 
 
@@ -13713,18 +9962,6 @@ Inactive subscription
 
 
 
-Internal server error
-
-
-Schema: `InternalServerError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -13765,18 +10002,6 @@ default
   "$ref": "#/components/examples/CurrentLimitRes"
 }
 ```
-
-
-
-
-
-
-
-
-Internal server error
-
-
-Schema: `InternalServerError`
 
 
 
@@ -13833,30 +10058,6 @@ default
 
 
 
-Resource not found
-
-
-Schema: `ResourceNotFound`
-
-
-
-
-
-
-
-
-Internal server error
-
-
-Schema: `InternalServerError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -13897,30 +10098,6 @@ default
   "$ref": "#/components/examples/CancelSubscriptionRes"
 }
 ```
-
-
-
-
-
-
-
-
-Resource not found
-
-
-Schema: `ResourceNotFound`
-
-
-
-
-
-
-
-
-Internal server error
-
-
-Schema: `InternalServerError`
 
 
 
@@ -14087,18 +10264,6 @@ default
 
 
 
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -14149,18 +10314,6 @@ default
 
 
 
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -14203,18 +10356,6 @@ default
   "$ref": "#/components/examples/GetStats"
 }
 ```
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `BadRequest`
 
 
 
@@ -14373,18 +10514,6 @@ default
 
 
 
-Bad request
-
-
-Schema: `BadRequest`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -14427,18 +10556,6 @@ default
   "$ref": "#/components/examples/Audience"
 }
 ```
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
 
 
 
@@ -14497,18 +10614,6 @@ default
 
 
 
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -14550,18 +10655,6 @@ default
   "$ref": "#/components/examples/GetNRecordsCsvRes"
 }
 ```
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `BadRequest`
 
 
 
@@ -15064,29 +11157,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/EmailTemplateDeleteSuccessRes"
-}
-```
-
-
-
-
-
-
-
-
-Failure
-
-
-Schema: `EmailTemplateDeleteFailureRes`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/EmailTemplateDeleteFailureRes"
 }
 ```
 
@@ -15757,18 +11827,6 @@ default
 
 
 
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -15819,18 +11877,6 @@ default
 
 
 
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -15873,41 +11919,6 @@ default
   "$ref": "#/components/examples/SmsTemplateDeleteSuccessRes"
 }
 ```
-
-
-
-
-
-
-
-
-Failure
-
-
-Schema: `SmsTemplateDeleteFailureRes`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/SmsTemplateDeleteFailureRes"
-}
-```
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
 
 
 
@@ -16013,30 +12024,6 @@ Schema: `PaymentGatewayConfigResponse`
 
 
 
-Internal Server Error
-
-
-Schema: `ErrorCodeDescription`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ErrorCodeDescription`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16075,30 +12062,6 @@ Schema: `PaymentGatewayToBeReviewed`
 
 
 
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16129,30 +12092,6 @@ Save Config Secret For Brand Payment Gateway Success Response.
 
 
 Schema: `PaymentGatewayToBeReviewed`
-
-
-
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -16201,30 +12140,6 @@ Schema: `PaymentOptionsResponse`
 
 
 
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16263,30 +12178,6 @@ Schema: `PayoutsResponse`
 
 
 
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16316,30 +12207,6 @@ save payout response object
 
 
 Schema: `PayoutResponse`
-
-
-
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -16386,30 +12253,6 @@ Schema: `UpdatePayoutResponse`
 
 
 
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16440,30 +12283,6 @@ save payout response object
 
 
 Schema: `UpdatePayoutResponse`
-
-
-
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -16510,30 +12329,6 @@ Schema: `DeletePayoutResponse`
 
 
 
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16563,30 +12358,6 @@ List Subscription Payment Method Response
 
 
 Schema: `SubscriptionPaymentMethodResponse`
-
-
-
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -16634,18 +12405,6 @@ Schema: `DeleteSubscriptionPaymentMethodResponse`
 
 
 
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16683,30 +12442,6 @@ Schema: `SubscriptionConfigResponse`
 
 
 
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16736,30 +12471,6 @@ Save Subscription Setup Intent Response.
 
 
 Schema: `SaveSubscriptionSetupIntentResponse`
-
-
-
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -16806,30 +12517,6 @@ Schema: `RefundAccountResponse`
 
 
 
-Bad Request Error
-
-
-Schema: `NotFoundResourceError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16860,30 +12547,6 @@ Bank details on correct Ifsc Code
 
 
 Schema: `IfscCodeResponse`
-
-
-
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `NotFoundResourceError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ErrorCodeDescription`
 
 
 
@@ -16931,30 +12594,6 @@ Schema: `OrderBeneficiaryResponse`
 
 
 
-Bad Request Error
-
-
-Schema: `NotFoundResourceError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -16986,30 +12625,6 @@ List User Beneficiary
 
 
 Schema: `OrderBeneficiaryResponse`
-
-
-
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `NotFoundResourceError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -17062,30 +12677,6 @@ Schema: `UpdateShipmentStatusResponse`
 
 
 
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -17116,30 +12707,6 @@ Success
 
 
 Schema: `GetActivityStatus`
-
-
-
-
-
-
-
-
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -17185,30 +12752,6 @@ Schema: `UpdateProcessShipmenstRequestResponse`
 
 
 
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -17239,30 +12782,6 @@ Success
 
 
 Schema: `Object`
-
-
-
-
-
-
-
-
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -17320,30 +12839,6 @@ Schema: `OrderListing`
 
 
 
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -17376,30 +12871,6 @@ Success
 
 
 Schema: `OrderDetails`
-
-
-
-
-
-
-
-
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -17457,30 +12928,6 @@ Schema: `OrderPicklistListing`
 
 
 
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -17512,30 +12959,6 @@ Success
 
 
 Schema: `PlatformShipmentTrack`
-
-
-
-
-
-
-
-
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -17583,30 +13006,6 @@ Schema: `PlatformOrderTrack`
 
 
 
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -17637,30 +13036,6 @@ Success
 
 
 Schema: `FailedOrders`
-
-
-
-
-
-
-
-
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -17708,30 +13083,6 @@ Schema: `UpdateOrderReprocessResponse`
 
 
 
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -17771,30 +13122,6 @@ Schema: `ShipmentUpdateResponse`
 
 
 
-API Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -17826,30 +13153,6 @@ Success. Check the example shown below or refer `ShipmentReasonsResponse` for mo
 
 
 Schema: `ShipmentReasonsResponse`
-
-
-
-
-
-
-
-
-API Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -17898,30 +13201,6 @@ Schema: `ShipmentTrackResponse`
 
 
 
-API Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -17953,30 +13232,6 @@ Success. Check the example shown below or refer `GetShipmentAddressResponse` for
 
 
 Schema: `GetShipmentAddressResponse`
-
-
-
-
-
-
-
-
-API Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -18024,30 +13279,6 @@ Schema: `UpdateShipmentAddressResponse`
 
 
 
-API Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error. See the error object in the response body to know the exact reason.
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -18077,30 +13308,6 @@ Success
 
 
 Schema: `GetPingResponse`
-
-
-
-
-
-
-
-
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -18146,30 +13353,6 @@ Schema: `GetVoiceCallbackResponse`
 
 
 
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -18201,30 +13384,6 @@ Success
 
 
 Schema: `GetClickToCallResponse`
-
-
-
-
-
-
-
-
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
 
 
 
@@ -18279,18 +13438,6 @@ Schema: `DeleteResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -18322,18 +13469,6 @@ The Collection object. See example below or refer `GetSearchWordsDataSchema` for
 
 
 Schema: `GetSearchWordsData`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -18381,68 +13516,6 @@ Schema: `GetSearchWordsDetailResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAllSearchKeyword
-List all Search Custom Keyword Listing
-
-```javascript
-// Promise
-const promise = catalog.getAllSearchKeyword(companyId,applicationId);
-
-// Async/Await
-const data = await catalog.getAllSearchKeyword(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
-
-*Success Response:*
-
-
-
-List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
-
-
-Schema: `GetSearchWordsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -18481,10 +13554,36 @@ Schema: `GetSearchWordsData`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### getAllSearchKeyword
+List all Search Custom Keyword Listing
+
+```javascript
+// Promise
+const promise = catalog.getAllSearchKeyword(companyId,applicationId);
+
+// Async/Await
+const data = await catalog.getAllSearchKeyword(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+
+*Success Response:*
+
+
+
+List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
+
+
+Schema: `GetSearchWordsResponse`
 
 
 
@@ -18532,18 +13631,6 @@ Schema: `DeleteResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -18575,18 +13662,6 @@ The Mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 
 Schema: `GetAutocompleteWordsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -18634,10 +13709,36 @@ Schema: `GetAutocompleteWordsResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### createCustomAutocompleteRule
+Add a Custom Autocomplete Keywords
+
+```javascript
+// Promise
+const promise = catalog.createCustomAutocompleteRule(companyId,applicationId,body);
+
+// Async/Await
+const data = await catalog.createCustomAutocompleteRule(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+
+*Success Response:*
+
+
+
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+
+
+Schema: `CreateAutocompleteWordsResponse`
 
 
 
@@ -18684,60 +13785,35 @@ Schema: `GetAutocompleteWordsResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
 
-#### createCustomAutocompleteRule
-Add a Custom Autocomplete Keywords
+#### createProductBundle
+Create Product Bundle
 
 ```javascript
 // Promise
-const promise = catalog.createCustomAutocompleteRule(companyId,applicationId,body);
+const promise = catalog.createProductBundle(companyId,body);
 
 // Async/Await
-const data = await catalog.createCustomAutocompleteRule(companyId,applicationId,body);
+const data = await catalog.createProductBundle(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 
-Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
 
 *Success Response:*
 
 
 
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
 
 
-Schema: `CreateAutocompleteWordsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
+Schema: `GetProductBundleCreateResponse`
 
 
 
@@ -18784,67 +13860,6 @@ Schema: `GetProductBundleListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createProductBundle
-Create Product Bundle
-
-```javascript
-// Promise
-const promise = catalog.createProductBundle(companyId,body);
-
-// Async/Await
-const data = await catalog.createProductBundle(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-
-*Success Response:*
-
-
-
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
-
-
-Schema: `GetProductBundleCreateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -18875,18 +13890,6 @@ The Collection object. See example below or refer `GetProductBundleCreateRespons
 
 
 Schema: `GetProductBundleCreateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -18933,10 +13936,35 @@ Schema: `GetProductBundleResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### createSizeGuide
+Create a size guide.
+
+```javascript
+// Promise
+const promise = catalog.createSizeGuide(companyId,body);
+
+// Async/Await
+const data = await catalog.createSizeGuide(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the size guide is to be created. | 
+
+This API allows to create a size guide associated to a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -18987,67 +14015,6 @@ Schema: `ListSizeGuide`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createSizeGuide
-Create a size guide.
-
-```javascript
-// Promise
-const promise = catalog.createSizeGuide(companyId,body);
-
-// Async/Await
-const data = await catalog.createSizeGuide(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the size guide is to be created. | 
-
-This API allows to create a size guide associated to a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -19078,18 +14045,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -19136,18 +14091,6 @@ Schema: `SizeGuideResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -19178,68 +14121,6 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 
 
 Schema: `GetCatalogConfigurationMetaData`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getConfigurations
-Get configured details for catalog
-
-```javascript
-// Promise
-const promise = catalog.getConfigurations(companyId,applicationId);
-
-// Async/Await
-const data = await catalog.getConfigurations(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-configured details for catalog.
-
-*Success Response:*
-
-
-
-Get application level configured catalog details. See example below or refer `GetAppCatalogConfigurationSchema` for details
-
-
-Schema: `GetAppCatalogConfiguration`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -19286,38 +14167,25 @@ Schema: `GetAppCatalogConfiguration`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
 
-#### getConfigurationByType
+#### getConfigurations
 Get configured details for catalog
 
 ```javascript
 // Promise
-const promise = catalog.getConfigurationByType(companyId,applicationId,type);
+const promise = catalog.getConfigurations(companyId,applicationId);
 
 // Async/Await
-const data = await catalog.getConfigurationByType(companyId,applicationId,type);
+const data = await catalog.getConfigurations(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| type | string | type can be brands, categories etc. | 
 
 configured details for catalog.
 
@@ -19325,22 +14193,10 @@ configured details for catalog.
 
 
 
-Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+Get application level configured catalog details. See example below or refer `GetAppCatalogConfigurationSchema` for details
 
 
-Schema: `GetAppCatalogEntityConfiguration`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
+Schema: `GetAppCatalogConfiguration`
 
 
 
@@ -19388,10 +14244,37 @@ Schema: `GetAppCatalogConfiguration`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### getConfigurationByType
+Get configured details for catalog
+
+```javascript
+// Promise
+const promise = catalog.getConfigurationByType(companyId,applicationId,type);
+
+// Async/Await
+const data = await catalog.getConfigurationByType(companyId,applicationId,type);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| type | string | type can be brands, categories etc. | 
+
+configured details for catalog.
+
+*Success Response:*
+
+
+
+Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+
+
+Schema: `GetAppCatalogEntityConfiguration`
 
 
 
@@ -19438,68 +14321,6 @@ Schema: `GetCollectionQueryOptionResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAllCollections
-List all the collections
-
-```javascript
-// Promise
-const promise = catalog.getAllCollections(companyId,applicationId);
-
-// Async/Await
-const data = await catalog.getAllCollections(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-
-*Success Response:*
-
-
-
-List of collections. See example below or refer `GetCollectionListingResponse` for details
-
-
-Schema: `GetCollectionListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -19538,10 +14359,36 @@ Schema: `CollectionCreateResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### getAllCollections
+List all the collections
+
+```javascript
+// Promise
+const promise = catalog.getAllCollections(companyId,applicationId);
+
+// Async/Await
+const data = await catalog.getAllCollections(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+
+*Success Response:*
+
+
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+Schema: `GetCollectionListingResponse`
 
 
 
@@ -19589,18 +14436,6 @@ Schema: `CollectionDetailResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -19632,18 +14467,6 @@ Status object. Tells whether the operation was successful. See example below or 
 
 
 Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -19691,10 +14514,37 @@ Schema: `UpdateCollection`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### addCollectionItems
+Add items to a collection
+
+```javascript
+// Promise
+const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier of a collection. | 
+
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful.
+
+
+Schema: `UpdatedResponse`
 
 
 
@@ -19745,69 +14595,6 @@ Schema: `GetCollectionItemsResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addCollectionItems
-Add items to a collection
-
-```javascript
-// Promise
-const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful.
-
-
-Schema: `UpdatedResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -19839,18 +14626,6 @@ Response Data
 
 
 Schema: `CatalogInsightResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -19897,18 +14672,6 @@ Schema: `CrossSellingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -19939,18 +14702,6 @@ See example below or refer `UpdatedResponse` for details.
 
 
 Schema: `UpdatedResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -19996,18 +14747,6 @@ Schema: `GetOptInPlatform`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20037,18 +14776,6 @@ See example below or refer `OptinCompanyDetailSchema` for details
 
 
 Schema: `OptinCompanyDetail`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -20099,18 +14826,6 @@ Schema: `OptinCompanyBrandDetailsView`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20140,18 +14855,6 @@ See example below or refer `OptinCompanyMetrics` for details
 
 
 Schema: `OptinCompanyMetrics`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -20200,18 +14903,6 @@ Schema: `OptinStoreDetails`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20242,18 +14933,6 @@ Size guide object. See example below or refer `GenderDetailSchema` for details
 
 
 Schema: `GenderDetail`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -20293,18 +14972,6 @@ List of all categories attached to departments specified. See example below or r
 
 
 Schema: `ProdcutTemplateCategoriesResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `PTErrorResponse`
 
 
 
@@ -20355,18 +15022,6 @@ Schema: `DepartmentsResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `DepartmentErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20397,18 +15052,6 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
 
 
 Schema: `DepartmentsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `DepartmentErrorResponse`
 
 
 
@@ -20455,18 +15098,6 @@ Schema: `TemplatesResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `PTErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20497,18 +15128,6 @@ List of fields and validation values fro each. See example below or refer `Templ
 
 
 Schema: `TemplatesValidationResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `PTErrorResponse`
 
 
 
@@ -20555,18 +15174,6 @@ Schema: `string`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `PTErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20597,18 +15204,6 @@ CSV File of product template data.
 
 
 Schema: `string`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `PTErrorResponse`
 
 
 
@@ -20655,18 +15250,6 @@ Schema: `InventoryValidationResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `PTErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20704,18 +15287,6 @@ Schema: `HSNCodesResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `PTErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20745,18 +15316,6 @@ List of Product Downloads Data. See example below or refer `ProductDownloadsResp
 
 
 Schema: `ProductDownloadsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `PTErrorResponse`
 
 
 
@@ -20803,10 +15362,35 @@ Schema: `ProductConfigurationDownloads`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `PTErrorResponse`
+#### createCategories
+Create product categories
+
+```javascript
+// Promise
+const promise = catalog.createCategories(companyId,body);
+
+// Async/Await
+const data = await catalog.createCategories(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API lets user create product categories
+
+*Success Response:*
+
+
+
+Category Meta. See example below or refer `CategoryCreateResponse` for details
+
+
+Schema: `CategoryCreateResponse`
 
 
 
@@ -20857,67 +15441,6 @@ Schema: `CategoryResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createCategories
-Create product categories
-
-```javascript
-// Promise
-const promise = catalog.createCategories(companyId,body);
-
-// Async/Await
-const data = await catalog.createCategories(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API lets user create product categories
-
-*Success Response:*
-
-
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
-
-
-Schema: `CategoryCreateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -20948,18 +15471,6 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 Schema: `CategoryUpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -21006,72 +15517,6 @@ Schema: `SingleCategoryResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProducts
-Get product list
-
-```javascript
-// Promise
-const promise = catalog.getProducts(companyId,brandIds,categoryIds,q,pageNo,pageSize);
-
-// Async/Await
-const data = await catalog.getProducts(companyId,brandIds,categoryIds,q,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | number | Get list of products filtered by company Id | 
-| brandIds | array | Get multiple products filtered by brand Ids | 
-| categoryIds | array | Get multiple products filtered by category Ids | 
-| q | string | Get multiple products filtered by q string | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-
-This API gets meta associated to products.
-
-*Success Response:*
-
-
-
-Product Meta. See example below for details
-
-
-Schema: `ProductListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -21109,10 +15554,40 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### getProducts
+Get product list
+
+```javascript
+// Promise
+const promise = catalog.getProducts(companyId,brandIds,categoryIds,q,pageNo,pageSize);
+
+// Async/Await
+const data = await catalog.getProducts(companyId,brandIds,categoryIds,q,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | number | Get list of products filtered by company Id | 
+| brandIds | number | Get multiple products filtered by brand Ids | 
+| categoryIds | number | Get multiple products filtered by category Ids | 
+| q | string | Get multiple products filtered by q string | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+
+This API gets meta associated to products.
+
+*Success Response:*
+
+
+
+Product Meta. See example below for details
+
+
+Schema: `ProductListingResponse`
 
 
 
@@ -21159,18 +15634,6 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -21201,18 +15664,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -21262,18 +15713,6 @@ Schema: `Product`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -21303,18 +15742,6 @@ Validate Meta. See example below for details
 
 
 Schema: `ValidateProduct`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -21364,10 +15791,35 @@ Schema: `ProductListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```javascript
+// Promise
+const promise = catalog.updateProductAssetsInBulk(companyId,body);
+
+// Async/Await
+const data = await catalog.updateProductAssetsInBulk(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -21415,67 +15867,6 @@ Schema: `ProductBulkRequestList`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-```javascript
-// Promise
-const promise = catalog.updateProductAssetsInBulk(companyId,body);
-
-// Async/Await
-const data = await catalog.updateProductAssetsInBulk(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a bulk asset upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -21506,18 +15897,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -21564,18 +15943,6 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -21613,10 +15980,35 @@ Schema: `ProductTagsViewResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```javascript
+// Promise
+const promise = catalog.createProductAssetsInBulk(companyId,body);
+
+// Async/Await
+const data = await catalog.createProductAssetsInBulk(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -21664,67 +16056,6 @@ Schema: `BulkAssetResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-```javascript
-// Promise
-const promise = catalog.createProductAssetsInBulk(companyId,body);
-
-// Async/Await
-const data = await catalog.createProductAssetsInBulk(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a bulk asset upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -21756,72 +16087,6 @@ Returns a success response
 
 
 Schema: `ProductSizeDeleteResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getInventoryBySize
-Get Inventory for company
-
-```javascript
-// Promise
-const promise = catalog.getInventoryBySize(companyId,itemId,size,pageNo,pageSize,q);
-
-// Async/Await
-const data = await catalog.getInventoryBySize(companyId,itemId,size,pageNo,pageSize,q);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | string | Item code of the product of which size is to be get. | 
-| size | string | Size of which inventory is to get. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-| q | string | Search with help of store code. | 
-
-This API allows get Inventory data for particular company grouped by size and store.
-
-*Success Response:*
-
-
-
-returns a list of all inventory grouped by size and store
-
-
-Schema: `InventoryResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -21869,42 +16134,28 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
 
-#### getInventoryBySizeIdentifier
+#### getInventory
 Get Inventory for company
 
 ```javascript
 // Promise
-const promise = catalog.getInventoryBySizeIdentifier(companyId,itemId,sizeIdentifier,pageNo,pageSize,q,locationIds);
+const promise = catalog.getInventory(companyId,itemId,size,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.getInventoryBySizeIdentifier(companyId,itemId,sizeIdentifier,pageNo,pageSize,q,locationIds);
+const data = await catalog.getInventory(companyId,itemId,size,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Id of the company associated to product that is to be viewed. | 
 | itemId | string | Item code of the product of which size is to be get. | 
-| sizeIdentifier | string | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. | 
+| size | string | Size of which inventory is to get. | 
 | pageNo | integer | The page number to navigate through the given set of results | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-| q | string | Search with help of store code. | 
-| locationIds | array | Search by store ids. | 
 
 This API allows get Inventory data for particular company grouped by size and store.
 
@@ -21924,18 +16175,6 @@ Schema: `InventoryResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -21945,16 +16184,15 @@ Delete a Inventory.
 
 ```javascript
 // Promise
-const promise = catalog.deleteInventory(companyId,size,itemId,locationId);
+const promise = catalog.deleteInventory(companyId,itemId,locationId);
 
 // Async/Await
-const data = await catalog.deleteInventory(companyId,size,itemId,locationId);
+const data = await catalog.deleteInventory(companyId,itemId,locationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company Id of the company associated with Inventory that is to be deleted. | 
-| size | string | size that is to be deleted. | 
 | itemId | integer | Id of the product associated with Inventory to be deleted. | 
 | locationId | number | Location ID of store of which inventory is to be deleted. | 
 
@@ -21976,10 +16214,35 @@ Schema: `InventoryDelete`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
+
+```javascript
+// Promise
+const promise = catalog.createBulkInventoryJob(companyId,body);
+
+// Async/Await
+const data = await catalog.createBulkInventoryJob(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which Inventory to be uploaded. | 
+
+This API helps to create a bulk Inventory upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `CommonResponse`
 
 
 
@@ -22027,67 +16290,6 @@ Schema: `BulkInventoryGet`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
-
-```javascript
-// Promise
-const promise = catalog.createBulkInventoryJob(companyId,body);
-
-// Async/Await
-const data = await catalog.createBulkInventoryJob(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which Inventory to be uploaded. | 
-
-This API helps to create a bulk Inventory upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `CommonResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -22097,16 +16299,15 @@ Delete Bulk Inventory job.
 
 ```javascript
 // Promise
-const promise = catalog.deleteBulkInventoryJob(companyId,batchId);
+const promise = catalog.deleteBulkInventoryJob(companyId);
 
 // Async/Await
-const data = await catalog.deleteBulkInventoryJob(companyId,batchId);
+const data = await catalog.deleteBulkInventoryJob(companyId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company Id of the company of which bulk Inventory job is to be deleted. | 
-| batchId | string | Batch Id of the bulk delete job. | 
 
 This API allows to delete bulk Inventory job associated with company.
 
@@ -22126,18 +16327,6 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -22147,16 +16336,15 @@ Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = catalog.createBulkInventory(companyId,batchId,body);
+const promise = catalog.createBulkInventory(companyId,body);
 
 // Async/Await
-const data = await catalog.createBulkInventory(companyId,batchId,body);
+const data = await catalog.createBulkInventory(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | integer | Company Id in which Inventory is to be uploaded. | 
-| batchId | string | Batch Id of the bulk create job. | 
 
 This API helps to create products in bulk push to kafka for approval/creation.
 
@@ -22168,67 +16356,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getInventoryExport
-Get Inventory export history.
-
-```javascript
-// Promise
-const promise = catalog.getInventoryExport(companyId);
-
-// Async/Await
-const data = await catalog.getInventoryExport(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to get Inventory export history.
-
-*Success Response:*
-
-
-
-Returns a list of inventory export jobs
-
-
-Schema: `InventoryExportJob`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -22274,10 +16401,35 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### getInventoryExport
+Get Inventory export history.
+
+```javascript
+// Promise
+const promise = catalog.getInventoryExport(companyId);
+
+// Async/Await
+const data = await catalog.getInventoryExport(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to get Inventory export history.
+
+*Success Response:*
+
+
+
+Returns a list of inventory export jobs
+
+
+Schema: `InventoryExportJob`
 
 
 
@@ -22324,10 +16476,35 @@ Schema: `InventoryConfig`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### createHsnCode
+Create Hsn Code.
+
+```javascript
+// Promise
+const promise = catalog.createHsnCode(companyId,body);
+
+// Async/Await
+const data = await catalog.createHsnCode(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+
+Create Hsn Code.
+
+*Success Response:*
+
+
+
+See example below for details
+
+
+Schema: `HsnCode`
 
 
 
@@ -22376,67 +16553,6 @@ Schema: `HsnCodesListingResponse`
 
 
 
-Bad request.
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createHsnCode
-Create Hsn Code.
-
-```javascript
-// Promise
-const promise = catalog.createHsnCode(companyId,body);
-
-// Async/Await
-const data = await catalog.createHsnCode(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-
-Create Hsn Code.
-
-*Success Response:*
-
-
-
-See example below for details
-
-
-Schema: `HsnCode`
-
-
-
-
-
-
-
-
-Bad request.
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -22467,18 +16583,6 @@ See example below for details
 
 
 Schema: `HsnCode`
-
-
-
-
-
-
-
-
-Bad request.
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -22525,18 +16629,6 @@ Schema: `HsnCode`
 
 
 
-Bad request.
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -22566,18 +16658,6 @@ See example below for details
 
 
 Schema: `BulkHsnResponse`
-
-
-
-
-
-
-
-
-Bad request.
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -22627,18 +16707,6 @@ Schema: `BrandListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -22669,18 +16737,6 @@ List of Departments. See example below or refer `DepartmentResponse` for details
 
 
 Schema: `DepartmentResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -22720,18 +16776,6 @@ List of Categories. See example below or refer `CategoryListingResponse` for det
 
 
 Schema: `CategoryListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -22786,18 +16830,6 @@ Schema: `ApplicationProductListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -22837,18 +16869,6 @@ Schema: `ProductDetail`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -22858,55 +16878,6 @@ Schema: `ErrorResponse`
 
 
 ## CompanyProfile
-
-
-#### cbsOnboardGet
-Get company profile
-
-```javascript
-// Promise
-const promise = companyprofile.cbsOnboardGet(companyId);
-
-// Async/Await
-const data = await companyprofile.cbsOnboardGet(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to view the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
-
-
-Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
 
 
 #### updateCompany
@@ -22942,10 +16913,35 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### cbsOnboardGet
+Get company profile
+
+```javascript
+// Promise
+const promise = companyprofile.cbsOnboardGet(companyId);
+
+// Async/Await
+const data = await companyprofile.cbsOnboardGet(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to view the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+Schema: `GetCompanyProfileSerializerResponse`
 
 
 
@@ -22983,68 +16979,6 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 
 
 Schema: `MetricsSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getBrand
-Get a single brand.
-
-```javascript
-// Promise
-const promise = companyprofile.getBrand(companyId,brandId);
-
-// Async/Await
-const data = await companyprofile.getBrand(companyId,brandId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -23091,10 +17025,36 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### getBrand
+Get a single brand.
+
+```javascript
+// Promise
+const promise = companyprofile.getBrand(companyId,brandId);
+
+// Async/Await
+const data = await companyprofile.getBrand(companyId,brandId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -23132,18 +17092,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -23191,18 +17139,6 @@ Schema: `CompanyBrandListSerializer`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23232,18 +17168,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -23294,18 +17218,6 @@ Schema: `LocationListSerializer`
 
 
 
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23335,68 +17247,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLocationDetail
-Get details of a specific location.
-
-```javascript
-// Promise
-const promise = companyprofile.getLocationDetail(companyId,locationId);
-
-// Async/Await
-const data = await companyprofile.getLocationDetail(companyId,locationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
-
-This API helps to get data associated to a specific location.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-Schema: `GetLocationSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -23443,10 +17293,36 @@ Schema: `SuccessResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+
+---
 
 
-Schema: `ErrorResponse`
+#### getLocationDetail
+Get details of a specific location.
+
+```javascript
+// Promise
+const promise = companyprofile.getLocationDetail(companyId,locationId);
+
+// Async/Await
+const data = await companyprofile.getLocationDetail(companyId,locationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location lies. | 
+| locationId | string | Id of the location which you want to view. | 
+
+This API helps to get data associated to a specific location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
 
 
 
@@ -23484,18 +17360,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
@@ -23567,18 +17431,6 @@ Schema: `StartResponse`
 
 
 
-Failed
-
-
-Schema: `FailedResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23627,18 +17479,6 @@ Success
 
 
 Schema: `CompleteResponse`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `FailedResponse`
 
 
 
@@ -23704,18 +17544,6 @@ Schema: `StartResponse`
 
 
 
-Failed
-
-
-Schema: `FailedResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23773,18 +17601,6 @@ Schema: `CompleteResponse`
 
 
 
-Failed
-
-
-Schema: `FailedResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23814,18 +17630,6 @@ Success
 
 
 Schema: `SignUrlResponse`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `FailedResponse`
 
 
 
@@ -23864,18 +17668,6 @@ Success
 
 
 Schema: `BulkResponse`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `FailedResponse`
 
 
 
@@ -23923,18 +17715,6 @@ Schema: `BulkResponse`
 
 
 
-Failed
-
-
-Schema: `FailedResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23966,18 +17746,6 @@ Success
 
 
 Schema: `BrowseResponse`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `FailedResponse`
 
 
 
@@ -24018,18 +17786,6 @@ Success
 
 
 Schema: `BrowseResponse`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `FailedResponse`
 
 
 
@@ -24121,18 +17877,6 @@ Schema: `ShortLinkRes`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -24168,18 +17912,6 @@ Success
 
 
 Schema: `ShortLinkList`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -24227,18 +17959,6 @@ Schema: `ShortLinkRes`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -24270,18 +17990,6 @@ Success
 
 
 Schema: `ShortLinkRes`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -24336,30 +18044,6 @@ Schema: `ResponseEnvelopeListJobConfigRawDTO`
 
 
 
-Bad Request
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -24382,54 +18066,6 @@ const data = await inventory.updateJob(companyId,body);
 REST Endpoint that updates a job config
 
 *Success Response:*
-
-
-
-Job Config Updated Successfully
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Unauthorized
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
 
 
 
@@ -24459,54 +18095,6 @@ REST Endpoint that creates a new job config
 
 
 Job Config Created Successfully
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Unauthorized
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Job Config Already Exists
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Internal Server Error
 
 
 Schema: `ResponseEnvelopeString`
@@ -24558,30 +18146,6 @@ Schema: `ResponseEnvelopeListJobConfigDTO`
 
 
 
-Bad Request
-
-
-Schema: `ResponseEnvelopeListJobConfigDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeListJobConfigDTO`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -24608,30 +18172,6 @@ REST Endpoint that returns default fields job configs by company And integration
 
 
 Successful operation
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
 
 
 Schema: `ResponseEnvelopeJobConfigDTO`
@@ -24670,30 +18210,6 @@ REST Endpoint that returns job config by code
 
 
 Successful operation
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
 
 
 Schema: `ResponseEnvelopeJobConfigDTO`
@@ -24745,30 +18261,6 @@ Schema: `ResponseEnvelopeJobMetricsDto`
 
 
 
-Bad Request
-
-
-Schema: `ResponseEnvelopeJobMetricsDto`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeJobMetricsDto`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -24798,30 +18290,6 @@ REST Endpoint that returns all job codes by company And integration
 
 
 Successful operation
-
-
-Schema: `ResponseEnvelopeListJobConfigListDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeListJobConfigListDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
 
 
 Schema: `ResponseEnvelopeListJobConfigListDTO`
@@ -24987,18 +18455,6 @@ Success
 
 
 Schema: `AppFeatureResponse`
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
 
 
 
@@ -25621,18 +19077,6 @@ Schema: `DeploymentMeta`
 
 
 
-Invalid/Missing params
-
-
-Schema: `InvalidPayloadRequest`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -25709,49 +19153,6 @@ Schema: `Domain`
 
 
 
-Invalid/Missing params
-
-
-Schema: `InvalidPayloadRequest`
-
-
-*Examples:*
-
-
-Maximum domain limit reached
-```json
-{
-  "value": {
-    "message": "Maximum 4 domains can be added to application. Please remove existing one to add new"
-  }
-}
-```
-
-Failed to verify domain record
-```json
-{
-  "value": {
-    "message": "Failed to verify domain records"
-  }
-}
-```
-
-Domain already registered
-```json
-{
-  "value": {
-    "message": "Domain already linked to application"
-  }
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -25791,43 +19192,6 @@ Schema: `SuccessMessageResponse`
 
 
 
-Invalid request or Missing params
-
-
-Schema: `InvalidPayloadRequest`
-
-
-*Examples:*
-
-
-Primary or Shortlink or Default domain deletiion
-```json
-{
-  "value": {
-    "message": "Primary domain deletion not allowed"
-  }
-}
-```
-
-
-
-
-
-
-
-
-Invalid/Missing params
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -25858,18 +19222,6 @@ Success
 
 
 Schema: `DomainsResponse`
-
-
-
-
-
-
-
-
-Invalid/Missing params
-
-
-Schema: `NotFound`
 
 
 
@@ -26290,7 +19642,7 @@ const data = await configuration.getIntegrationLevelConfig(companyId,id,level,op
 | opted | boolean | Filter on opted stores | 
 | checkPermission | boolean | Filter on if permissions are present | 
 
-Get integration/integration-opt-in level config
+Get integration level config
 
 *Success Response:*
 
@@ -26581,18 +19933,6 @@ Schema: `OptedApplicationResponse`
 
 
 
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -26623,70 +19963,6 @@ Success
 
 
 Schema: `SuccessMessageResponse`
-
-
-
-
-
-
-
-
-Invalid params or Not configured inventory
-
-
-Schema: `InvalidPayloadRequest`
-
-
-*Examples:*
-
-
-Missing parameter
-```json
-{
-  "value": {
-    "message": "Invalid opt out request data. Either of `store` and `company` fields are missing"
-  }
-}
-```
-
-Company other than current company sent for opt out
-```json
-{
-  "value": {
-    "message": "Invalid company id"
-  }
-}
-```
-
-Store other than current company sent for opt out
-```json
-{
-  "value": {
-    "message": "Invalid store ids"
-  }
-}
-```
-
-Inventory not configured for sent application id
-```json
-{
-  "value": {
-    "message": "Inventory is not configured"
-  }
-}
-```
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
 
 
 
@@ -26829,44 +20105,6 @@ Create new coupon
 
 
 
-Coupon Created successfully
-
-
-Schema: `SuccessMessage`
-
-
-
-
-
-
-
-
-Invalid coupon data or existing coupon code
-
-
-Schema: `OperationErrorResponse`
-
-
-*Examples:*
-
-
-Coupon code exists
-```json
-{
-  "value": {
-    "success": false,
-    "message": "Coupon already code exist"
-  }
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -26906,18 +20144,6 @@ Schema: `CouponUpdate`
 
 
 
-Coupon not found for passed `id`
-
-
-Schema: `OperationErrorResponse`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -26949,18 +20175,6 @@ Coupon updated successfully
 
 
 Schema: `SuccessMessage`
-
-
-
-
-
-
-
-
-Coupon not found for `id` from path params
-
-
-Schema: `OperationErrorResponse`
 
 
 
@@ -27032,870 +20246,6 @@ Coupon schedule updated successfully
 
 
 
-Coupon not found for `id` from path params
-
-
-Schema: `OperationErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### fetchCartItems
-Fetch Cart Details
-
-```javascript
-// Promise
-const promise = cart.fetchCartItems(companyId,applicationId,cartItems);
-
-// Async/Await
-const data = await cart.fetchCartItems(companyId,applicationId,cartItems);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| cartItems | array |  | 
-
-Get all the details of cart for a list of provided `cart_items`
-
-*Success Response:*
-
-
-
-Cart details with breakup
-
-
-Schema: `CartDetail`
-
-
-
-
-
-
-
-
-Invalid Cart Items
-
-
-
-
-
-
----
-
-
-#### fetchAndvalidateCartItems
-Fetch Cart Details
-
-```javascript
-// Promise
-const promise = cart.fetchAndvalidateCartItems(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.fetchAndvalidateCartItems(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Get all the details of cart for a list of provided `cart_items`
-
-*Success Response:*
-
-
-
-Cart details with breakup
-
-
-Schema: `OpenapiCartDetailsResponse`
-
-
-
-
-
-
-
-
-Invalid Cart Items
-
-
-Schema: `Object`
-
-
-*Examples:*
-
-
-Item not found on system
-```json
-{
-  "value": {
-    "message": "Item id does not exists",
-    "error": {
-      "invalid_item_id": [
-        "1234",
-        "2345"
-      ]
-    }
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### checkCartServiceability
-Check Pincode Serviceability
-
-```javascript
-// Promise
-const promise = cart.checkCartServiceability(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.checkCartServiceability(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
-
-*Success Response:*
-
-
-
-Cart details with pincode validity information at item level
-
-
-Schema: `CartDetailsResponseSerializer`
-
-
-*Examples:*
-
-
-Valid pincode
-```json
-{
-  "value": {
-    "items": [
-      {
-        "quantity": 1,
-        "message": "",
-        "coupon_message": "",
-        "product": {
-          "type": "product",
-          "uid": 803140,
-          "name": "Green Solid T-Shirt",
-          "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
-          "brand": {
-            "uid": 44,
-            "name": "celio"
-          },
-          "categories": [
-            {
-              "uid": 192,
-              "name": "T-Shirts"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
-            "query": {
-              "product_slug": [
-                "celio-green-solid-t-shirt-803140-dd9e2c"
-              ]
-            }
-          }
-        },
-        "article": {
-          "type": "article",
-          "uid": "25_44_A7050_NEMIEL@GREENBRITISH_S",
-          "size": "S",
-          "seller": {
-            "uid": 25,
-            "name": "CELIO FUTURE FASHION PRIVATE LIMITED"
-          },
-          "store": {
-            "uid": 1486,
-            "name": "Forum Mall"
-          },
-          "quantity": 1,
-          "price": {
-            "base": {
-              "marked": 1299,
-              "effective": 649.5,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 1299,
-              "effective": 649.5,
-              "currency_code": "INR"
-            }
-          }
-        },
-        "key": "803140_S",
-        "discount": "50% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 649.5,
-            "selling": 649.5,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 649.5,
-            "selling": 649.5,
-            "currency_code": "INR"
-          }
-        },
-        "availability": {
-          "sizes": [
-            "L",
-            "XL",
-            "M",
-            "S"
-          ],
-          "other_store_quantity": 0,
-          "out_of_stock": false,
-          "deliverable": true,
-          "is_valid": true,
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1605306343,
-              "max": 1605468343
-            },
-            "formatted": {
-              "min": "Sat, 14 Nov",
-              "max": "Mon, 16 Nov"
-            }
-          },
-          "available_sizes": [
-            {
-              "is_available": true,
-              "display": "L",
-              "value": "L"
-            },
-            {
-              "is_available": true,
-              "display": "XXL",
-              "value": "XXL"
-            },
-            {
-              "is_available": true,
-              "display": "XL",
-              "value": "XL"
-            },
-            {
-              "is_available": true,
-              "display": "M",
-              "value": "M"
-            },
-            {
-              "is_available": true,
-              "display": "S",
-              "value": "S"
-            },
-            {
-              "is_available": false,
-              "display": "30",
-              "value": "30"
-            }
-          ]
-        },
-        "bulk_offer": {}
-      },
-      {
-        "quantity": 1,
-        "message": "Out of stock. Please remove item",
-        "coupon_message": "",
-        "product": {
-          "type": "product",
-          "uid": 803140,
-          "name": "Green Solid T-Shirt",
-          "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
-          "brand": {
-            "uid": 44,
-            "name": "celio"
-          },
-          "categories": [
-            {
-              "uid": 192,
-              "name": "T-Shirts"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
-            "query": {
-              "product_slug": [
-                "celio-green-solid-t-shirt-803140-dd9e2c"
-              ]
-            }
-          }
-        },
-        "article": {},
-        "key": "803140_S",
-        "discount": "",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 1299,
-            "selling": 1299,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 1299,
-            "selling": 1299,
-            "currency_code": "INR"
-          }
-        },
-        "availability": {
-          "sizes": [
-            "L",
-            "XXL",
-            "XL",
-            "M",
-            "S"
-          ],
-          "other_store_quantity": 0,
-          "out_of_stock": true,
-          "deliverable": false,
-          "is_valid": false,
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1605306343,
-              "max": 1605468343
-            },
-            "formatted": {
-              "min": "Sat, 14 Nov",
-              "max": "Mon, 16 Nov"
-            }
-          },
-          "available_sizes": [
-            {
-              "is_available": true,
-              "display": "L",
-              "value": "L"
-            },
-            {
-              "is_available": true,
-              "display": "XXL",
-              "value": "XXL"
-            },
-            {
-              "is_available": true,
-              "display": "XL",
-              "value": "XL"
-            },
-            {
-              "is_available": true,
-              "display": "M",
-              "value": "M"
-            },
-            {
-              "is_available": true,
-              "display": "S",
-              "value": "S"
-            },
-            {
-              "is_available": false,
-              "display": "30",
-              "value": "30"
-            }
-          ]
-        },
-        "bulk_offer": {}
-      }
-    ],
-    "delivery_promise": {
-      "timestamp": {
-        "min": 1605306343,
-        "max": 1605468343
-      },
-      "formatted": {
-        "min": "Sat, 14 Nov",
-        "max": "Mon, 16 Nov"
-      }
-    },
-    "is_valid": true
-  }
-}
-```
-
-Invalid pincode
-```json
-{
-  "value": {
-    "message": "All of the items in your cart are not deliverable to 800108",
-    "is_valid": false,
-    "items": [
-      {
-        "discount": "15% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          }
-        },
-        "product": {
-          "type": "product",
-          "uid": 876245,
-          "name": "Brown Sandals",
-          "slug": "red-chief-brown-sandals-876245-c92507",
-          "brand": {
-            "uid": 433,
-            "name": ""
-          },
-          "categories": [
-            {
-              "uid": 176,
-              "name": ""
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/red-chief-brown-sandals-876245-c92507/",
-            "query": {
-              "product_slug": [
-                "red-chief-brown-sandals-876245-c92507"
-              ]
-            }
-          },
-          "item_code": "RC330004"
-        },
-        "bulk_offer": {},
-        "key": "876245_6",
-        "message": "We are not delivering to 800108",
-        "delivery_promise": null,
-        "coupon_message": "",
-        "availability": {
-          "sizes": [
-            "7",
-            "6",
-            "10",
-            "8"
-          ],
-          "other_store_quantity": 21,
-          "out_of_stock": false,
-          "deliverable": false,
-          "is_valid": true,
-          "available_sizes": [
-            {
-              "is_available": false,
-              "display": "9",
-              "value": "9"
-            },
-            {
-              "is_available": true,
-              "display": "10",
-              "value": "10"
-            },
-            {
-              "is_available": true,
-              "display": "6",
-              "value": "6"
-            },
-            {
-              "is_available": true,
-              "display": "7",
-              "value": "7"
-            },
-            {
-              "is_available": true,
-              "display": "8",
-              "value": "8"
-            }
-          ]
-        },
-        "quantity": 1,
-        "article": {
-          "type": "article",
-          "uid": "304_433_LGPL30402_RC330004_6",
-          "size": "6",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 9767,
-            "name": "Udyog Kunj, Kanpur"
-          },
-          "quantity": 3,
-          "price": {
-            "base": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            }
-          }
-        }
-      },
-      {
-        "discount": "15% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          }
-        },
-        "product": {
-          "type": "product",
-          "uid": 876245,
-          "name": "Brown Sandals",
-          "slug": "red-chief-brown-sandals-876245-c92507",
-          "brand": {
-            "uid": 433,
-            "name": ""
-          },
-          "categories": [
-            {
-              "uid": 176,
-              "name": ""
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/red-chief-brown-sandals-876245-c92507/",
-            "query": {
-              "product_slug": [
-                "red-chief-brown-sandals-876245-c92507"
-              ]
-            }
-          },
-          "item_code": "RC330004"
-        },
-        "bulk_offer": {},
-        "key": "876245_6",
-        "message": "We are not delivering to 800108",
-        "coupon_message": "",
-        "availability": {
-          "sizes": [
-            "7",
-            "6",
-            "10",
-            "8"
-          ],
-          "other_store_quantity": 21,
-          "out_of_stock": false,
-          "deliverable": false,
-          "is_valid": true,
-          "available_sizes": [
-            {
-              "is_available": false,
-              "display": "9",
-              "value": "9"
-            },
-            {
-              "is_available": true,
-              "display": "10",
-              "value": "10"
-            },
-            {
-              "is_available": true,
-              "display": "6",
-              "value": "6"
-            },
-            {
-              "is_available": true,
-              "display": "7",
-              "value": "7"
-            },
-            {
-              "is_available": true,
-              "display": "8",
-              "value": "8"
-            }
-          ]
-        },
-        "quantity": 1,
-        "article": {
-          "type": "article",
-          "uid": "304_433_LGPL30402_RC330004_6",
-          "size": "6",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 9767,
-            "name": "Udyog Kunj, Kanpur"
-          },
-          "quantity": 3,
-          "price": {
-            "base": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            }
-          }
-        }
-      }
-    ]
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### checkoutCartItems
-Create Fynd order with cart details
-
-```javascript
-// Promise
-const promise = cart.checkoutCartItems(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.checkoutCartItems(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Generate Fynd order for cart details send with provided `cart_items`
-
-*Success Response:*
-
-
-
-Checkout cart and create Fynd order id
-
-
-Schema: `Object`
-
-
-
-
-
-
-
-
-Invalid Cart Items or Invalid request hash or Invalid Calculation. Invalid cart calculation will trigger if difference of values is greater than ₹1.
-
-
-Schema: `Object`
-
-
-*Examples:*
-
-
-Invalid request hash
-```json
-{
-  "value": {
-    "success": false,
-    "message": "Invalid hash, make sure your are using correct secret key"
-  }
-}
-```
-
-Invalid calculation
-```json
-{
-  "value": {
-    "success": false,
-    "message": "Values at cart and items are mismatched",
-    "errors": {
-      "cashback_applied": "cashback_applied mismatched by 10.0 in cart",
-      "cod_charges": "cod_charges mismatched by 20.0 in cart",
-      "coupon_effective_discount": "coupon_effective_discount mismatched by 20.0 in cart",
-      "delivery_charges": "delivery_charges mismatched by 20.0 in cart",
-      "amount_paid": "amount_paid mismatched by 12582.0 in cart"
-    }
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateCheckoutPaymentStatus
-Confirm payment on Fynd order id
-
-```javascript
-// Promise
-const promise = cart.updateCheckoutPaymentStatus(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.updateCheckoutPaymentStatus(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Confirm paymet successful status for sent `order_id`
-
-*Success Response:*
-
-
-
-Confirm payment successful status on Fynd order id
-
-
-Schema: `Object`
-
-
-*Examples:*
-
-
-Successful order creation
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Order Confirmed",
-    "order_id": "FY5E18CE260BF00FB214"
-  }
-}
-```
-
-Order creation failed due to error
-```json
-{
-  "value": {
-    "success": false,
-    "message": "Some error occured while confirming order payment"
-  }
-}
-```
-
-
-
-
-
-
-
-
-Invalid request hash
-
-
-Schema: `Object`
-
-
-*Examples:*
-
-
-Invalid Hash
-```json
-{
-  "value": {
-    "success": false,
-    "message": "Invalid hash, make sure your are using correct secret key"
-  }
-}
-```
-
-
-
-
-
-
-
-
 
 ---
 
@@ -27943,18 +20293,6 @@ Schema: `GiveawayResponse`
 
 
 
-Bad request
-
-
-Schema: `E`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -27985,18 +20323,6 @@ ok
 
 
 Schema: `Giveaway`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `E`
 
 
 
@@ -28044,18 +20370,6 @@ Schema: `Giveaway`
 
 
 
-Bad request
-
-
-Schema: `E`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -28095,18 +20409,6 @@ Schema: `Giveaway`
 
 
 
-Bad request
-
-
-Schema: `E`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -28137,18 +20439,6 @@ ok
 
 
 Schema: `Array<Offer>`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `E`
 
 
 
@@ -28197,18 +20487,6 @@ Schema: `Offer`
 
 
 
-Bad request
-
-
-Schema: `E`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -28240,18 +20518,6 @@ ok
 
 
 Schema: `Offer`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `E`
 
 
 
@@ -28299,18 +20565,6 @@ Schema: `UserRes`
 
 
 
-Bad request
-
-
-Schema: `E`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -28342,18 +20596,6 @@ Success
 
 
 Schema: `AppUser`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `E`
 
 
 
@@ -28397,18 +20639,6 @@ ok
 
 
 Schema: `HistoryRes`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `E`
 
 
 
@@ -28462,18 +20692,6 @@ Schema: `StatsGroups`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -28505,18 +20723,6 @@ Success
 
 
 Schema: `StatsGroupComponents`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -28564,18 +20770,6 @@ Schema: `string`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -28615,18 +20809,6 @@ Schema: `string`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -28658,18 +20840,6 @@ Success
 
 
 Schema: `StatsRes`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -28720,18 +20890,6 @@ Schema: `AbandonCartsList`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -28764,18 +20922,6 @@ Success
 
 
 Schema: `string`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -29033,18 +21179,6 @@ Schema: `ListOrCalender`
 
 
 
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -29074,18 +21208,6 @@ Success
 
 
 Schema: `DiscountJob`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
 
 
 
@@ -29132,18 +21254,6 @@ Schema: `DiscountJob`
 
 
 
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -29174,18 +21284,6 @@ Success
 
 
 Schema: `DiscountJob`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
 
 
 
@@ -29232,18 +21330,6 @@ Schema: `FileJobResponse`
 
 
 
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -29274,18 +21360,6 @@ Success
 
 
 Schema: `FileJobResponse`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
 
 
 
@@ -29332,18 +21406,6 @@ Schema: `FileJobResponse`
 
 
 
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -29374,18 +21436,6 @@ Success
 
 
 Schema: `CancelJobResponse`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
 
 
 
@@ -29432,18 +21482,6 @@ Schema: `FileJobResponse`
 
 
 
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -29474,18 +21512,6 @@ Success
 
 
 Schema: `CancelJobResponse`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
 
 
 
@@ -29540,18 +21566,6 @@ Schema: `AddProxyResponse`
 
 
 
-Duplicate proxy path
-
-
-Schema: `ApiError`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -29577,30 +21591,6 @@ const data = await partner.removeProxyPath(companyId,applicationId,extensionId,a
 Remove proxy path for external url
 
 *Success Response:*
-
-
-
-Success
-
-
-Schema: `RemoveProxyResponse`
-
-
-
-
-
-
-
-
-Entry not found attached path
-
-
-Schema: `ApiError`
-
-
-
-
-
 
 
 
