@@ -184,13 +184,13 @@ export class PaymentValidator {
     static getUserBeneficiaries(): any;
 }
 export class CatalogValidator {
-    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
@@ -260,11 +260,6 @@ export class CartValidator {
     static getCouponById(): any;
     static updateCoupon(): any;
     static updateCouponPartially(): any;
-    static fetchCartItems(): any;
-    static fetchAndvalidateCartItems(): any;
-    static checkCartServiceability(): any;
-    static checkoutCartItems(): any;
-    static updateCheckoutPaymentStatus(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;

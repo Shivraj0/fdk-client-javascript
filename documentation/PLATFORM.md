@@ -274,13 +274,13 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [deleteSearchKeywords](#deletesearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
     * [createCustomKeyword](#createcustomkeyword)
     * [getAllSearchKeyword](#getallsearchkeyword)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getAutocompleteConfig](#getautocompleteconfig)
@@ -331,15 +331,15 @@
     * [getCategoryData](#getcategorydata)
     * [createProduct](#createproduct)
     * [getProducts](#getproducts)
-    * [deleteProduct](#deleteproduct)
     * [editProduct](#editproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProduct](#getproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
-    * [deleteProductBulkJob](#deleteproductbulkjob)
     * [createProductsInBulk](#createproductsinbulk)
+    * [deleteProductBulkJob](#deleteproductbulkjob)
     * [getCompanyTags](#getcompanytags)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [getProductAssetsInBulk](#getproductassetsinbulk)
@@ -350,8 +350,8 @@
     * [deleteInventory](#deleteinventory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
     * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
-    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [createBulkInventory](#createbulkinventory)
+    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [createInventoryExportJob](#createinventoryexportjob)
     * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
@@ -369,18 +369,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
     * [createLocation](#createlocation)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -471,11 +471,6 @@
     * [getCouponById](#getcouponbyid)
     * [updateCoupon](#updatecoupon)
     * [updateCouponPartially](#updatecouponpartially)
-    * [fetchCartItems](#fetchcartitems)
-    * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
-    * [checkCartServiceability](#checkcartserviceability)
-    * [checkoutCartItems](#checkoutcartitems)
-    * [updateCheckoutPaymentStatus](#updatecheckoutpaymentstatus)
     
 
 * [Rewards](#Rewards)
@@ -12626,45 +12621,6 @@ Schema: `OrderBeneficiaryResponse`
 ## Catalog
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
-
-```javascript
-// Promise
-const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateSearchKeywords
 Update Search Keyword
 
@@ -12692,6 +12648,45 @@ The Collection object. See example below or refer `GetSearchWordsDataSchema` for
 
 
 Schema: `GetSearchWordsData`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSearchKeywords
+Delete a Search Keywords
+
+```javascript
+// Promise
+const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -12819,45 +12814,6 @@ Schema: `GetSearchWordsResponse`
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
-
-```javascript
-// Promise
-const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateAutocompleteKeyword
 Create & Update Autocomplete Keyword
 
@@ -12885,6 +12841,45 @@ The Mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 
 Schema: `GetAutocompleteWordsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
+
+```javascript
+// Promise
+const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -14824,23 +14819,23 @@ Schema: `ProductListingResponse`
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### editProduct
+Edit a product.
 
 ```javascript
 // Promise
-const promise = catalog.deleteProduct(companyId,itemId);
+const promise = catalog.editProduct(companyId,itemId,body);
 
 // Async/Await
-const data = await catalog.deleteProduct(companyId,itemId);
+const data = await catalog.editProduct(companyId,itemId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to product that is to be deleted. | 
+| companyId | string | Id of the company associated to product that is to be viewed. | 
 | itemId | integer | Id of the product to be updated. | 
 
-This API allows to delete product.
+This API allows to edit product.
 
 *Success Response:*
 
@@ -14862,23 +14857,23 @@ Schema: `SuccessResponse`
 ---
 
 
-#### editProduct
-Edit a product.
+#### deleteProduct
+Delete a product.
 
 ```javascript
 // Promise
-const promise = catalog.editProduct(companyId,itemId,body);
+const promise = catalog.deleteProduct(companyId,itemId);
 
 // Async/Await
-const data = await catalog.editProduct(companyId,itemId,body);
+const data = await catalog.deleteProduct(companyId,itemId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
+| companyId | string | Company Id of the company associated to product that is to be deleted. | 
 | itemId | integer | Id of the product to be updated. | 
 
-This API allows to edit product.
+This API allows to delete product.
 
 *Success Response:*
 
@@ -15095,23 +15090,23 @@ Schema: `ProductBulkRequestList`
 ---
 
 
-#### deleteProductBulkJob
-Delete Bulk product job.
+#### createProductsInBulk
+Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = catalog.deleteProductBulkJob(companyId,batchId);
+const promise = catalog.createProductsInBulk(companyId,batchId,body);
 
 // Async/Await
-const data = await catalog.deleteProductBulkJob(companyId,batchId);
+const data = await catalog.createProductsInBulk(companyId,batchId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to size that is to be deleted. | 
-| batchId | integer | Batch Id of the bulk product job to be deleted. | 
+| companyId | integer | Company Id in which assets to be uploaded. | 
+| batchId | string | Batch Id in which assets to be uploaded. | 
 
-This API allows to delete bulk product job associated with company.
+This API helps to create products in bulk push to kafka for approval/creation.
 
 *Success Response:*
 
@@ -15133,23 +15128,23 @@ Schema: `SuccessResponse`
 ---
 
 
-#### createProductsInBulk
-Create products in bulk associated with given batch Id.
+#### deleteProductBulkJob
+Delete Bulk product job.
 
 ```javascript
 // Promise
-const promise = catalog.createProductsInBulk(companyId,batchId,body);
+const promise = catalog.deleteProductBulkJob(companyId,batchId);
 
 // Async/Await
-const data = await catalog.createProductsInBulk(companyId,batchId,body);
+const data = await catalog.deleteProductBulkJob(companyId,batchId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-| batchId | string | Batch Id in which assets to be uploaded. | 
+| companyId | string | Company Id of the company associated to size that is to be deleted. | 
+| batchId | integer | Batch Id of the bulk product job to be deleted. | 
 
-This API helps to create products in bulk push to kafka for approval/creation.
+This API allows to delete bulk product job associated with company.
 
 *Success Response:*
 
@@ -15563,23 +15558,23 @@ Schema: `BulkInventoryGet`
 ---
 
 
-#### deleteBulkInventoryJob
-Delete Bulk Inventory job.
+#### createBulkInventory
+Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = catalog.deleteBulkInventoryJob(companyId,batchId);
+const promise = catalog.createBulkInventory(companyId,batchId,body);
 
 // Async/Await
-const data = await catalog.deleteBulkInventoryJob(companyId,batchId);
+const data = await catalog.createBulkInventory(companyId,batchId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id of the company of which bulk Inventory job is to be deleted. | 
-| batchId | string | Batch Id of the bulk delete job. | 
+| companyId | integer | Company Id in which Inventory is to be uploaded. | 
+| batchId | string | Batch Id of the bulk create job. | 
 
-This API allows to delete bulk Inventory job associated with company.
+This API helps to create products in bulk push to kafka for approval/creation.
 
 *Success Response:*
 
@@ -15601,23 +15596,23 @@ Schema: `SuccessResponse`
 ---
 
 
-#### createBulkInventory
-Create products in bulk associated with given batch Id.
+#### deleteBulkInventoryJob
+Delete Bulk Inventory job.
 
 ```javascript
 // Promise
-const promise = catalog.createBulkInventory(companyId,batchId,body);
+const promise = catalog.deleteBulkInventoryJob(companyId,batchId);
 
 // Async/Await
-const data = await catalog.createBulkInventory(companyId,batchId,body);
+const data = await catalog.deleteBulkInventoryJob(companyId,batchId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | integer | Company Id in which Inventory is to be uploaded. | 
-| batchId | string | Batch Id of the bulk create job. | 
+| companyId | string | Company Id of the company of which bulk Inventory job is to be deleted. | 
+| batchId | string | Batch Id of the bulk delete job. | 
 
-This API helps to create products in bulk push to kafka for approval/creation.
+This API allows to delete bulk Inventory job associated with company.
 
 *Success Response:*
 
@@ -16151,43 +16146,6 @@ Schema: `ProductDetail`
 ## CompanyProfile
 
 
-#### cbsOnboardGet
-Get company profile
-
-```javascript
-// Promise
-const promise = companyprofile.cbsOnboardGet(companyId);
-
-// Async/Await
-const data = await companyprofile.cbsOnboardGet(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to view the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
-
-
-Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCompany
 Edit company profile
 
@@ -16213,6 +16171,43 @@ Returns a success message
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cbsOnboardGet
+Get company profile
+
+```javascript
+// Promise
+const promise = companyprofile.cbsOnboardGet(companyId);
+
+// Async/Await
+const data = await companyprofile.cbsOnboardGet(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to view the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+Schema: `GetCompanyProfileSerializerResponse`
 
 
 
@@ -16262,44 +16257,6 @@ Schema: `MetricsSerializer`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -16326,6 +16283,44 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 
 
 Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+```javascript
+// Promise
+const promise = companyprofile.editBrand(companyId,brandId,body);
+
+// Async/Await
+const data = await companyprofile.editBrand(companyId,brandId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API allows to edit meta of a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -16530,44 +16525,6 @@ Schema: `LocationListSerializer`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
-
-// Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getLocationDetail
 Get details of a specific location.
 
@@ -16594,6 +16551,44 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -19506,752 +19501,6 @@ Coupon schedule updated successfully
   "value": {
     "success": true,
     "message": "Coupon schedule updated"
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### fetchCartItems
-Fetch Cart Details
-
-```javascript
-// Promise
-const promise = cart.fetchCartItems(companyId,applicationId,cartItems);
-
-// Async/Await
-const data = await cart.fetchCartItems(companyId,applicationId,cartItems);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| cartItems | array |  | 
-
-Get all the details of cart for a list of provided `cart_items`
-
-*Success Response:*
-
-
-
-Cart details with breakup
-
-
-Schema: `CartDetail`
-
-
-
-
-
-
-
-
-
----
-
-
-#### fetchAndvalidateCartItems
-Fetch Cart Details
-
-```javascript
-// Promise
-const promise = cart.fetchAndvalidateCartItems(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.fetchAndvalidateCartItems(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Get all the details of cart for a list of provided `cart_items`
-
-*Success Response:*
-
-
-
-Cart details with breakup
-
-
-Schema: `OpenapiCartDetailsResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### checkCartServiceability
-Check Pincode Serviceability
-
-```javascript
-// Promise
-const promise = cart.checkCartServiceability(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.checkCartServiceability(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
-
-*Success Response:*
-
-
-
-Cart details with pincode validity information at item level
-
-
-Schema: `CartDetailsResponseSerializer`
-
-
-*Examples:*
-
-
-Valid pincode
-```json
-{
-  "value": {
-    "items": [
-      {
-        "quantity": 1,
-        "message": "",
-        "coupon_message": "",
-        "product": {
-          "type": "product",
-          "uid": 803140,
-          "name": "Green Solid T-Shirt",
-          "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
-          "brand": {
-            "uid": 44,
-            "name": "celio"
-          },
-          "categories": [
-            {
-              "uid": 192,
-              "name": "T-Shirts"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
-            "query": {
-              "product_slug": [
-                "celio-green-solid-t-shirt-803140-dd9e2c"
-              ]
-            }
-          }
-        },
-        "article": {
-          "type": "article",
-          "uid": "25_44_A7050_NEMIEL@GREENBRITISH_S",
-          "size": "S",
-          "seller": {
-            "uid": 25,
-            "name": "CELIO FUTURE FASHION PRIVATE LIMITED"
-          },
-          "store": {
-            "uid": 1486,
-            "name": "Forum Mall"
-          },
-          "quantity": 1,
-          "price": {
-            "base": {
-              "marked": 1299,
-              "effective": 649.5,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 1299,
-              "effective": 649.5,
-              "currency_code": "INR"
-            }
-          }
-        },
-        "key": "803140_S",
-        "discount": "50% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 649.5,
-            "selling": 649.5,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 649.5,
-            "selling": 649.5,
-            "currency_code": "INR"
-          }
-        },
-        "availability": {
-          "sizes": [
-            "L",
-            "XL",
-            "M",
-            "S"
-          ],
-          "other_store_quantity": 0,
-          "out_of_stock": false,
-          "deliverable": true,
-          "is_valid": true,
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1605306343,
-              "max": 1605468343
-            },
-            "formatted": {
-              "min": "Sat, 14 Nov",
-              "max": "Mon, 16 Nov"
-            }
-          },
-          "available_sizes": [
-            {
-              "is_available": true,
-              "display": "L",
-              "value": "L"
-            },
-            {
-              "is_available": true,
-              "display": "XXL",
-              "value": "XXL"
-            },
-            {
-              "is_available": true,
-              "display": "XL",
-              "value": "XL"
-            },
-            {
-              "is_available": true,
-              "display": "M",
-              "value": "M"
-            },
-            {
-              "is_available": true,
-              "display": "S",
-              "value": "S"
-            },
-            {
-              "is_available": false,
-              "display": "30",
-              "value": "30"
-            }
-          ]
-        },
-        "bulk_offer": {}
-      },
-      {
-        "quantity": 1,
-        "message": "Out of stock. Please remove item",
-        "coupon_message": "",
-        "product": {
-          "type": "product",
-          "uid": 803140,
-          "name": "Green Solid T-Shirt",
-          "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
-          "brand": {
-            "uid": 44,
-            "name": "celio"
-          },
-          "categories": [
-            {
-              "uid": 192,
-              "name": "T-Shirts"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
-            "query": {
-              "product_slug": [
-                "celio-green-solid-t-shirt-803140-dd9e2c"
-              ]
-            }
-          }
-        },
-        "article": {},
-        "key": "803140_S",
-        "discount": "",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 1299,
-            "selling": 1299,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 1299,
-            "selling": 1299,
-            "currency_code": "INR"
-          }
-        },
-        "availability": {
-          "sizes": [
-            "L",
-            "XXL",
-            "XL",
-            "M",
-            "S"
-          ],
-          "other_store_quantity": 0,
-          "out_of_stock": true,
-          "deliverable": false,
-          "is_valid": false,
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1605306343,
-              "max": 1605468343
-            },
-            "formatted": {
-              "min": "Sat, 14 Nov",
-              "max": "Mon, 16 Nov"
-            }
-          },
-          "available_sizes": [
-            {
-              "is_available": true,
-              "display": "L",
-              "value": "L"
-            },
-            {
-              "is_available": true,
-              "display": "XXL",
-              "value": "XXL"
-            },
-            {
-              "is_available": true,
-              "display": "XL",
-              "value": "XL"
-            },
-            {
-              "is_available": true,
-              "display": "M",
-              "value": "M"
-            },
-            {
-              "is_available": true,
-              "display": "S",
-              "value": "S"
-            },
-            {
-              "is_available": false,
-              "display": "30",
-              "value": "30"
-            }
-          ]
-        },
-        "bulk_offer": {}
-      }
-    ],
-    "delivery_promise": {
-      "timestamp": {
-        "min": 1605306343,
-        "max": 1605468343
-      },
-      "formatted": {
-        "min": "Sat, 14 Nov",
-        "max": "Mon, 16 Nov"
-      }
-    },
-    "is_valid": true
-  }
-}
-```
-
-Invalid pincode
-```json
-{
-  "value": {
-    "message": "All of the items in your cart are not deliverable to 800108",
-    "is_valid": false,
-    "items": [
-      {
-        "discount": "15% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          }
-        },
-        "product": {
-          "type": "product",
-          "uid": 876245,
-          "name": "Brown Sandals",
-          "slug": "red-chief-brown-sandals-876245-c92507",
-          "brand": {
-            "uid": 433,
-            "name": ""
-          },
-          "categories": [
-            {
-              "uid": 176,
-              "name": ""
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/red-chief-brown-sandals-876245-c92507/",
-            "query": {
-              "product_slug": [
-                "red-chief-brown-sandals-876245-c92507"
-              ]
-            }
-          },
-          "item_code": "RC330004"
-        },
-        "bulk_offer": {},
-        "key": "876245_6",
-        "message": "We are not delivering to 800108",
-        "delivery_promise": null,
-        "coupon_message": "",
-        "availability": {
-          "sizes": [
-            "7",
-            "6",
-            "10",
-            "8"
-          ],
-          "other_store_quantity": 21,
-          "out_of_stock": false,
-          "deliverable": false,
-          "is_valid": true,
-          "available_sizes": [
-            {
-              "is_available": false,
-              "display": "9",
-              "value": "9"
-            },
-            {
-              "is_available": true,
-              "display": "10",
-              "value": "10"
-            },
-            {
-              "is_available": true,
-              "display": "6",
-              "value": "6"
-            },
-            {
-              "is_available": true,
-              "display": "7",
-              "value": "7"
-            },
-            {
-              "is_available": true,
-              "display": "8",
-              "value": "8"
-            }
-          ]
-        },
-        "quantity": 1,
-        "article": {
-          "type": "article",
-          "uid": "304_433_LGPL30402_RC330004_6",
-          "size": "6",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 9767,
-            "name": "Udyog Kunj, Kanpur"
-          },
-          "quantity": 3,
-          "price": {
-            "base": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            }
-          }
-        }
-      },
-      {
-        "discount": "15% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          }
-        },
-        "product": {
-          "type": "product",
-          "uid": 876245,
-          "name": "Brown Sandals",
-          "slug": "red-chief-brown-sandals-876245-c92507",
-          "brand": {
-            "uid": 433,
-            "name": ""
-          },
-          "categories": [
-            {
-              "uid": 176,
-              "name": ""
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/red-chief-brown-sandals-876245-c92507/",
-            "query": {
-              "product_slug": [
-                "red-chief-brown-sandals-876245-c92507"
-              ]
-            }
-          },
-          "item_code": "RC330004"
-        },
-        "bulk_offer": {},
-        "key": "876245_6",
-        "message": "We are not delivering to 800108",
-        "coupon_message": "",
-        "availability": {
-          "sizes": [
-            "7",
-            "6",
-            "10",
-            "8"
-          ],
-          "other_store_quantity": 21,
-          "out_of_stock": false,
-          "deliverable": false,
-          "is_valid": true,
-          "available_sizes": [
-            {
-              "is_available": false,
-              "display": "9",
-              "value": "9"
-            },
-            {
-              "is_available": true,
-              "display": "10",
-              "value": "10"
-            },
-            {
-              "is_available": true,
-              "display": "6",
-              "value": "6"
-            },
-            {
-              "is_available": true,
-              "display": "7",
-              "value": "7"
-            },
-            {
-              "is_available": true,
-              "display": "8",
-              "value": "8"
-            }
-          ]
-        },
-        "quantity": 1,
-        "article": {
-          "type": "article",
-          "uid": "304_433_LGPL30402_RC330004_6",
-          "size": "6",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 9767,
-            "name": "Udyog Kunj, Kanpur"
-          },
-          "quantity": 3,
-          "price": {
-            "base": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            }
-          }
-        }
-      }
-    ]
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### checkoutCartItems
-Create Fynd order with cart details
-
-```javascript
-// Promise
-const promise = cart.checkoutCartItems(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.checkoutCartItems(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Generate Fynd order for cart details send with provided `cart_items`
-
-*Success Response:*
-
-
-
-Checkout cart and create Fynd order id
-
-
-Schema: `Object`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateCheckoutPaymentStatus
-Confirm payment on Fynd order id
-
-```javascript
-// Promise
-const promise = cart.updateCheckoutPaymentStatus(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.updateCheckoutPaymentStatus(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Confirm paymet successful status for sent `order_id`
-
-*Success Response:*
-
-
-
-Confirm payment successful status on Fynd order id
-
-
-Schema: `Object`
-
-
-*Examples:*
-
-
-Successful order creation
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Order Confirmed",
-    "order_id": "FY5E18CE260BF00FB214"
-  }
-}
-```
-
-Order creation failed due to error
-```json
-{
-  "value": {
-    "success": false,
-    "message": "Some error occured while confirming order payment"
   }
 }
 ```
