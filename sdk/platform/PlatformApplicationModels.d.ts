@@ -183,14 +183,23 @@ export class PaymentValidator {
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
 }
+export class OrderValidator {
+    static trackShipmentPlatform(): any;
+    static trackOrder(): any;
+    static failedOrders(): any;
+    static reprocessOrder(): any;
+    static updateShipment(): any;
+    static getPlatformShipmentReasons(): any;
+    static getShipmentTrackDetails(): any;
+}
 export class CatalogValidator {
-    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
@@ -203,8 +212,8 @@ export class CatalogValidator {
     static getAllCollections(): any;
     static createCollection(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
+    static deleteCollection(): any;
     static getCollectionItems(): any;
     static addCollectionItems(): any;
     static getCatalogInsights(): any;

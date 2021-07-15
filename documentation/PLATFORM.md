@@ -11,6 +11,7 @@
 * [Billing](#Billing) - Handle platform subscription 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
+* [Order](#Order) - Handles Platform websites OMS 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [FileStorage](#FileStorage) - File Storage 
@@ -272,15 +273,39 @@
     * [getUserBeneficiaries](#getuserbeneficiaries)
     
 
+* [Order](#Order)
+  * Methods
+    * [shipmentStatusUpdate](#shipmentstatusupdate)
+    * [activityStatus](#activitystatus)
+    * [storeProcessShipmentUpdate](#storeprocessshipmentupdate)
+    * [checkRefund](#checkrefund)
+    * [getOrdersByCompanyId](#getordersbycompanyid)
+    * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
+    * [getOrderDetails](#getorderdetails)
+    * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
+    * [trackShipmentPlatform](#trackshipmentplatform)
+    * [trackOrder](#trackorder)
+    * [failedOrders](#failedorders)
+    * [reprocessOrder](#reprocessorder)
+    * [updateShipment](#updateshipment)
+    * [getPlatformShipmentReasons](#getplatformshipmentreasons)
+    * [getShipmentTrackDetails](#getshipmenttrackdetails)
+    * [getShipmentAddress](#getshipmentaddress)
+    * [updateShipmentAddress](#updateshipmentaddress)
+    * [getPing](#getping)
+    * [voiceCallback](#voicecallback)
+    * [voiceClickToCall](#voiceclicktocall)
+    
+
 * [Catalog](#Catalog)
   * Methods
-    * [deleteSearchKeywords](#deletesearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
     * [getAllSearchKeyword](#getallsearchkeyword)
     * [createCustomKeyword](#createcustomkeyword)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
@@ -301,8 +326,8 @@
     * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
     * [getCollectionDetail](#getcollectiondetail)
-    * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
+    * [deleteCollection](#deletecollection)
     * [getCollectionItems](#getcollectionitems)
     * [addCollectionItems](#addcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
@@ -331,8 +356,8 @@
     * [getCategoryData](#getcategorydata)
     * [getProducts](#getproducts)
     * [createProduct](#createproduct)
-    * [deleteProduct](#deleteproduct)
     * [editProduct](#editproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProduct](#getproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
@@ -12618,36 +12643,34 @@ Schema: `OrderBeneficiaryResponse`
 ---
 
 
-## Catalog
+## Order
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
+#### shipmentStatusUpdate
+Update status of Shipment
 
 ```javascript
 // Promise
-const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
+const promise = order.shipmentStatusUpdate(companyId,body);
 
 // Async/Await
-const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
+const data = await order.shipmentStatusUpdate(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+| companyId | string | Company Id | 
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Update Shipment Status
 
 *Success Response:*
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Success
 
 
-Schema: `DeleteResponse`
+Schema: `UpdateShipmentStatusResponse`
 
 
 
@@ -12658,6 +12681,777 @@ Schema: `DeleteResponse`
 
 
 ---
+
+
+#### activityStatus
+Get Activity Status
+
+```javascript
+// Promise
+const promise = order.activityStatus(companyId,bagId);
+
+// Async/Await
+const data = await order.activityStatus(companyId,bagId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| bagId | string | Bag Id | 
+
+Get Activity Status
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetActivityStatus`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### storeProcessShipmentUpdate
+Update Store Process-Shipment
+
+```javascript
+// Promise
+const promise = order.storeProcessShipmentUpdate(companyId,body);
+
+// Async/Await
+const data = await order.storeProcessShipmentUpdate(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Update Store Process-Shipment
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateProcessShipmenstRequestResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### checkRefund
+Check Refund is available or not
+
+```javascript
+// Promise
+const promise = order.checkRefund(companyId,shipmentId);
+
+// Async/Await
+const data = await order.checkRefund(companyId,shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| shipmentId | string | Shipment Id | 
+
+Check Refund is available or not
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Object`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrdersByCompanyId
+Get Orders for company based on Company Id
+
+```javascript
+// Promise
+const promise = order.getOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+
+// Async/Await
+const data = await order.getOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Page limit | 
+| fromDate | string | From Date | 
+| toDate | string | To Date | 
+| q | string | Keyword for Search | 
+| stage | string | Specefic Order Stage | 
+| salesChannels | string | Selected Sales Channel | 
+| orderId | string | Order Id | 
+| stores | string | Selected Stores | 
+| status | string | Status of order | 
+| shortenUrls | boolean | Shorten URL option | 
+| filterType | string | Filters | 
+
+Get Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderListing`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderLanesCountByCompanyId
+Get Order Lanes Count for company based on Company Id
+
+```javascript
+// Promise
+const promise = order.getOrderLanesCountByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+
+// Async/Await
+const data = await order.getOrderLanesCountByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Page limit | 
+| fromDate | string | From Date | 
+| toDate | string | To Date | 
+| q | string | Keyword for Search | 
+| stage | string | Specefic Order Stage | 
+| salesChannels | string | Selected Sales Channel | 
+| orderId | string | Order Id | 
+| stores | string | Selected Stores | 
+| status | string | Status of order | 
+| shortenUrls | boolean | Shorten URL option | 
+| filterType | string | Filters | 
+
+Get Orders Seperate Lane Count
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderLanesCount`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
+
+```javascript
+// Promise
+const promise = order.getOrderDetails(companyId,orderId,next,previous);
+
+// Async/Await
+const data = await order.getOrderDetails(companyId,orderId,next,previous);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| orderId | string | Order Id | 
+| next | string | Next | 
+| previous | string | Previous | 
+
+Get Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderDetails`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPicklistOrdersByCompanyId
+Get Orders for company based on Company Id
+
+```javascript
+// Promise
+const promise = order.getPicklistOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+
+// Async/Await
+const data = await order.getPicklistOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Page limit | 
+| fromDate | string | From Date | 
+| toDate | string | To Date | 
+| q | string | Keyword for Search | 
+| stage | string | Specefic Order Stage | 
+| salesChannels | string | Selected Sales Channel | 
+| orderId | string | Order Id | 
+| stores | string | Selected Stores | 
+| status | string | Status of order | 
+| shortenUrls | boolean | Shorten URL option | 
+| filterType | string | Filters | 
+
+Get Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderPicklistListing`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### trackShipmentPlatform
+Track Shipment by shipment id, for application based on application Id
+
+```javascript
+// Promise
+const promise = order.trackShipmentPlatform(companyId,applicationId,shipmentId);
+
+// Async/Await
+const data = await order.trackShipmentPlatform(companyId,applicationId,shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| shipmentId | string | Shipment Id | 
+
+Shipment Track
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PlatformShipmentTrack`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### trackOrder
+Track Order by order id, for application based on application Id
+
+```javascript
+// Promise
+const promise = order.trackOrder(companyId,applicationId,orderId);
+
+// Async/Await
+const data = await order.trackOrder(companyId,applicationId,orderId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| orderId | string | Order Id | 
+
+Order Track
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PlatformOrderTrack`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### failedOrders
+Get all failed orders application wise
+
+```javascript
+// Promise
+const promise = order.failedOrders(companyId,applicationId);
+
+// Async/Await
+const data = await order.failedOrders(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Failed Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FailedOrders`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### reprocessOrder
+Reprocess order by order id
+
+```javascript
+// Promise
+const promise = order.reprocessOrder(companyId,applicationId,orderId);
+
+// Async/Await
+const data = await order.reprocessOrder(companyId,applicationId,orderId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| orderId | string | Order Id | 
+
+Order Reprocess
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateOrderReprocessResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShipment
+Use this API to update the shipment using its shipment ID.
+
+```javascript
+// Promise
+const promise = order.updateShipment(companyId,applicationId,shipmentId,body);
+
+// Async/Await
+const data = await order.updateShipment(companyId,applicationId,shipmentId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+
+Update the shipment
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `ShipmentUpdateRequest` for more details.
+
+
+Schema: `ShipmentUpdateResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPlatformShipmentReasons
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+```javascript
+// Promise
+const promise = order.getPlatformShipmentReasons(companyId,applicationId,action);
+
+// Async/Await
+const data = await order.getPlatformShipmentReasons(companyId,applicationId,action);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| action | string | Action | 
+
+Get reasons behind full or partial cancellation of a shipment
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `ShipmentReasonsResponse` for more details.
+
+
+Schema: `ShipmentReasonsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentTrackDetails
+Use this API to track a shipment using its shipment ID.
+
+```javascript
+// Promise
+const promise = order.getShipmentTrackDetails(companyId,applicationId,orderId,shipmentId);
+
+// Async/Await
+const data = await order.getShipmentTrackDetails(companyId,applicationId,orderId,shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| orderId | string | ID of the order. | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+
+Track shipment
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `ShipmentTrackResponse` for more details.
+
+
+Schema: `ShipmentTrackResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentAddress
+Use this API to get address of a shipment using its shipment ID and Address Category.
+
+```javascript
+// Promise
+const promise = order.getShipmentAddress(companyId,shipmentId,addressCategory);
+
+// Async/Await
+const data = await order.getShipmentAddress(companyId,shipmentId,addressCategory);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+| addressCategory | string | Category of the address it falls into(billing or delivery). | 
+
+Get Shipment Address
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `GetShipmentAddressResponse` for more details.
+
+
+Schema: `GetShipmentAddressResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShipmentAddress
+Use this API to update address of a shipment using its shipment ID and Address Category.
+
+```javascript
+// Promise
+const promise = order.updateShipmentAddress(companyId,shipmentId,addressCategory,body);
+
+// Async/Await
+const data = await order.updateShipmentAddress(companyId,shipmentId,addressCategory,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+| addressCategory | string | Category of the address it falls into(billing or delivery). | 
+
+Update Shipment Address
+
+*Success Response:*
+
+
+
+Success. Check the example shown below or refer `UpdateShipmentAddressResponse` for more details.
+
+
+Schema: `UpdateShipmentAddressResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPing
+Get Ping
+
+```javascript
+// Promise
+const promise = order.getPing(companyId);
+
+// Async/Await
+const data = await order.getPing(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Get Ping
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetPingResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### voiceCallback
+Get Voice Callback
+
+```javascript
+// Promise
+const promise = order.voiceCallback(companyId);
+
+// Async/Await
+const data = await order.voiceCallback(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Voice Callback
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetVoiceCallbackResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### voiceClickToCall
+Get Voice Click to Call
+
+```javascript
+// Promise
+const promise = order.voiceClickToCall(companyId,caller,receiver);
+
+// Async/Await
+const data = await order.voiceClickToCall(companyId,caller,receiver);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| caller | string | Caller contact number | 
+| receiver | string | Receiver contact number | 
+
+Voice Click to Call
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetClickToCallResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Catalog
 
 
 #### updateSearchKeywords
@@ -12687,6 +13481,45 @@ The Collection object. See example below or refer `GetSearchWordsDataSchema` for
 
 
 Schema: `GetSearchWordsData`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSearchKeywords
+Delete a Search Keywords
+
+```javascript
+// Promise
+const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -12814,45 +13647,6 @@ Schema: `GetSearchWordsData`
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
-
-```javascript
-// Promise
-const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateAutocompleteKeyword
 Create & Update Autocomplete Keyword
 
@@ -12880,6 +13674,45 @@ The Mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 
 Schema: `GetAutocompleteWordsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
+
+```javascript
+// Promise
+const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -13658,45 +14491,6 @@ Schema: `CollectionDetailResponse`
 ---
 
 
-#### deleteCollection
-Delete a Collection
-
-```javascript
-// Promise
-const promise = catalog.deleteCollection(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteCollection(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCollection
 Update a collection
 
@@ -13724,6 +14518,45 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 
 
 Schema: `UpdateCollection`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteCollection
+Delete a Collection
+
+```javascript
+// Promise
+const promise = catalog.deleteCollection(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteCollection(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier of a collection. | 
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -14819,23 +15652,23 @@ Schema: `SuccessResponse`
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### editProduct
+Edit a product.
 
 ```javascript
 // Promise
-const promise = catalog.deleteProduct(companyId,itemId);
+const promise = catalog.editProduct(companyId,itemId,body);
 
 // Async/Await
-const data = await catalog.deleteProduct(companyId,itemId);
+const data = await catalog.editProduct(companyId,itemId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to product that is to be deleted. | 
+| companyId | string | Id of the company associated to product that is to be viewed. | 
 | itemId | integer | Id of the product to be updated. | 
 
-This API allows to delete product.
+This API allows to edit product.
 
 *Success Response:*
 
@@ -14857,23 +15690,23 @@ Schema: `SuccessResponse`
 ---
 
 
-#### editProduct
-Edit a product.
+#### deleteProduct
+Delete a product.
 
 ```javascript
 // Promise
-const promise = catalog.editProduct(companyId,itemId,body);
+const promise = catalog.deleteProduct(companyId,itemId);
 
 // Async/Await
-const data = await catalog.editProduct(companyId,itemId,body);
+const data = await catalog.deleteProduct(companyId,itemId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
+| companyId | string | Company Id of the company associated to product that is to be deleted. | 
 | itemId | integer | Id of the product to be updated. | 
 
-This API allows to edit product.
+This API allows to delete product.
 
 *Success Response:*
 
