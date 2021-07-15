@@ -1,7 +1,7 @@
 const combineURLs = require("axios/lib/helpers/combineURLs");
 const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
 const axios = require("axios");
-const CurlHelper = require("axios-curlirize");
+const CurlHelper = require("./CurlHelper");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
 const { FDKServerResponseError } = require("./FDKError");
