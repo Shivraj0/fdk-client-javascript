@@ -9947,10 +9947,10 @@ Get all orders
 
 ```javascript
 // Promise
-const promise = order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
+const promise = order.getOrders(pageNo,pageSize,fromDate,toDate,status);
 
 // Async/Await
-const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
+const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,status);
 ```
 
 | Argument  |  Type  | Description |
@@ -9959,7 +9959,7 @@ const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
 | pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 | fromDate | string | The date from which the orders should be retrieved. | 
 | toDate | string | The date till which the orders should be retrieved. | 
-| orderStatus | integer | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. | 
+| status | integer | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. | 
 
 Use this API to retrieve all the orders.
 

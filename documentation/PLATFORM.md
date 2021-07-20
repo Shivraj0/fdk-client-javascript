@@ -400,10 +400,10 @@
     * [getBrand](#getbrand)
     * [editBrand](#editbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
+    * [getLocations](#getlocations)
     * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
     * [createLocationBulk](#createlocationbulk)
@@ -550,7 +550,6 @@
 
 * [Webhook](#Webhook)
   * Methods
-    * [getSubscribersByCompanyAndEventId](#getsubscribersbycompanyandeventid)
     * [registerSubscriberToEvent](#registersubscribertoevent)
     * [updateSubscriberConfig](#updatesubscriberconfig)
     
@@ -15577,10 +15576,10 @@ Get product list
 
 ```javascript
 // Promise
-const promise = catalog.getProducts(companyId,brandIds,categoryIds,departmentIds,q,pageNo,pageSize);
+const promise = catalog.getProducts(companyId,brandIds,categoryIds,departmentIds,itemIds,itemCode,q,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.getProducts(companyId,brandIds,categoryIds,departmentIds,q,pageNo,pageSize);
+const data = await catalog.getProducts(companyId,brandIds,categoryIds,departmentIds,itemIds,itemCode,q,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -15589,6 +15588,8 @@ const data = await catalog.getProducts(companyId,brandIds,categoryIds,department
 | brandIds | array | Get multiple products filtered by Brand Ids | 
 | categoryIds | array | Get multiple products filtered by Category Ids | 
 | departmentIds | array | Get multiple products filtered by Department Ids | 
+| itemIds | array | Get multiple products filtered by Item Ids | 
+| itemCode | array | Get multiple products filtered by Item Code | 
 | q | string | Get multiple products filtered by q string | 
 | pageNo | integer | The page number to navigate through the given set of results | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
@@ -17203,6 +17204,43 @@ Schema: `SuccessResponse`
 ---
 
 
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+```javascript
+// Promise
+const promise = companyprofile.createCompanyBrandMapping(companyId,body);
+
+// Async/Await
+const data = await companyprofile.createCompanyBrandMapping(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getBrands
 Get brands associated to a company
 
@@ -17242,22 +17280,22 @@ Schema: `CompanyBrandListSerializer`
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.createCompanyBrandMapping(companyId,body);
+const promise = companyprofile.createLocation(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createCompanyBrandMapping(companyId,body);
+const data = await companyprofile.createLocation(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+| companyId | string | Id of the company inside which the location is to be created. | 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -17309,43 +17347,6 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
 
 Schema: `LocationListSerializer`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createLocation
-Create a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.createLocation(companyId,body);
-
-// Async/Await
-const data = await companyprofile.createLocation(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-
-This API allows to create a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -21704,46 +21705,6 @@ Remove proxy path for external url
 ## Webhook
 
 
-#### getSubscribersByCompanyAndEventId
-Get Subscribers By Company And Event
-
-```javascript
-// Promise
-const promise = webhook.getSubscribersByCompanyAndEventId(companyId,eventId,pageNo,pageSize);
-
-// Async/Await
-const data = await webhook.getSubscribersByCompanyAndEventId(companyId,eventId,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
-| companyId | string | Company ID of the application | 
-| eventId | integer | Event Id of the application | 
-
-Get Subscribers By Company And Event
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SubscriberConfigList`
-
-
-
-
-
-
-
-
-
----
-
-
 #### registerSubscriberToEvent
 Register Subscriber
 
@@ -21757,7 +21718,7 @@ const data = await webhook.registerSubscriberToEvent(companyId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id of the application | 
+| companyId | integer | Company Id of the application | 
 
 Register Subscriber
 
@@ -21794,7 +21755,7 @@ const data = await webhook.updateSubscriberConfig(companyId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
+| companyId | integer | Company ID of the application | 
 
 Update Subscriber
 

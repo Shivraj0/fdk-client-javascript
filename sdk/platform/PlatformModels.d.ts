@@ -127,10 +127,10 @@ export class CompanyProfileValidator {
     static getBrand(): any;
     static editBrand(): any;
     static createBrand(): any;
-    static getBrands(): any;
     static createCompanyBrandMapping(): any;
-    static getLocations(): any;
+    static getBrands(): any;
     static createLocation(): any;
+    static getLocations(): any;
     static getLocationDetail(): any;
     static updateLocation(): any;
     static createLocationBulk(): any;
@@ -190,7 +190,6 @@ export class DiscountValidator {
     static cancelDownloadJob(): any;
 }
 export class WebhookValidator {
-    static getSubscribersByCompanyAndEventId(): any;
     static registerSubscriberToEvent(): any;
     static updateSubscriberConfig(): any;
 }

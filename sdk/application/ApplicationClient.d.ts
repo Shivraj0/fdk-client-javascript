@@ -2175,18 +2175,18 @@ declare class Order {
      *   value is 10.* @param {string} [arg.fromDate] - The date from which the
      *   orders should be retrieved.* @param {string} [arg.toDate] - The date
      *   till which the orders should be retrieved.* @param {number}
-     *   [arg.orderStatus] - A filter to retrieve orders by their current status
-     *   such as *placed*, *delivered*, etc.
+     *   [arg.status] - A filter to retrieve orders by their current status such
+     *   as *placed*, *delivered*, etc.
      * @returns {Promise<OrderList>} - Success response
      * @summary: Get all orders
      * @description: Use this API to retrieve all the orders.
      */
-    getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus }?: {
+    getOrders({ pageNo, pageSize, fromDate, toDate, status }?: {
         pageNo?: number;
         pageSize?: number;
         fromDate?: string;
         toDate?: string;
-        orderStatus?: number;
+        status?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
