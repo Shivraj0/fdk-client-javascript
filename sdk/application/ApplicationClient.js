@@ -4853,9 +4853,9 @@ class Payment {
    *   arg.checkoutMode - Option to checkout for self or for others.* @param
    *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
    *   remove temporary cache files on payment gateway and replace with the
-   *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
-   *   or credit card.* @param {string} [arg.userDetails] - URIencoded JSON
-   *   containing details of an anonymous user.
+   *   latest one.* @param {string} [arg.cardReference] - Card reference id of
+   *   user's debit or credit card.* @param {string} [arg.userDetails] -
+   *   URIencoded JSON containing details of an anonymous user.
    * @returns {Promise<PaymentModeRouteResponse>} - Success response
    * @summary: Get applicable payment options
    * @description: Use this API to get all valid payment options for doing a payment.
@@ -4866,7 +4866,7 @@ class Payment {
     pincode,
     checkoutMode,
     refresh,
-    assignCardId,
+    cardReference,
     userDetails,
   } = {}) {
     const { error } = PaymentValidator.getPaymentModeRoutes().validate(
@@ -4876,7 +4876,7 @@ class Payment {
         pincode,
         checkoutMode,
         refresh,
-        assignCardId,
+        cardReference,
         userDetails,
       },
       { abortEarly: false }
@@ -4890,7 +4890,7 @@ class Payment {
     query["pincode"] = pincode;
     query["checkout_mode"] = checkoutMode;
     query["refresh"] = refresh;
-    query["assign_card_id"] = assignCardId;
+    query["card_reference"] = cardReference;
     query["user_details"] = userDetails;
 
     return APIClient.execute(
@@ -4910,9 +4910,9 @@ class Payment {
    *   arg.checkoutMode - Option to checkout for self or for others.* @param
    *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
    *   remove temporary cache files on payment gateway and replace with the
-   *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
-   *   or credit card.* @param {string} arg.orderType - The order type of
-   *   shipment * HomeDelivery - If the customer wants the order
+   *   latest one.* @param {string} [arg.cardReference] - Card reference id of
+   *   user's debit or credit card.* @param {string} arg.orderType - The order
+   *   type of shipment * HomeDelivery - If the customer wants the order
    *   home-delivered * PickAtStore - If the customer wants the handover of an
    *   order at the store itself.* @param {string} [arg.userDetails] -
    *   URIencoded JSON containing details of an anonymous user.
@@ -4927,7 +4927,7 @@ class Payment {
     checkoutMode,
     orderType,
     refresh,
-    assignCardId,
+    cardReference,
     userDetails,
   } = {}) {
     const { error } = PaymentValidator.getPosPaymentModeRoutes().validate(
@@ -4938,7 +4938,7 @@ class Payment {
         checkoutMode,
         orderType,
         refresh,
-        assignCardId,
+        cardReference,
         userDetails,
       },
       { abortEarly: false }
@@ -4952,7 +4952,7 @@ class Payment {
     query["pincode"] = pincode;
     query["checkout_mode"] = checkoutMode;
     query["refresh"] = refresh;
-    query["assign_card_id"] = assignCardId;
+    query["card_reference"] = cardReference;
     query["order_type"] = orderType;
     query["user_details"] = userDetails;
 

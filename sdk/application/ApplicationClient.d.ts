@@ -2029,14 +2029,14 @@ declare class Payment {
      *   arg.checkoutMode - Option to checkout for self or for others.* @param
      *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
      *   remove temporary cache files on payment gateway and replace with the
-     *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
-     *   or credit card.* @param {string} [arg.userDetails] - URIencoded JSON
-     *   containing details of an anonymous user.
+     *   latest one.* @param {string} [arg.cardReference] - Card reference id of
+     *   user's debit or credit card.* @param {string} [arg.userDetails] -
+     *   URIencoded JSON containing details of an anonymous user.
      * @returns {Promise<PaymentModeRouteResponse>} - Success response
      * @summary: Get applicable payment options
      * @description: Use this API to get all valid payment options for doing a payment.
      */
-    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, assignCardId, userDetails, }?: {
+    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, cardReference, userDetails, }?: {
         amount: number;
         cartId: string;
         pincode: string;
@@ -2050,9 +2050,9 @@ declare class Payment {
      *   arg.checkoutMode - Option to checkout for self or for others.* @param
      *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
      *   remove temporary cache files on payment gateway and replace with the
-     *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
-     *   or credit card.* @param {string} arg.orderType - The order type of
-     *   shipment * HomeDelivery - If the customer wants the order
+     *   latest one.* @param {string} [arg.cardReference] - Card reference id of
+     *   user's debit or credit card.* @param {string} arg.orderType - The order
+     *   type of shipment * HomeDelivery - If the customer wants the order
      *   home-delivered * PickAtStore - If the customer wants the handover of an
      *   order at the store itself.* @param {string} [arg.userDetails] -
      *   URIencoded JSON containing details of an anonymous user.
@@ -2060,7 +2060,7 @@ declare class Payment {
      * @summary: Get applicable payment options for Point-of-Sale (POS)
      * @description: Use this API to get all valid payment options for doing a payment in POS.
      */
-    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, assignCardId, userDetails, }?: {
+    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, }?: {
         amount: number;
         cartId: string;
         pincode: string;
