@@ -569,20 +569,23 @@ declare class Catalog {
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.* @param {number} [arg.pageSize] - Number of items
      *   to retrieve in each page.* @param {string} [arg.q] - Search a store by
-     *   its name or store_code.* @param {number} [arg.range] - Use this to
-     *   retrieve stores within a particular range in meters, e.g. 10000, to
-     *   indicate a 10km range* @param {number} [arg.latitude] - Latitude of the
-     *   location from where one wants to retreive the nearest stores, e.g.
-     *   72.8691788* @param {number} [arg.longitude] - Longitude of the location
-     *   from where one wants to retreive the nearest stores, e.g. 19.1174114
+     *   its name or store_code.* @param {string} [arg.city] - Search stores by
+     *   the city in which they are situated.* @param {number} [arg.range] - Use
+     *   this to retrieve stores within a particular range in meters, e.g.
+     *   10000, to indicate a 10km range* @param {number} [arg.latitude] -
+     *   Latitude of the location from where one wants to retreive the nearest
+     *   stores, e.g. 72.8691788* @param {number} [arg.longitude] - Longitude of
+     *   the location from where one wants to retreive the nearest stores, e.g.
+     *   19.1174114
      * @returns {Promise<StoreListingResponse>} - Success response
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application.
      */
-    getStores({ pageNo, pageSize, q, range, latitude, longitude }?: {
+    getStores({ pageNo, pageSize, q, city, range, latitude, longitude }?: {
         pageNo?: number;
         pageSize?: number;
         q?: string;
+        city?: string;
         range?: number;
         latitude?: number;
         longitude?: number;
@@ -591,6 +594,7 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
      * @param {string} [arg.q] - Search a store by its name or store_code.
+     * @param {string} [arg.city] - Search stores by the city in which they are situated.
      * @param {number} [arg.range] - Use this to retrieve stores within a
      *   particular range in meters, e.g. 10000, to indicate a 10km range
      * @param {number} [arg.latitude] - Latitude of the location from where one
@@ -600,9 +604,10 @@ declare class Catalog {
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application.
      */
-    getStoresPaginator({ pageSize, q, range, latitude, longitude }?: {
+    getStoresPaginator({ pageSize, q, city, range, latitude, longitude }?: {
         pageSize?: number;
         q?: string;
+        city?: string;
         range?: number;
         latitude?: number;
         longitude?: number;
@@ -684,7 +689,7 @@ declare class Cart {
      * @param {boolean} [arg.i] - * @param {boolean} [arg.b] - * @param
      *   {boolean} [arg.p] - * @param {string} [arg.id] -
      * @param {ApplyCouponRequest} arg.body
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply Coupon
      * @description: Use this API to apply coupons on items in the cart.
      */
@@ -772,7 +777,7 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID allotted to the selected address
      * @param {Address} arg.body
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<UpdateAddressResponse>} - Success response
      * @summary: Update address added to an account
      * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
      */
@@ -783,7 +788,7 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID allotted to the selected address
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<DeleteAddressResponse>} - Success response
      * @summary: Remove address associated with an account
      * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
      */
@@ -795,7 +800,7 @@ declare class Cart {
      * @param {string} [arg.cartId] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
      * @param {SelectCartAddressRequest} arg.body
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Select an address from available addresses
      * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
      */
@@ -1044,42 +1049,50 @@ declare class User {
     _conf: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.platform] - ID of the application
      * @param {OAuthRequestSchema} arg.body
      * @returns {Promise<AuthSuccess>} - Success response
      * @summary: Login or Register using Facebook
      * @description: Use this API to login or register using Facebook credentials.
      */
-    loginWithFacebook({ body }?: {
+    loginWithFacebook({ body, platform }?: {
+        platform?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.platform] - ID of the application
      * @param {OAuthRequestSchema} arg.body
      * @returns {Promise<AuthSuccess>} - Success response
      * @summary: Login or Register using Google
      * @description: Use this API to login or register using Google Account credentials.
      */
-    loginWithGoogle({ body }?: {
+    loginWithGoogle({ body, platform }?: {
+        platform?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.platform] - ID of the application
      * @param {OAuthRequestSchema} arg.body
      * @returns {Promise<AuthSuccess>} - Success response
      * @summary: Login or Register using Google on Android
      * @description: Use this API to login or register in Android app using Google Account credentials.
      */
-    loginWithGoogleAndroid({ body }?: {
+    loginWithGoogleAndroid({ body, platform }?: {
+        platform?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.platform] - ID of the application
      * @param {OAuthRequestSchema} arg.body
      * @returns {Promise<AuthSuccess>} - Success response
      * @summary: Login or Register using Google on iOS
      * @description: Use this API to login or register in iOS app using Google Account credentials.
      */
-    loginWithGoogleIOS({ body }?: {
+    loginWithGoogleIOS({ body, platform }?: {
+        platform?: string;
         body: any;
     }): Promise<any>;
     /**
@@ -2922,7 +2935,7 @@ declare class PosCart {
      * @param {boolean} [arg.i] - * @param {boolean} [arg.b] - * @param
      *   {boolean} [arg.p] - * @param {string} [arg.id] -
      * @param {ApplyCouponRequest} arg.body
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply Coupon
      * @description: Use this API to apply coupons on items in the cart.
      */
@@ -3010,7 +3023,7 @@ declare class PosCart {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID allotted to the selected address
      * @param {Address} arg.body
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<UpdateAddressResponse>} - Success response
      * @summary: Update address added to an account
      * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
      */
@@ -3021,7 +3034,7 @@ declare class PosCart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID allotted to the selected address
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<DeleteAddressResponse>} - Success response
      * @summary: Remove address associated with an account
      * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
      */
@@ -3033,7 +3046,7 @@ declare class PosCart {
      * @param {string} [arg.cartId] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
      * @param {SelectCartAddressRequest} arg.body
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Select an address from available addresses
      * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
      */

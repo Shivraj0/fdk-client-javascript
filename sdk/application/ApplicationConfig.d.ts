@@ -9,6 +9,5 @@ declare class ApplicationConfig {
     applicationToken: any;
     opts: any;
     domain: any;
-    printCurl: any;
     validate(): void;
 }

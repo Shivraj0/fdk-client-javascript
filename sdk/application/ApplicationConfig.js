@@ -9,7 +9,6 @@ class ApplicationConfig {
     this.applicationToken = _conf.applicationToken || "";
     this.opts = _opts || {};
     this.domain = _conf.domain || "https://api.fyndx0.de";
-    this.printCurl = _conf.printCurl || false;
     this.validate();
   }
 
